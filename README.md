@@ -80,19 +80,19 @@ For the time being only dedicated members of the development team will have acce
 
 Current members include:
 
-- Stephen McCall (stephen.mccall@gmail.com)
-- Jed Pittman (edpittman@gmail.com)
+- Allentza Michel (powerfulpathwaysinc@gmail.com)
 - Barry Fradkin (bfradkin@comcast.net)
 - Brad Smith (brad@smithwebtek.com)
-- Shay McDonough (shay.m.mcdonough@gmail.com)
 - David Morrison (morrisond7@gmail.com)
-- Sasha Hulk (srhu222@gmail.com)
-- Tejasvi Srigiriraju (sritejasvi@gmail.com)
-- Jeff Korenstein (j.korenstein@gmail.com)
-- Stephan Halarewicz (shalarewicz@gmail.com)
-- Kayla Patel (kayla.patel@tufts.edu)
-- Allentza (powerfulpathwaysinc@gmail.com)
 - James Gui (zkgui98@gmail.com)
+- Jed Pittman (edpittman@gmail.com)
+- Jeff Korenstein (j.korenstein@gmail.com)
+- Kayla Patel (kayla.patel@tufts.edu)
+- Sasha Hulk (srhu222@gmail.com)
+- Shay McDonough (shay.m.mcdonough@gmail.com)
+- Stephan Halarewicz (shalarewicz@gmail.com)
+- Stephen McCall (stephen.mccall@gmail.com)
+- Tejasvi Srigiriraju (sritejasvi@gmail.com)
 
 Sharing of any of the information pertaining to these resources outside of the accepted team members is prohibited.
 
