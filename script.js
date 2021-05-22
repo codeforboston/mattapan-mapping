@@ -199,6 +199,35 @@ const planningBoundary = L.geoJson(planning_boundary,{
   }
 });
 
+const riverStreetBoundary = L.geoJson(river_st_boundary,{
+  style: function (feature){
+    return {
+      fillOpacity: 0.0,
+      color: "#05757C"
+    }
+  }
+});
+//console.log(zoning_subdistricts_boundary.features[0])
+
+//const layerGroup = L.layerGroup(zoning_subdistricts_boundary.features.map(f => L.geoJson(f, {
+//  style: function(feature){
+//    return {
+//      fillOpacity: 0.0,
+//      color: "#00DD00"
+//    }
+//  }
+//})))
+const layerGroup = L.layerGroup(riverStreetBoundary, planningBoundary)
+console.log(layerGroup)
+//var lg = L.layerGroup([marker1, marker2]).addLayer(polyline).addTo(map)
+//const subdistrictBoundary = L.geoJson(zoning_subdistricts_boundary, {
+//  style: function (feature){
+//    return {
+//      fillOpacity: 0.0,
+//      color: "#00DD00"
+//    }
+//  }
+//})
 
 
 /******************************************
@@ -281,6 +310,8 @@ function handleData([
     .addBaseLayer(zoningBoundary, "Greater Mattapan Zoning Boundary")
     .addBaseLayer(planningBoundary, "BPDA Planning District Boundary")
     .addBaseLayer(neighbBoundary, "BDPA Unofficial Neighborhood Boundary")
+    .addBaseLayer(riverStreetBoundary, "River Street Boundary")
+    .addBaseLayer(layerGroup, "Multiple Zone Boundary")
 
   // Apply correct relative order of layers when adding from control.
   map.on("overlayadd", function () {

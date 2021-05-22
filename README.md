@@ -129,7 +129,13 @@ PATCH version when you make backwards compatible bug fixes.
 
 All great open source projects start with amazing documentation! :)
 
-Documentation describing the Mattapan Mapping application will be avaialble in this repo and at the following locations... 
+Documentation describing the Mattapan Mapping application will be avaialble in this repo and at the following locations...
+
+## Running the Code
+Once you have this repository cloned, you'll need python 3 installed.
+Ensure it is running on the command prompt by running ```python --version```
+Next, run the application locally by running ```python -m http.server```
+Open a web browser at http://localhost:8000 if you're using the defaults above, to see the project.
 
 ## External Resources
 
