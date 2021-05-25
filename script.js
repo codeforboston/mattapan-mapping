@@ -1,5 +1,5 @@
 "use strict";
-console.clear();
+//console.clear();
 
 /******************************************
  * GLOBAL CONSTANTS & FLAGS
@@ -199,6 +199,79 @@ const planningBoundary = L.geoJson(planning_boundary,{
   }
 });
 
+const riverStreetBoundary = L.geoJson(river_st_boundary,{
+  style: function (feature){
+    return {
+      fillOpacity: 0.0,
+      color: "#05757C"
+    }
+  }
+});
+
+const blueHillAveBoundary = L.geoJson(blue_hill_ave_corridor, {
+  style: function (feature){
+    return {
+      fillOpacity: 0.0,
+      color: "#0C0044"
+    }
+  }
+});
+
+const cumminsHwyBoundary = L.geoJson(cummins_hwy_corridor, {
+  style: function (feature){
+    return {
+      fillOpacity: 0.0,
+      color: "#00D822"
+    }
+  }
+});
+
+const dotHPBoundary = L.geoJson(dot_hp_zoning_subdistricts, {
+  style: function (feature){
+    return {
+      fillOpacity: 0.0,
+      color: "#220088"
+    }
+  }
+});
+
+const greaterMattapanMergedBoundary = L.geoJson(greater_mattapan_merged, {
+  style: function (feature){
+    return {
+      fillOpacity: 0.0,
+      color: "#444488"
+    }
+  }
+});
+
+const mattapanSqBoundary = L.geoJson(mattapan_sq_qtr_mile, {
+  style: function (feature){
+    return {
+      fillOpacity: 0.0,
+      color: "#4400EE"
+    }
+  }
+});
+
+const PLANBoundary = L.geoJson(plan_mattapan, {
+  style: function (feature){
+    return {
+      fillOpacity: 0.0,
+      color: "#0000EE"
+    }
+  }
+});
+
+const mattapanLineBoundary = L.geoJson(greater_mattapan_neighborhood_line, {
+  style: function (feature){
+    return {
+      fillOpacity: 0.0,
+      color: "#EE0011"
+    }
+  }
+});
+
+
 
 
 /******************************************
@@ -274,6 +347,8 @@ function handleData([
   const indicators = handleIndicatorsLayer(indicatorGeoJSON);
   const oralHistories = handleOralHistoriesLayer(oralHistoryGeoJSON);
 
+  //console.log(riverStreetBoundary)
+  //console.log(z1[50])
   // add layers to map layers control UI
   layersControl
     .addOverlay(indicators, "Indicators")
@@ -281,6 +356,13 @@ function handleData([
     .addBaseLayer(zoningBoundary, "Greater Mattapan Zoning Boundary")
     .addBaseLayer(planningBoundary, "BPDA Planning District Boundary")
     .addBaseLayer(neighbBoundary, "BDPA Unofficial Neighborhood Boundary")
+    .addBaseLayer(riverStreetBoundary, "River Street Boundary")
+    .addBaseLayer(PLANBoundary, "PLAN Mattapan Boundary")
+    .addBaseLayer(mattapanLineBoundary, "Mattapan Line Boundary")
+    .addBaseLayer(blueHillAveBoundary, "Blue Hill Ave Boundary")
+    .addBaseLayer(mattapanSqBoundary, "Mattapan Square Boundary")
+    .addBaseLayer(cumminsHwyBoundary, "Cummins Highway Boundary")
+    .addBaseLayer(greaterMattapanMergedBoundary, "Greater Mattapan Merged Boundary")
 
   // Apply correct relative order of layers when adding from control.
   map.on("overlayadd", function () {
