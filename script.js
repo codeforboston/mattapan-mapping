@@ -279,9 +279,16 @@ const mattapanLineBoundary = L.geoJson(greater_mattapan_neighborhood_line, {
   }
 });
 
+// const audioMapPoints = L.geoJson(audio_map_points, {
+//   style: function (feature){
+//     return {
+//       fillOpacity: 0.0,
+//       color: "#EE0011"
+//     }
+//   }
+// });
 
-
-
+ 
 /******************************************
  * FETCH DATA SOURCES
  *****************************************/
@@ -360,6 +367,7 @@ function handleData([
   // add layers to map layers control UI
   layersControl
     .addOverlay(indicators, "Indicators")
+    // .addOverlay(audioMapPoints, "Audio Map Points")
     .addOverlay(oralHistories, "Oral Histories")
     .addOverlay(zoningBoundary, "Greater Mattapan Zoning Boundary")
     .addOverlay(planningBoundary, "BPDA Planning District Boundary")
