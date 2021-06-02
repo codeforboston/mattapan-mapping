@@ -356,13 +356,12 @@ function handleData([
     .addOverlay(zoningBoundary, "Greater Mattapan Zoning Boundary")
     .addOverlay(planningBoundary, "BPDA Planning District Boundary")
     .addOverlay(neighbBoundary, "BDPA Unofficial Neighborhood Boundary")
-    .addOverlay(riverStreetBoundary, "River Street Boundary")
     .addOverlay(PLANBoundary, "PLAN Mattapan Boundary")
-    .addOverlay(mattapanLineBoundary, "Mattapan Line Boundary")
-    .addOverlay(blueHillAveBoundary, "Blue Hill Ave Boundary")
-    .addOverlay(mattapanSqBoundary, "Mattapan Square Boundary")
-    .addOverlay(cumminsHwyBoundary, "Cummins Highway Boundary")
     .addOverlay(greaterMattapanMergedBoundary, "Greater Mattapan Merged Boundary")
+    .addOverlay(mattapanSqBoundary, "Mattapan Square Boundary")
+    .addOverlay(blueHillAveBoundary, "Blue Hill Ave Boundary")
+    .addOverlay(cumminsHwyBoundary, "Cummins Highway Boundary")
+    .addOverlay(riverStreetBoundary, "River Street Boundary")
 
   // Apply correct relative order of layers when adding from control.
   map.on("overlayadd", function () {
