@@ -198,6 +198,14 @@ const planningBoundary = L.geoJson(planning_boundary,{
       }
   }
 });
+const mortonBoundary = L.geoJson(morton_boundary,{
+  style: function (feature){
+      return {
+        fillOpacity: 0.0,
+        color: "#00FF00"
+      }
+  }
+});
 
 const riverStreetBoundary = L.geoJson(river_st_boundary,{
   style: function (feature){
@@ -356,7 +364,7 @@ function handleData([
     .addOverlay(zoningBoundary, "Greater Mattapan Zoning Boundary")
     .addOverlay(planningBoundary, "BPDA Planning District Boundary")
     .addOverlay(neighbBoundary, "BDPA Unofficial Neighborhood Boundary")
-    .addOverlay(neighbBoundary, "Morton Street Corridor")
+    .addOverlay(mortonBoundary, "Morton Street Corridor")
     .addOverlay(riverStreetBoundary, "River Street Boundary")
     .addOverlay(PLANBoundary, "PLAN Mattapan Boundary")
     .addOverlay(mattapanLineBoundary, "Mattapan Line Boundary")
