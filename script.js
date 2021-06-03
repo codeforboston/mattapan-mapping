@@ -305,17 +305,17 @@ function handleData([
   const indicatorRows = d3
     .csvParse(sheetsText, d3.autoType)
     .map(({img_link, ...rest}) =>({
-      img_link: img_link === null ? null : "https://drive.google.com/uc?id=".concat(img_link.slice(33)),
+      img_link: img_link === null ? null : "assets/csvFiles/form-responses.csv",
       ...rest
     }))
     .filter(
       row => row.submission_type === "Indicator"
-    );
-
-  const oralHistoryRows = d3
-    .csvParse(sheetsText, d3.autoType)
-    .map(({img_link, ...rest}) =>({
-      img_link: img_link === null ? null : "https://drive.google.com/uc?id=".concat(img_link.slice(33)),
+      );
+      
+      const oralHistoryRows = d3
+      .csvParse(sheetsText, d3.autoType)
+      .map(({img_link, ...rest}) =>({
+        img_link: img_link === null ? null : "assets/csvFiles/form-responses.csv",
       ...rest
     }))
     .filter(
@@ -447,9 +447,8 @@ function handleOralHistoriesLayer(geoJson) {
   const iconSize = [25, 25];
   const iconAnchor = [12, 12];
   const micIcon = new L.Icon({
-    iconUrl: "./assets/mapIcons/mic-fill.svg",
-    iconSize: iconSize,
-    iconAnchor: iconAnchor
+    iconUrl: "assets/mapIcons/mic-fill.svg",
+    nAnchor: iconAnchor
   });
 
   // add custom marker icons
