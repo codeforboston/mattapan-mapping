@@ -159,7 +159,7 @@ a:hover {
 
 .leaflet-popup-tip-container {
   position: relative;
-  top: 25px;
+  top: 19px;
 }
 
 .leaflet-popup-close-button {
@@ -185,41 +185,9 @@ a:hover {
 }
 
 /* InfoWindow Styling */
-#aemp-infowindow-container {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.aemp-infowindow {
-  position: absolute;
-  right: 0;
-  width: 350px;
-  margin: 10px 10px 0 0;
-  max-height: 95%;
-  overflow-y: auto;
-  padding: 15px;
+.aemp-infowindow-container {
   background: white;
   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
-}
-
-.aemp-infowindow p {
-  font-size: 1.4rem;
-  overflow-wrap: break-word;
-  overflow-x: hidden;
-}
-
-.aemp-infowindow p.infowindow-title {
-  font-size: 1.8rem;
-}
-
-a.aemp-infowindow-close {
-  display: inline-block;
-  float: right;
-  font-size: 2.4rem;
-  font-style: normal;
-  font-weight: bold;
 }
 
 @media (max-width: 640px) {

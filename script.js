@@ -35,7 +35,7 @@ const mapOptions = {
 
 // global map layer styling variables
 const strokeWeight = 1.5;
-const pointRadius = 5;
+const pointRadius = 7;
 const fillOpacity = 0.7;
 
 // setting the initial zoom settings
@@ -435,10 +435,11 @@ function handleIndicatorsLayer(geojson) {
   const pointToLayer = (_,latlng) => {
     // style indicators
     return L.circleMarker(latlng, {
-      color: "#d01c8b",
-      fillColor: "#d01c8b",
+      color: "#ffa281",
+      fillColor: "#fec0aa",
       fillOpacity: 1,
-      radius: pointRadius
+      radius: pointRadius,
+      weight: .5
     });
   };
 
@@ -467,10 +468,11 @@ function handleIndicatorsLayer(geojson) {
       infowindowTemplate,
       layer.feature.properties
     );
-    document.getElementById(
-      "aemp-infowindow-container"
-    ).innerHTML = renderedInfo;
-    return Mustache.render(popupTemplate, layer.feature.properties);
+
+    return renderedInfo;
+  }, {
+    maxWidth: 300,
+    className: 'aemp-infowindow-container'
   });
 
   // Add data to the map
