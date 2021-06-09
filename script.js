@@ -38,11 +38,30 @@ if (IS_MOBILE) {
   initialMapZoom = 14;
 }
 
-// used by infowindow-template
-function closeInfo() {
-  map.closePopup();
-  map.invalidateSize();
-}
+// initial values, if not given by the url
+let mapConfig = {
+  lat: 42.2819229,
+  lng: -71.0849532,
+  z: initialMapZoom,
+  indicators: true,
+  oralHistories: true,
+  audioMapPoints: true,
+};
+
+const mapOptions = {
+  zoomControl: false,
+  attributionControl: false,
+  maxBounds: [
+    [-85.05, -190], // lower left
+    [85.05, 200] // upper right
+  ]
+};
+
+// create a new map instance by referencing the appropriate html element by its "id" attribute
+const map = L.map("map", mapOptions).setView(
+  [mapConfig.lat, mapConfig.lng],
+  mapConfig.z
+);
 
 // the collapsable <details> element below the map title
 const titleDetails = document
@@ -69,6 +88,12 @@ function toggleTitleDetails() {
   }
 }
 
+// used by infowindow-template
+function closeInfo() {
+  map.closePopup();
+  map.invalidateSize();
+}
+
 let resizeWindow;
 window.addEventListener("resize", function () {
   clearTimeout(resizeWindow);
@@ -88,30 +113,6 @@ function fixZOrder(dataLayers) {
     }
   });
 }
-
-// initial values, if not given by the url
-let mapConfig = {
-  lat: 42.2819229,
-  lng: -71.0849532,
-  z: initialMapZoom,
-  indicators: true,
-  oralHistories: true,
-};
-
-const mapOptions = {
-  zoomControl: false,
-  attributionControl: false,
-  maxBounds: [
-    [-85.05, -190], // lower left
-    [85.05, 200] // upper right
-  ]
-};
-
-// create a new map instance by referencing the appropriate html element by its "id" attribute
-const map = L.map("map", mapOptions).setView(
-  [mapConfig.lat, mapConfig.lng],
-  mapConfig.z
-);
 
 map.on("popupopen", function (e) {
   document.getElementById("root").classList.add("aemp-popupopen");
@@ -159,9 +160,6 @@ const popupTemplate = document.querySelector(".popup-template").innerHTML;
 const infowindowTemplate = document.getElementById("aemp-infowindow-template")
   .innerHTML;
 
-const oralHistoryPopupTemplate = document.querySelector(
-  ".oralhistory-popup-template"
-).innerHTML;
 const oralHistoryInfowindowTemplate = document.getElementById(
   "aemp-oralhistory-infowindow-template"
 ).innerHTML;
@@ -190,6 +188,8 @@ function constructGeoJson(inputJson){
   };
   return outputGeoJSON
 }
+
+const oralHistories = handleOralHistoriesLayer(audio_map_points);
 
 function addBoudaryLayers() {
 
@@ -346,7 +346,7 @@ if (type === 'indicators') {
     row => row["Submission Type"] === "Indicator"
     );
 
-    buildGeoJsonLayers(indicatorPoints, "Indicators")
+    buildGeoJsonLayers(indicatorPoints, "Gentrification Indicators")
 }
 
 if (type === 'developments') {
@@ -363,7 +363,7 @@ if (type === 'developments') {
  * HANDLE ADDING MAP LAYERS
  *****************************************/
 
-function handleLayers(geojson) {
+ function handleLayers(geojson) {
   // styling for the indicators layer: style indicators conditionally according to a presence of an indicator
   const pointToLayer = (_,latlng) => {
     // style indicators
@@ -417,12 +417,12 @@ function handleLayers(geojson) {
 
 }
 
+
 function handleOralHistoriesLayer(geoJson) {
   // custom icons & icon settings for rent strikes markers
-  const iconSize = [25, 25];
   const iconAnchor = [12, 12];
   const micIcon = new L.Icon({
-    iconUrl: "assets/mapIcons/mic-fill.svg",
+    iconUrl: "assets/mapIcons/mic-fill.png",
     nAnchor: iconAnchor
   });
 
@@ -453,12 +453,14 @@ function handleOralHistoriesLayer(geoJson) {
     document.getElementById(
       "aemp-infowindow-container"
     ).innerHTML = renderedInfo;
-    return Mustache.render(oralHistoryPopupTemplate, layer.feature.properties);
+
+    return renderedInfo
   });
 
   map.addLayer(oralHistoryLayerMarkers);
 
   return oralHistoryLayerMarkers;
+
 }
 
 
@@ -467,6 +469,9 @@ function handleOralHistoriesLayer(geoJson) {
  *****************************************/
  async function initMapData() {
   
+  //The following statements determine the order in which the elements appear within the map key
+  layersControl.addOverlay(oralHistories, "Oral Histories")
+
   await fetch(sheetURI)
   .then(response => response.text())
   .then(data => addPoints(data, 'indicators'))
