@@ -430,7 +430,7 @@ function handleOralHistoriesLayer(geoJson) {
   const iconSize = [25, 25];
   const iconAnchor = [12, 12];
   const micIcon = new L.Icon({
-    iconUrl: "assets/mapIcons/mic-fill.svg",
+    iconUrl: "assets/mapIcons/mic-fill.png",
     nAnchor: iconAnchor
   });
 
