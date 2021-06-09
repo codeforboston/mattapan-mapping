@@ -15,13 +15,8 @@ let IS_DESKTOP =
 /******************************************
  * DATA SOURCE
  *****************************************/
-// unique id of the sheet that imports desired columns from the form responses sheet
-const sheetId = "1pXnLHplYQdidWe00tyMPqLPA09bf7t9i2ET7JVL2jdw";
-
-// the URI that grabs the sheet text formatted as a CSV
-const sheetURI = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&id=${sheetId}`;
-
-
+const sheetURI = "assets/csvFiles/Mattapan Gentrification Indicators and Oral Histories Map Submission Form (Responses) - Form Responses 1.csv"
+const developmentsURI = "assets/csvFiles/Mattapan_BPDA_Developments.csv"
 
 /******************************************
  * MAP SETUP & MAP CONTROLS
@@ -29,18 +24,10 @@ const sheetURI = `https://docs.google.com/spreadsheets/d/${sheetId}/export?forma
 
 // options for configuring the Leaflet map
 // don't add the default zoom ui and attribution as they're customized first then added layer
-const mapOptions = {
-  zoomControl: false,
-  attributionControl: false,
-  maxBounds: [
-    [-85.05, -190], // lower left
-    [85.05, 200] // upper right
-  ]
-};
 
 // global map layer styling variables
 const strokeWeight = 1.5;
-const pointRadius = 5;
+const pointRadius = 7;
 const fillOpacity = 0.7;
 
 // setting the initial zoom settings
@@ -58,6 +45,16 @@ let mapConfig = {
   z: initialMapZoom,
   indicators: true,
   oralHistories: true,
+  audioMapPoints: true,
+};
+
+const mapOptions = {
+  zoomControl: false,
+  attributionControl: false,
+  maxBounds: [
+    [-85.05, -190], // lower left
+    [85.05, 200] // upper right
+  ]
 };
 
 // create a new map instance by referencing the appropriate html element by its "id" attribute
@@ -97,6 +94,26 @@ function closeInfo() {
   map.invalidateSize();
 }
 
+let resizeWindow;
+window.addEventListener("resize", function () {
+  clearTimeout(resizeWindow);
+  resizeWindow = setTimeout(handleWindowResize, 250);
+});
+
+function handleWindowResize() {
+  checkIsMobile();
+  map.invalidateSize();
+}
+
+// Ensures that map overlay pane layers are displayed in the correct Z-Order
+function fixZOrder(dataLayers) {
+  dataLayers.forEach(function (layerGroup) {
+    if (map.hasLayer(layerGroup)) {
+      layerGroup.bringToBack();
+    }
+  });
+}
+
 map.on("popupopen", function (e) {
   document.getElementById("root").classList.add("aemp-popupopen");
 
@@ -123,17 +140,6 @@ map.on("click", function () {
   }
 });
 
-let resizeWindow;
-window.addEventListener("resize", function () {
-  clearTimeout(resizeWindow);
-  resizeWindow = setTimeout(handleWindowResize, 250);
-});
-
-function handleWindowResize() {
-  checkIsMobile();
-  map.invalidateSize();
-}
-
 const attribution = L.control
   .attribution({ prefix: "Data sources by: " })
   .addAttribution(
@@ -154,9 +160,6 @@ const popupTemplate = document.querySelector(".popup-template").innerHTML;
 const infowindowTemplate = document.getElementById("aemp-infowindow-template")
   .innerHTML;
 
-const oralHistoryPopupTemplate = document.querySelector(
-  ".oralhistory-popup-template"
-).innerHTML;
 const oralHistoryInfowindowTemplate = document.getElementById(
   "aemp-oralhistory-infowindow-template"
 ).innerHTML;
@@ -170,248 +173,216 @@ L.tileLayer(
   }
 ).addTo(map);
 
-// add boundaries layer
-const zoningBoundary = L.geoJson(zoning_boundary,{
-  style: function (feature){
-      return {
-        fillOpacity: 0.0,
-        color: "#0d3b66"
-      }
-  }
-});
-zoningBoundary.addTo(map);
-
-const neighbBoundary = L.geoJson(neighb_boundary,{
-  style: function (feature){
-      return {
-        fillOpacity: 0.0,
-        color: "#ee964b"
-      }
-  }
-});
-
-const planningBoundary = L.geoJson(planning_boundary,{
-  style: function (feature){
-      return {
-        fillOpacity: 0.0,
-        color: "#f95738"
-      }
-  }
-});
-const mortonBoundary = L.geoJson(morton_boundary,{
-  style: function (feature){
-      return {
-        fillOpacity: 0.0,
-        color: "#00FF00"
-      }
-  }
-});
-
-const riverStreetBoundary = L.geoJson(river_st_boundary,{
-  style: function (feature){
-    return {
-      fillOpacity: 0.0,
-      color: "#05757C"
-    }
-  }
-});
-
-const blueHillAveBoundary = L.geoJson(blue_hill_ave_corridor, {
-  style: function (feature){
-    return {
-      fillOpacity: 0.0,
-      color: "#0C0044"
-    }
-  }
-});
-
-const cumminsHwyBoundary = L.geoJson(cummins_hwy_corridor, {
-  style: function (feature){
-    return {
-      fillOpacity: 0.0,
-      color: "#00D822"
-    }
-  }
-});
-
-const dotHPBoundary = L.geoJson(dot_hp_zoning_subdistricts, {
-  style: function (feature){
-    return {
-      fillOpacity: 0.0,
-      color: "#220088"
-    }
-  }
-});
-
-const greaterMattapanMergedBoundary = L.geoJson(greater_mattapan_merged, {
-  style: function (feature){
-    return {
-      fillOpacity: 0.0,
-      color: "#444488"
-    }
-  }
-});
-
-const mattapanSqBoundary = L.geoJson(mattapan_sq_qtr_mile, {
-  style: function (feature){
-    return {
-      fillOpacity: 0.0,
-      color: "#4400EE"
-    }
-  }
-});
-
-const PLANBoundary = L.geoJson(plan_mattapan, {
-  style: function (feature){
-    return {
-      fillOpacity: 0.0,
-      color: "#0000EE"
-    }
-  }
-});
-
-const mattapanLineBoundary = L.geoJson(greater_mattapan_neighborhood_line, {
-  style: function (feature){
-    return {
-      fillOpacity: 0.0,
-      color: "#EE0011"
-    }
-  }
-});
-
-
-
-
-/******************************************
- * FETCH DATA SOURCES
- *****************************************/
-
-Promise.all([
-  fetch(sheetURI).then(res => {
-    if (!res.ok) throw Error("Unable to fetch  sheet data");
-    return res.text();
-  })
-])
-  .then(handleData)
-  .catch(error => console.log(error));
-
-/******************************************
- * TODO: HANDLE DATA ASYNC RESPONSES
- *****************************************/
-
-function handleData([
-  sheetsText
-]) {
-  const indicatorRows = d3
-    .csvParse(sheetsText, d3.autoType)
-    .map(({img_link, ...rest}) =>({
-      img_link: img_link === null ? null : "assets/csvFiles/form-responses.csv",
-      ...rest
-    }))
-    .filter(
-      row => row.submission_type === "Indicator"
-      );
-      
-      const oralHistoryRows = d3
-      .csvParse(sheetsText, d3.autoType)
-      .map(({img_link, ...rest}) =>({
-        img_link: img_link === null ? null : "assets/csvFiles/form-responses.csv",
-      ...rest
-    }))
-    .filter(
-      row => row.submission_type === "Oral History"
-    );
-
-  // convert the regular cities moratorium JSON into valid GeoJSON
-  const indicatorGeoJSON = {
+function constructGeoJson(inputJson){
+   const outputGeoJSON = {
     type: "FeatureCollection",
-    features: indicatorRows.map(({ lon, lat, ...rest }, index) => ({
+    features: inputJson.map(({ Longitude, Latitude, ...rest }, index) => ({
       type: "Feature",
       id: index,
       properties: rest,
       geometry: {
         type: "Point",
-        coordinates: [lon, lat]
+        coordinates: [Longitude, Latitude]
       }
     }))
   };
+  return outputGeoJSON
+}
 
-  const oralHistoryGeoJSON = {
-    type: "FeatureCollection",
-    features: oralHistoryRows.map(({ lon, lat, ...rest }, index) => ({
-      type: "Feature",
-      id: index,
-      properties: rest,
-      geometry: {
-        type: "Point",
-        coordinates: [lon, lat]
+const oralHistories = handleOralHistoriesLayer(audio_map_points);
+
+function addBoudaryLayers() {
+
+  // add boundaries layer
+  const zoningBoundary = L.geoJson(zoning_boundary,{
+    style: function (feature){
+        return {
+          fillOpacity: 0.0,
+          color: "#0d3b66"
+        }
+    }
+  });
+  
+  const neighbBoundary = L.geoJson(neighb_boundary,{
+    style: function (feature){
+        return {
+          fillOpacity: 0.0,
+          color: "#ee964b"
+        }
+    }
+  });
+  
+  const planningBoundary = L.geoJson(planning_boundary,{
+    style: function (feature){
+        return {
+          fillOpacity: 0.0,
+          color: "#f95738"
+        }
+    }
+  });
+  const mortonBoundary = L.geoJson(morton_boundary,{
+    style: function (feature){
+        return {
+          fillOpacity: 0.0,
+          color: "#00FF00"
+        }
+    }
+  });
+  
+  const riverStreetBoundary = L.geoJson(river_st_boundary,{
+    style: function (feature){
+      return {
+        fillOpacity: 0.0,
+        color: "#05757C"
       }
-    }))
-  };
+    }
+  });
+  
+  const blueHillAveBoundary = L.geoJson(blue_hill_ave_corridor, {
+    style: function (feature){
+      return {
+        fillOpacity: 0.0,
+        color: "#ED5D31"
+      }
+    }
+  });
+  
+  const cumminsHwyBoundary = L.geoJson(cummins_hwy_corridor, {
+    style: function (feature){
+      return {
+        fillOpacity: 0.0,
+        color: "#00D822"
+      }
+    }
+  });
+  
+  const dotHPBoundary = L.geoJson(dot_hp_zoning_subdistricts, {
+    style: function (feature){
+      return {
+        fillOpacity: 0.0,
+        color: "#220088"
+      }
+    }
+  });
+  
+  const greaterMattapanMergedBoundary = L.geoJson(greater_mattapan_merged, {
+    style: function (feature){
+      return {
+        fillOpacity: 0.0,
+        color: "#444488"
+      }
+    }
+  });
+  
+  const mattapanSqBoundary = L.geoJson(mattapan_sq_qtr_mile, {
+    style: function (feature){
+      return {
+        fillOpacity: 0.0,
+        color: "#4400EE"
+      }
+    }
+  });
+  
+  const PLANBoundary = L.geoJson(plan_mattapan, {
+    style: function (feature){
+      return {
+        fillOpacity: 0.0,
+        color: "#0000EE"
+      }
+    }
+  });
+  
+  layersControl
+  .addOverlay(zoningBoundary, "Greater Mattapan Zoning Boundary")
+  .addOverlay(planningBoundary, "BPDA Planning District Boundary")
+  .addOverlay(neighbBoundary, "BDPA Unofficial Neighborhood Boundary")
+  .addOverlay(PLANBoundary, "PLAN Mattapan Boundary")
+  .addOverlay(greaterMattapanMergedBoundary, "Greater Mattapan Merged Boundary")
+  .addOverlay(mattapanSqBoundary, "Mattapan Square Boundary")
+  .addOverlay(blueHillAveBoundary, "Blue Hill Ave Corridor")
+  .addOverlay(cumminsHwyBoundary, "Cummins Highway Corridor")
+  .addOverlay(mortonBoundary, "Morton Street Corridor")
+  .addOverlay(riverStreetBoundary, "River Street Boundary")
+  .addOverlay(dotHPBoundary, "DOT HP Zoning Subdistricts")
 
+  //Show the Greater Mattapan Zoning Boundary by default
+  zoningBoundary.addTo(map);
+
+}
+
+function buildGeoJsonLayers(inputRows, layersTitle){
+
+  const innerGeoJSON = constructGeoJson(inputRows)
 
   // add the states, cities, counties, and rentstrikes layers to the map
   // and save the layers output
-  const indicators = handleIndicatorsLayer(indicatorGeoJSON);
-  const oralHistories = handleOralHistoriesLayer(oralHistoryGeoJSON);
-
-  //console.log(riverStreetBoundary)
-  //console.log(z1[50])
-  // add layers to map layers control UI
+  const layersInputInfo = handleLayers(innerGeoJSON);
+    
   layersControl
-    .addOverlay(indicators, "Indicators")
-    .addOverlay(oralHistories, "Oral Histories")
-    .addOverlay(zoningBoundary, "Greater Mattapan Zoning Boundary")
-    .addOverlay(planningBoundary, "BPDA Planning District Boundary")
-    .addOverlay(neighbBoundary, "BDPA Unofficial Neighborhood Boundary")
-    .addOverlay(PLANBoundary, "PLAN Mattapan Boundary")
-    .addOverlay(greaterMattapanMergedBoundary, "Greater Mattapan Merged Boundary")
-    .addOverlay(mattapanSqBoundary, "Mattapan Square Boundary")
-    .addOverlay(blueHillAveBoundary, "Blue Hill Ave Corridor")
-    .addOverlay(cumminsHwyBoundary, "Cummins Highway Corridor")
-    .addOverlay(mortonBoundary, "Morton Street Corridor")
-    .addOverlay(riverStreetBoundary, "River Street Boundary")
+    .addOverlay(layersInputInfo, layersTitle)
 
   // Apply correct relative order of layers when adding from control.
   map.on("overlayadd", function () {
     // Top of list is top layer
-    fixZOrder([indicators, oralHistories]);
+    fixZOrder([layersInputInfo]);
   });
 
   // if any layers in the map config are set to false,
   // remove them from the map
-  if (!mapConfig.indicators) {
-    map.removeLayer(indicators);
+  if (!mapConfig.rs) {
+    map.removeLayer(layersInputInfo);
   }
-
-  if (!mapConfig.oralHistories) {
-    map.removeLayer(oralHistories);
-  }
+  
 }
 
+function addPoints(pointsData, type) {
+
+  const points = d3
+  .csvParse(pointsData, d3.autoType)
+
+if (type === 'indicators') {
+
+  const indicatorPoints  = points.filter(
+    row => row["Submission Type"] === "Indicator"
+    );
+
+    buildGeoJsonLayers(indicatorPoints, "Gentrification Indicators")
+}
+
+if (type === 'developments') {
+
+  const developmentsPoints  = points
+
+  buildGeoJsonLayers(developmentsPoints, "Developments")
+
+}
+  
+}
+ 
 /******************************************
  * HANDLE ADDING MAP LAYERS
  *****************************************/
 
-function handleIndicatorsLayer(geojson) {
+ function handleLayers(geojson) {
   // styling for the indicators layer: style indicators conditionally according to a presence of an indicator
   const pointToLayer = (_,latlng) => {
     // style indicators
     return L.circleMarker(latlng, {
-      color: "#d01c8b",
-      fillColor: "#d01c8b",
+      color: "#ffa281",
+      fillColor: "#fec0aa",
       fillOpacity: 1,
-      radius: pointRadius
+      radius: pointRadius,
+      weight: .5
     });
   };
 
   // Create the Leaflet layer for the cities data
-  const indicatorsLayer = L.geoJson(geojson, {
+  const layer = L.geoJson(geojson, {
     pointToLayer: pointToLayer
   });
 
   //add markers to cluster with options
-  const indicatorsLayerMarkers = L.markerClusterGroup({
+  const layerMarkers = L.markerClusterGroup({
     maxClusterRadius: 20,
     spiderfyOnMaxZoom: false
   }).on("clusterclick", function () {
@@ -421,33 +392,37 @@ function handleIndicatorsLayer(geojson) {
   });
 
   // Add popups to the layer
-  indicatorsLayerMarkers.addLayer(indicatorsLayer).bindPopup(function (layer) {
+  layerMarkers.addLayer(layer).bindPopup(function (layer) {
+
     // This function is called whenever a feature on the layer is clicked
 
     // Render the template with all of the properties. Mustache ignores properties
     // that aren't used in the template, so this is fine.
+    
     const renderedInfo = Mustache.render(
       infowindowTemplate,
       layer.feature.properties
     );
-    document.getElementById(
-      "aemp-infowindow-container"
-    ).innerHTML = renderedInfo;
-    return Mustache.render(popupTemplate, layer.feature.properties);
+
+    return renderedInfo;
+  }, {
+    maxWidth: 300,
+    className: 'aemp-infowindow-container'
   });
 
-  // Add data to the map
-  map.addLayer(indicatorsLayerMarkers);
+  // Add layer data to the map
+  map.addLayer(layerMarkers);
 
-  return indicatorsLayerMarkers;
+  return layerMarkers;
+
 }
+
 
 function handleOralHistoriesLayer(geoJson) {
   // custom icons & icon settings for rent strikes markers
-  const iconSize = [25, 25];
   const iconAnchor = [12, 12];
   const micIcon = new L.Icon({
-    iconUrl: "assets/mapIcons/mic-fill.svg",
+    iconUrl: "assets/mapIcons/mic-fill.png",
     nAnchor: iconAnchor
   });
 
@@ -478,21 +453,38 @@ function handleOralHistoriesLayer(geoJson) {
     document.getElementById(
       "aemp-infowindow-container"
     ).innerHTML = renderedInfo;
-    return Mustache.render(oralHistoryPopupTemplate, layer.feature.properties);
+
+    return renderedInfo
   });
 
   map.addLayer(oralHistoryLayerMarkers);
 
-
   return oralHistoryLayerMarkers;
+
 }
 
-// Ensures that map overlay pane layers are displayed in the correct Z-Order
-function fixZOrder(dataLayers) {
-  dataLayers.forEach(function (layerGroup) {
-    if (map.hasLayer(layerGroup)) {
-      layerGroup.bringToBack();
-    }
-  });
+
+/******************************************
+ * FETCH DATA SOURCES
+ *****************************************/
+ async function initMapData() {
+  
+  //The following statements determine the order in which the elements appear within the map key
+  layersControl.addOverlay(oralHistories, "Oral Histories")
+
+  await fetch(sheetURI)
+  .then(response => response.text())
+  .then(data => addPoints(data, 'indicators'))
+  .catch(err => console.log("Error fetching data: ", err))
+
+  await fetch(developmentsURI)
+  .then(response => response.text())
+  .then(data => addPoints(data, 'developments'))
+  .catch(err => console.log("Error fetching data: ", err))
+
+  addBoudaryLayers()
+
 }
 
+//Add all data to map
+initMapData()

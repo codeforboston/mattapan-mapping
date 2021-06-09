@@ -100,23 +100,11 @@
         </div>
       </div>
     </script>
-    <script class="oralhistory-popup-template" type="x-tmpl-mustache">
-      <div class="popup-container locality-popup-container">
-        <div>
-          <p class="popup-title">
-            <strong>{{title}}</strong>
-          </p>
-        </div>
-      </div>
-    </script>
+  
     <script id="aemp-infowindow-template" type="x-tmpl-mustache">
       <div class="aemp-infowindow">
         <a class="aemp-infowindow-close" href="#close" onClick="closeInfo()">×</a>
-        <div>
-          <p class="infowindow-title">
-            <strong>Indicator</strong>
-          </p>
-        </div>
+  
         <div>
           <p>
             <strong>Title: </strong>{{title}}
@@ -124,7 +112,7 @@
         </div>
         <div>
           <p><strong>Description:</strong></p>
-          <p>{{description}}</p>
+          <p>{{Description}}</p>
         </div>
         {{#img_link}}
         <div>
@@ -140,21 +128,27 @@
     </script>
 
     <script id="aemp-oralhistory-infowindow-template" type="x-tmpl-mustache">
-      <div class="aemp-infowindow">
+      <div class="oral-history-infowindow">
         <a class="aemp-infowindow-close" href="#close" onClick="closeInfo()">×</a>
         <div>
           <p class="infowindow-title">
-            <strong>Oral History</strong>
+            <strong>{{headline}}</strong>
           </p>
         </div>
         <div>
           <p>
-            <strong>Title: </strong>{{title}}
+            <strong>Interviewee: {{interviewee}}</strong>{{}}
           </p>
         </div>
         <div>
-          <p><strong>Description:</strong></p>
-          <p>{{description}}</p>
+          <p><strong>Location:</strong></p>
+          <p>{{location}}</p>
+        </div>
+        <div>
+          <audio controls>
+            <source src={{cloudinary_url}} type="audio/mpeg">
+            Your browser does not support the audio tag.
+          </audio>
         </div>
         {{#img_link}}
         <div>
@@ -203,6 +197,7 @@
     <script type="text/javascript" src="boundaries/Greater_Mattapan_Merged_Poly.js"></script>
     <script type="text/javascript" src="boundaries/Mattapan_Square_qtr_mile.js"></script>
     <script type="text/javascript" src="boundaries/PLAN_Mattapan_Poly.js"></script>
+    <script type="text/javascript" src="boundaries/audio_map_points.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
