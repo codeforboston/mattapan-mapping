@@ -203,8 +203,6 @@ function addBoudaryLayers() {
     }
   });
   
-  zoningBoundary.addTo(map);
-  
   const neighbBoundary = L.geoJson(neighb_boundary,{
     style: function (feature){
         return {
@@ -294,15 +292,6 @@ function addBoudaryLayers() {
     }
   });
   
-  const mattapanLineBoundary = L.geoJson(greater_mattapan_neighborhood_line, {
-    style: function (feature){
-      return {
-        fillOpacity: 0.0,
-        color: "#EE0011"
-      }
-    }
-  });
-  
   layersControl
   .addOverlay(zoningBoundary, "Greater Mattapan Zoning Boundary")
   .addOverlay(planningBoundary, "BPDA Planning District Boundary")
@@ -314,7 +303,10 @@ function addBoudaryLayers() {
   .addOverlay(cumminsHwyBoundary, "Cummins Highway Corridor")
   .addOverlay(mortonBoundary, "Morton Street Corridor")
   .addOverlay(riverStreetBoundary, "River Street Boundary")
+  .addOverlay(dotHPBoundary, "DOT HP Zoning Subdistricts")
 
+  //Show the Greater Mattapan Zoning Boundary by default
+  zoningBoundary.addTo(map);
 
 }
 
@@ -385,12 +377,12 @@ function handleLayers(geojson) {
   };
 
   // Create the Leaflet layer for the cities data
-  const indicatorsLayer = L.geoJson(geojson, {
+  const layer = L.geoJson(geojson, {
     pointToLayer: pointToLayer
   });
 
   //add markers to cluster with options
-  const indicatorsLayerMarkers = L.markerClusterGroup({
+  const layerMarkers = L.markerClusterGroup({
     maxClusterRadius: 20,
     spiderfyOnMaxZoom: false
   }).on("clusterclick", function () {
@@ -400,11 +392,13 @@ function handleLayers(geojson) {
   });
 
   // Add popups to the layer
-  indicatorsLayerMarkers.addLayer(indicatorsLayer).bindPopup(function (layer) {
+  layerMarkers.addLayer(layer).bindPopup(function (layer) {
+
     // This function is called whenever a feature on the layer is clicked
 
     // Render the template with all of the properties. Mustache ignores properties
     // that aren't used in the template, so this is fine.
+    
     const renderedInfo = Mustache.render(
       infowindowTemplate,
       layer.feature.properties
@@ -417,9 +411,9 @@ function handleLayers(geojson) {
   });
 
   // Add layer data to the map
-  map.addLayer(indicatorsLayerMarkers);
+  map.addLayer(layerMarkers);
 
-  return indicatorsLayerMarkers;
+  return layerMarkers;
 
 }
 
@@ -476,12 +470,12 @@ function handleOralHistoriesLayer(geoJson) {
   await fetch(sheetURI)
   .then(response => response.text())
   .then(data => addPoints(data, 'indicators'))
-  .catch(err => console.log(err))
+  .catch(err => console.log("Error fetching data: ", err))
 
   await fetch(developmentsURI)
   .then(response => response.text())
   .then(data => addPoints(data, 'developments'))
-  .catch(err => console.log(err))
+  .catch(err => console.log("Error fetching data: ", err))
 
   addBoudaryLayers()
 
