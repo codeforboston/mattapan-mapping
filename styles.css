@@ -193,15 +193,22 @@ a:hover {
 }
 
 .aemp-infowindow {
+  padding: 5px 10px;
+  border: 2px solid rgb(190, 188, 188);
+  border-radius: 5px;
+  font-size: 1.5rem;
+  background: white;
+
   position: absolute;
   right: 0;
-  width: 350px;
+  top: 280px;
+  width: 265px;
   margin: 10px 10px 0 0;
   max-height: 95%;
   overflow-y: auto;
-  padding: 15px;
+  /* padding: 15px; */
   background: white;
-  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.1);
 }
 
 .aemp-infowindow p {

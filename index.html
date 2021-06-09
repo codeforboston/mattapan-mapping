@@ -104,7 +104,7 @@
       <div class="popup-container locality-popup-container">
         <div>
           <p class="popup-title">
-            <strong>{{title}}</strong>
+            <strong>{{headline}}</strong>
           </p>
         </div>
       </div>
@@ -119,7 +119,7 @@
         </div>
         <div>
           <p>
-            <strong>Title: </strong>{{title}}
+            <strong>Title: </strong>{{headline}}
           </p>
         </div>
         <div>
@@ -144,17 +144,23 @@
         <a class="aemp-infowindow-close" href="#close" onClick="closeInfo()">×</a>
         <div>
           <p class="infowindow-title">
-            <strong>Oral History</strong>
+            <strong>{{headline}}</strong>
           </p>
         </div>
         <div>
           <p>
-            <strong>Title: </strong>{{title}}
+            <strong>Interviewee: {{interviewee}}</strong>{{}}
           </p>
         </div>
         <div>
-          <p><strong>Description:</strong></p>
-          <p>{{description}}</p>
+          <p><strong>Location:</strong></p>
+          <p>{{location}}</p>
+        </div>
+        <div>
+          <audio controls>
+            <source src={{cloudinary_url}} type="audio/mpeg">
+            Your browser does not support the audio tag.
+          </audio>
         </div>
         {{#img_link}}
         <div>
@@ -203,7 +209,7 @@
     <script type="text/javascript" src="boundaries/Greater_Mattapan_Merged_Poly.js"></script>
     <script type="text/javascript" src="boundaries/Mattapan_Square_qtr_mile.js"></script>
     <script type="text/javascript" src="boundaries/PLAN_Mattapan_Poly.js"></script>
-    <!-- <script type="text/javascript" src="boundaries/audio_map_points.js"></script> -->
-    <script src="./script.js"></script>
+    <script type="text/javascript" src="boundaries/audio_map_points.js"></script>
+    <script type="text/javascript" src="script.js"></script>
   </body>
 </html>

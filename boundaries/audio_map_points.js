@@ -1,14 +1,15 @@
 var audio_map_points = {
-  type: "FeatureCollection",
-  features: [
+  "type": "FeatureCollection",
+  "features": [
     {
       "type": "Feature",
       "properties": {
         "id": 0,
         "interviewee": "Pamela Jones",
-        "headline": "Pam J speaks 2",
+        "headline": "Park Improvements",
         "description": null,
         "url": "https://drive.google.com/drive/u/0/folders/12uoI00N8AwCVvWvNtHWeppRL-hIU_w-6",
+        "cloudinary_url": "https://res.cloudinary.com/smithwebtek/video/upload/v1622244924/mattapan/Pamela_ParkImprovements.m4a",
         "location": "no specific location, could be tagged to cummins highway/bikelane",
         "street_number": "35",
         "street_name": "Mildred Ave",
@@ -29,9 +30,10 @@ var audio_map_points = {
       "properties": {
         "id": 1,
         "interviewee": "Pamela Jones",
-        "headline": "Pam J speaks 3",
+        "headline": "Pressured to leave",
         "description": null,
         "url": "null",
+        "cloudinary_url": "https://res.cloudinary.com/smithwebtek/video/upload/v1622245141/mattapan/Pamela_Being_Pressured_to_Leave.m4a",
         "location": "Fairlawn Estates/\"SoMa Apartments\"",
         "street_number": "26",
         "street_name": "Faunce Rd",
@@ -51,9 +53,10 @@ var audio_map_points = {
       "properties": {
         "id": 2,
         "interviewee": "Pamela Jones",
-        "headline": "Pam J speaks 4",
+        "headline": "Neighborhood change",
         "description": null,
         "url": "null",
+        "cloudinary_url": "https://res.cloudinary.com/smithwebtek/video/upload/v1622244953/mattapan/Pamela_Neighborhood_Change_Clemmons_Hwy._Fairlawn_Estates.m4a",
         "location": "Norfolk Hardware Store",
         "street_number": "11",
         "street_name": "Rockdale St",

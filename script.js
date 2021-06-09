@@ -58,6 +58,7 @@ let mapConfig = {
   z: initialMapZoom,
   indicators: true,
   oralHistories: true,
+  audioMapPoints: true,
 };
 
 // create a new map instance by referencing the appropriate html element by its "id" attribute
@@ -279,16 +280,6 @@ const mattapanLineBoundary = L.geoJson(greater_mattapan_neighborhood_line, {
   }
 });
 
-// const audioMapPoints = L.geoJson(audio_map_points, {
-//   style: function (feature){
-//     return {
-//       fillOpacity: 0.0,
-//       color: "#EE0011"
-//     }
-//   }
-// });
-
- 
 /******************************************
  * FETCH DATA SOURCES
  *****************************************/
@@ -343,31 +334,15 @@ function handleData([
     }))
   };
 
-  const oralHistoryGeoJSON = {
-    type: "FeatureCollection",
-    features: oralHistoryRows.map(({ lon, lat, ...rest }, index) => ({
-      type: "Feature",
-      id: index,
-      properties: rest,
-      geometry: {
-        type: "Point",
-        coordinates: [lon, lat]
-      }
-    }))
-  };
-
-
   // add the states, cities, counties, and rentstrikes layers to the map
   // and save the layers output
   const indicators = handleIndicatorsLayer(indicatorGeoJSON);
-  const oralHistories = handleOralHistoriesLayer(oralHistoryGeoJSON);
+  // const oralHistories = handleOralHistoriesLayer(oralHistoryGeoJSON);
+  const oralHistories = handleOralHistoriesLayer(audio_map_points);
 
-  //console.log(riverStreetBoundary)
-  //console.log(z1[50])
   // add layers to map layers control UI
   layersControl
     .addOverlay(indicators, "Indicators")
-    // .addOverlay(audioMapPoints, "Audio Map Points")
     .addOverlay(oralHistories, "Oral Histories")
     .addOverlay(zoningBoundary, "Greater Mattapan Zoning Boundary")
     .addOverlay(planningBoundary, "BPDA Planning District Boundary")
@@ -486,6 +461,7 @@ function handleOralHistoriesLayer(geoJson) {
     document.getElementById(
       "aemp-infowindow-container"
     ).innerHTML = renderedInfo;
+
     return Mustache.render(oralHistoryPopupTemplate, layer.feature.properties);
   });
 
@@ -503,4 +479,3 @@ function fixZOrder(dataLayers) {
     }
   });
 }
-
