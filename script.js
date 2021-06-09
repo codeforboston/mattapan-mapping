@@ -27,7 +27,7 @@ const developmentsURI = "assets/csvFiles/Mattapan_BPDA_Developments.csv"
 
 // global map layer styling variables
 const strokeWeight = 1.5;
-const pointRadius = 5;
+const pointRadius = 7;
 const fillOpacity = 0.7;
 
 // setting the initial zoom settings
@@ -244,7 +244,7 @@ function addBoudaryLayers() {
     style: function (feature){
       return {
         fillOpacity: 0.0,
-        color: "#0C0044"
+        color: "#ED5D31"
       }
     }
   });
@@ -376,10 +376,11 @@ function handleLayers(geojson) {
   const pointToLayer = (_,latlng) => {
     // style indicators
     return L.circleMarker(latlng, {
-      color: "#d01c8b",
-      fillColor: "#d01c8b",
+      color: "#ffa281",
+      fillColor: "#fec0aa",
       fillOpacity: 1,
-      radius: pointRadius
+      radius: pointRadius,
+      weight: .5
     });
   };
 
@@ -408,10 +409,11 @@ function handleLayers(geojson) {
       infowindowTemplate,
       layer.feature.properties
     );
-    document.getElementById(
-      "aemp-infowindow-container"
-    ).innerHTML = renderedInfo;
-    return Mustache.render(popupTemplate, layer.feature.properties);
+
+    return renderedInfo;
+  }, {
+    maxWidth: 300,
+    className: 'aemp-infowindow-container'
   });
 
   // Add layer data to the map
