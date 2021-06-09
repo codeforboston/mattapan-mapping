@@ -189,7 +189,7 @@ const planningBoundary = L.geoJson(planning_boundary,{
   style: function (feature){
       return {
         fillOpacity: 0.0,
-        color: "#f95738"
+        color: "#ED5D31"
       }
   }
 });
