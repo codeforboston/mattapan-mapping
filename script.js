@@ -15,13 +15,6 @@ let IS_DESKTOP =
 /******************************************
  * DATA SOURCE
  *****************************************/
-// unique id of the sheet that imports desired columns from the form responses sheet
-//const sheetId = "1pXnLHplYQdidWe00tyMPqLPA09bf7t9i2ET7JVL2jdw";
-
-// the URI that grabs the sheet text formatted as a CSV
-//const sheetURI = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&id=${sheetId}`;
-
-// `https://docs.google.com/spreadsheets/d/1pXnLHplYQdidWe00tyMPqLPA09bf7t9i2ET7JVL2jdw/export?format=csv&id=1pXnLHplYQdidWe00tyMPqLPA09bf7t9i2ET7JVL2jdw`;
 const sheetURI = "assets/csvFiles/Mattapan Gentrification Indicators and Oral Histories Map Submission Form (Responses) - Form Responses 1.csv"
 const developmentsURI = "assets/csvFiles/Mattapan_BPDA_Developments.csv"
 
@@ -328,6 +321,35 @@ function constructGeoJson(inputJson){
   return outputGeoJSON
 }
 
+function buildGeoJsonLayers(inputRows, layersTitle){
+  const innerGeoJSON = constructGeoJson(inputRows)
+  
+  
+  console.log("indicator geoJson", innerGeoJSON)
+  
+
+  // add the states, cities, counties, and rentstrikes layers to the map
+  // and save the layers output
+  const layersInputInfo = handleIndicatorsLayer(innerGeoJSON);
+    
+  layersControl
+    .addOverlay(layersInputInfo, layersTitle)
+
+  // Apply correct relative order of layers when adding from control.
+  map.on("overlayadd", function () {
+    // Top of list is top layer
+    fixZOrder([layersInputInfo]);
+  });
+
+  // if any layers in the map config are set to false,
+  // remove them from the map
+  if (!mapConfig.rs) {
+    map.removeLayer(layersInputInfo);
+  }
+
+  
+}
+
 function handleData([
   sheetsText
 ]) {
@@ -343,41 +365,16 @@ function handleData([
     console.log("parsed data",d3.csvParse(sheetsText, d3.autoType))
     console.log("indicator rows",indicatorRows)
       
-      const oralHistoryRows = d3
-      .csvParse(sheetsText, d3.autoType)
-      
+  const oralHistoryRows = d3
+    .csvParse(sheetsText, d3.autoType)
     .filter(
       row => row.submission_type === "Oral History"
     );
 
-  // convert the regular cities moratorium JSON into valid GeoJSON
-  /*
-  const indicatorGeoJSON = {
-    type: "FeatureCollection",
-    features: indicatorRows.map(({ Longitude, Latitude, ...rest }, index) => ({
-      type: "Feature",
-      id: index,
-      properties: rest,
-      geometry: {
-        type: "Point",
-        coordinates: [Longitude, Latitude]
-      }
-    }))
-  };
 
-  const oralHistoryGeoJSON = {
-    type: "FeatureCollection",
-    features: oralHistoryRows.map(({ Longitude, Latitude, ...rest }, index) => ({
-      type: "Feature",
-      id: index,
-      properties: rest,
-      geometry: {
-        type: "Point",
-        coordinates: [Longitude, Latitude]
-      }
-    }))
-  };
-    */
+  buildGeoJsonLayers(indicatorRows, "Indicators")
+  buildGeoJsonLayers(oralHistoryRows, "Oral Histories")
+  /*  
   const indicatorGeoJSON = constructGeoJson(indicatorRows)
   const oralHistoryGeoJSON = constructGeoJson(oralHistoryRows)
   
@@ -388,23 +385,15 @@ function handleData([
   // and save the layers output
   const indicators = handleIndicatorsLayer(indicatorGeoJSON);
   const oralHistories = handleOralHistoriesLayer(oralHistoryGeoJSON);
+    
+  layersControl
+    .addOverlay(indicators, "Indicators")
+    .addOverlay(oralHistories, "Oral Histories")
 
   //console.log(riverStreetBoundary)
   //console.log(z1[50])
   // add layers to map layers control UI
-  layersControl
-    .addOverlay(indicators, "Indicators")
-    .addOverlay(oralHistories, "Oral Histories")
-    .addOverlay(zoningBoundary, "Greater Mattapan Zoning Boundary")
-    .addOverlay(planningBoundary, "BPDA Planning District Boundary")
-    .addOverlay(neighbBoundary, "BDPA Unofficial Neighborhood Boundary")
-    .addOverlay(PLANBoundary, "PLAN Mattapan Boundary")
-    .addOverlay(greaterMattapanMergedBoundary, "Greater Mattapan Merged Boundary")
-    .addOverlay(mattapanSqBoundary, "Mattapan Square Boundary")
-    .addOverlay(blueHillAveBoundary, "Blue Hill Ave Corridor")
-    .addOverlay(cumminsHwyBoundary, "Cummins Highway Corridor")
-    .addOverlay(mortonBoundary, "Morton Street Corridor")
-    .addOverlay(riverStreetBoundary, "River Street Boundary")
+
 
   // Apply correct relative order of layers when adding from control.
   map.on("overlayadd", function () {
@@ -421,7 +410,21 @@ function handleData([
   if (!mapConfig.oralHistories) {
     map.removeLayer(oralHistories);
   }
+  */
 }
+
+
+  layersControl
+    .addOverlay(zoningBoundary, "Greater Mattapan Zoning Boundary")
+    .addOverlay(planningBoundary, "BPDA Planning District Boundary")
+    .addOverlay(neighbBoundary, "BDPA Unofficial Neighborhood Boundary")
+    .addOverlay(PLANBoundary, "PLAN Mattapan Boundary")
+    .addOverlay(greaterMattapanMergedBoundary, "Greater Mattapan Merged Boundary")
+    .addOverlay(mattapanSqBoundary, "Mattapan Square Boundary")
+    .addOverlay(blueHillAveBoundary, "Blue Hill Ave Corridor")
+    .addOverlay(cumminsHwyBoundary, "Cummins Highway Corridor")
+    .addOverlay(mortonBoundary, "Morton Street Corridor")
+    .addOverlay(riverStreetBoundary, "River Street Boundary")
 
 /******************************************
  * HANDLE ADDING MAP LAYERS
