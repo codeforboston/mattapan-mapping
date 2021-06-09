@@ -16,12 +16,14 @@ let IS_DESKTOP =
  * DATA SOURCE
  *****************************************/
 // unique id of the sheet that imports desired columns from the form responses sheet
-const sheetId = "1pXnLHplYQdidWe00tyMPqLPA09bf7t9i2ET7JVL2jdw";
+//const sheetId = "1pXnLHplYQdidWe00tyMPqLPA09bf7t9i2ET7JVL2jdw";
 
 // the URI that grabs the sheet text formatted as a CSV
-const sheetURI = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&id=${sheetId}`;
+//const sheetURI = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&id=${sheetId}`;
 
-
+// `https://docs.google.com/spreadsheets/d/1pXnLHplYQdidWe00tyMPqLPA09bf7t9i2ET7JVL2jdw/export?format=csv&id=1pXnLHplYQdidWe00tyMPqLPA09bf7t9i2ET7JVL2jdw`;
+const sheetURI = "assets/csvFiles/Mattapan Gentrification Indicators and Oral Histories Map Submission Form (Responses) - Form Responses 1.csv"
+const developmentsURI = "assets/csvFiles/Mattapan_BPDA_Developments.csv"
 
 /******************************************
  * MAP SETUP & MAP CONTROLS
@@ -295,60 +297,92 @@ Promise.all([
   .then(handleData)
   .catch(error => console.log(error));
 
+
+//Promise.all([
+//  fetch(developmentsURI).then(res => {
+//    if (!res.ok) throw Error("Unable to fetch  sheet data");
+//    return res.text();
+//  })
+//])
+//  .then(handleDevelopmentsData)
+//  .catch(error => console.log(error));
+
+
 /******************************************
  * TODO: HANDLE DATA ASYNC RESPONSES
  *****************************************/
 
-function handleData([
-  sheetsText
-]) {
-  const indicatorRows = d3
-    .csvParse(sheetsText, d3.autoType)
-    .map(({img_link, ...rest}) =>({
-      img_link: img_link === null ? null : "assets/csvFiles/form-responses.csv",
-      ...rest
-    }))
-    .filter(
-      row => row.submission_type === "Indicator"
-      );
-      
-      const oralHistoryRows = d3
-      .csvParse(sheetsText, d3.autoType)
-      .map(({img_link, ...rest}) =>({
-        img_link: img_link === null ? null : "assets/csvFiles/form-responses.csv",
-      ...rest
-    }))
-    .filter(
-      row => row.submission_type === "Oral History"
-    );
-
-  // convert the regular cities moratorium JSON into valid GeoJSON
-  const indicatorGeoJSON = {
+function constructGeoJson(inputJson){
+   const outputGeoJSON = {
     type: "FeatureCollection",
-    features: indicatorRows.map(({ lon, lat, ...rest }, index) => ({
+    features: inputJson.map(({ Longitude, Latitude, ...rest }, index) => ({
       type: "Feature",
       id: index,
       properties: rest,
       geometry: {
         type: "Point",
-        coordinates: [lon, lat]
+        coordinates: [Longitude, Latitude]
+      }
+    }))
+  };
+  return outputGeoJSON
+}
+
+function handleData([
+  sheetsText
+]) {
+  
+
+  const indicatorRows = d3
+    .csvParse(sheetsText, d3.autoType)
+    .filter(
+      row => row["Submission Type"] === "Indicator"
+      );
+
+
+    console.log("parsed data",d3.csvParse(sheetsText, d3.autoType))
+    console.log("indicator rows",indicatorRows)
+      
+      const oralHistoryRows = d3
+      .csvParse(sheetsText, d3.autoType)
+      
+    .filter(
+      row => row.submission_type === "Oral History"
+    );
+
+  // convert the regular cities moratorium JSON into valid GeoJSON
+  /*
+  const indicatorGeoJSON = {
+    type: "FeatureCollection",
+    features: indicatorRows.map(({ Longitude, Latitude, ...rest }, index) => ({
+      type: "Feature",
+      id: index,
+      properties: rest,
+      geometry: {
+        type: "Point",
+        coordinates: [Longitude, Latitude]
       }
     }))
   };
 
   const oralHistoryGeoJSON = {
     type: "FeatureCollection",
-    features: oralHistoryRows.map(({ lon, lat, ...rest }, index) => ({
+    features: oralHistoryRows.map(({ Longitude, Latitude, ...rest }, index) => ({
       type: "Feature",
       id: index,
       properties: rest,
       geometry: {
         type: "Point",
-        coordinates: [lon, lat]
+        coordinates: [Longitude, Latitude]
       }
     }))
   };
-
+    */
+  const indicatorGeoJSON = constructGeoJson(indicatorRows)
+  const oralHistoryGeoJSON = constructGeoJson(oralHistoryRows)
+  
+  console.log("indicator geoJson", indicatorGeoJSON)
+  console.log("oral history", oralHistoryGeoJSON)
 
   // add the states, cities, counties, and rentstrikes layers to the map
   // and save the layers output
