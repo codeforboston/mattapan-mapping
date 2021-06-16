@@ -398,7 +398,6 @@ if (type === 'developments') {
 
     // Render the template with all of the properties. Mustache ignores properties
     // that aren't used in the template, so this is fine.
-    // 
     const renderedInfo = Mustache.render(
       infowindowTemplate,
       layer.feature.properties
