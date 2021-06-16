@@ -157,12 +157,12 @@ const layersControl = L.control
 // Get the popup & infowindow templates from the HTML.
 // We can do this here because the template will never change.
 const popupTemplate = document.querySelector(".popup-template").innerHTML;
-const infowindowTemplate = document.getElementById("aemp-infowindow-template")
-  .innerHTML;
+const infowindowTemplate = document.getElementById("aemp-infowindow-small-template").innerHTML;
+const infowindowTemplateLarge = document.getElementById("aemp-infowindow-large-template").innerHTML;
 
-const oralHistoryInfowindowTemplate = document.getElementById(
-  "aemp-oralhistory-infowindow-template"
-).innerHTML;
+
+const oralHistoryInfowindowTemplate = document.getElementById("aemp-oralhistory-infowindow-small-template").innerHTML;
+const oralHistoryInfowindowTemplateLarge = document.getElementById("aemp-oralhistory-infowindow-large-template").innerHTML;
 
 // Add base layer
 L.tileLayer(
@@ -398,13 +398,19 @@ if (type === 'developments') {
 
     // Render the template with all of the properties. Mustache ignores properties
     // that aren't used in the template, so this is fine.
-    
+    // 
     const renderedInfo = Mustache.render(
       infowindowTemplate,
       layer.feature.properties
     );
 
+    // large overlay
+     /*document.getElementById(
+      "aemp-infowindow-container"
+    ).innerHTML = renderedInfo;*/
+
     return renderedInfo;
+
   }, {
     maxWidth: 300,
     className: 'aemp-infowindow-container'
@@ -450,11 +456,16 @@ function handleOralHistoriesLayer(geoJson) {
       oralHistoryInfowindowTemplate,
       layer.feature.properties
     );
-    document.getElementById(
-      "aemp-infowindow-container"
-    ).innerHTML = renderedInfo;
 
-    return renderedInfo
+    // large overlay
+    /*document.getElementById(
+      "aemp-infowindow-container"
+    ).innerHTML = renderedInfo;*/
+
+    return renderedInfo;
+  }, {
+    maxWidth: 400,
+    className: 'aemp-infowindow-container'
   });
 
   map.addLayer(oralHistoryLayerMarkers);

@@ -195,15 +195,11 @@ a:hover {
   border: 2px solid rgb(190, 188, 188);
   border-radius: 5px;
   font-size: 1.5rem;
-  background: white;
-
   top: 35px;
   position: relative;
-  width: 265px;
   margin: 10px 10px 0 0;
   max-height: 95%;
   overflow-y: auto;
-  /* padding: 15px; */
   background: white;
   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.1);
 }
@@ -214,28 +210,29 @@ a:hover {
   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
 }
 
-.oral-history-infowindow {
+.aemp-modal-container {
   padding: 5px 10px;
-  border: 2px solid rgb(190, 188, 188);
-  border-radius: 5px;
-  font-size: 1.5rem;
-  background: white;
-
-  position: absolute;
-  right: 0;
-  top: 305px;
-  width: 325px;
-  margin: 10px 10px 0 0;
-  max-height: 95%;
-  overflow-y: auto;
-  /* padding: 15px; */
-  background: white;
-  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgb(190, 188, 188);
+    border-radius: 5px;
+    font-size: 1.5rem;
+    background: white;
+    position: absolute;
+    right: 0;
+    width: 50%;
+    margin: 10px 0 0 -25%;
+    max-height: 95%;
+    overflow-y: auto;
+    background: white;
+    box-shadow: 0 3px 14px rgb(0 0 0 / 10%);
+    left: 50%;
+    bottom: 15%;
+    top: 15%;
+    z-index: 10000;
 }
 
-.leaflet-popup-content .oral-history-infowindow {
+/*.leaflet-popup-content .oral-history-infowindow {
   display: none;
-}
+}*/
 
 .leaflet-popup-tip-container {
   display: none;
@@ -261,4 +258,8 @@ a:hover {
     width: 100%;
     height: 50%;
   }
+}
+
+.audio-controls{
+  text-align: center;
 }
