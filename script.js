@@ -302,16 +302,16 @@ function addBoudaryLayers() {
   });
   
   layersControl
-  .addOverlay(zoningBoundary, "Greater Mattapan Zoning Boundary")
-  .addOverlay(planningBoundary, "BPDA Planning District Boundary")
-  .addOverlay(neighbBoundary, "BDPA Unofficial Neighborhood Boundary")
-  .addOverlay(PLANBoundary, "PLAN Mattapan Boundary")
-  .addOverlay(greaterMattapanMergedBoundary, "Greater Mattapan Merged Boundary")
-  .addOverlay(mattapanSqBoundary, "Mattapan Square Boundary")
-  .addOverlay(blueHillAveBoundary, "Blue Hill Ave Corridor")
-  .addOverlay(cumminsHwyBoundary, "Cummins Highway Corridor")
-  .addOverlay(mortonBoundary, "Morton Street Corridor")
-  .addOverlay(riverStreetBoundary, "River Street Corridor")
+  .addOverlay(zoningBoundary, "<span><span class='legend-icon legend-icon-boundary'></span>Greater Mattapan Zoning Boundary</span>")
+  .addOverlay(planningBoundary, "<span><span class='legend-icon legend-icon-boundary'></span>BPDA Planning District Boundary</span>")
+  .addOverlay(neighbBoundary, "<span><span class='legend-icon legend-icon-boundary'></span>BPDA Unofficial Neighborhood Boundary</span>")
+  .addOverlay(PLANBoundary, "<span><span class='legend-icon legend-icon-boundary'></span>PLAN Mattapan Boundary</span>")
+  .addOverlay(greaterMattapanMergedBoundary, "<span><span class='legend-icon legend-icon-boundary'></span>Greater Mattapan Merged Boundary</span>")
+  .addOverlay(mattapanSqBoundary, "<span><span class='legend-icon legend-icon-boundary'></span>Mattapan Square Boundary</span>")
+  .addOverlay(blueHillAveBoundary, "<span><span class='legend-icon legend-icon-corridor'></span>Blue Hill Ave Corridor</span>")
+  .addOverlay(cumminsHwyBoundary, "<span><span class='legend-icon legend-icon-corridor'></span>Cummins Highway Corridor</span>")
+  .addOverlay(mortonBoundary, "<span><span class='legend-icon legend-icon-corridor'></span>Morton Street Corridor</span>")
+  .addOverlay(riverStreetBoundary, "<span><span class='legend-icon legend-icon-corridor'></span>River Street Corridor</span>")
 
   //Show the Greater Mattapan Zoning Boundary by default
   zoningBoundary.addTo(map);
@@ -361,7 +361,7 @@ if (type === 'developments') {
 
   const developmentsPoints  = points
 
-  buildGeoJsonLayers(developmentsPoints, "Developments")
+  buildGeoJsonLayers(developmentsPoints, "<span><span class='legend-icon legend-icon-developments'></span>Developments</span>")
 
 }
   
@@ -429,10 +429,12 @@ if (type === 'developments') {
 function handleOralHistoriesLayer(geoJson) {
   // custom icons & icon settings for rent strikes markers
   const iconAnchor = [12, 12];
+  const iconSize = 20;
   const micIcon = new L.Icon({
-    iconUrl: "assets/mapIcons/mic-fill.png",
+    iconUrl: "assets/mapIcons/mic-fill.svg",
+    iconSize: iconSize,
     nAnchor: iconAnchor
-  });
+ });
 
   // add custom marker icons
   const oralHistoryLayer = L.geoJson(geoJson, {
@@ -478,7 +480,7 @@ function handleOralHistoriesLayer(geoJson) {
  async function initMapData() {
   
   //The following statements determine the order in which the elements appear within the map key
-  layersControl.addOverlay(oralHistories, "Oral Histories")
+  layersControl.addOverlay(oralHistories, "<span><span class='legend-icon legend-icon-oralhistory'></span>Oral Histories</span>")
 
   await fetch(sheetURI)
   .then(response => response.text())

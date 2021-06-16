@@ -166,6 +166,40 @@ a:hover {
   display: none;
 }
 
+
+.legend-icon{
+  background-color: red;
+  height: 10px;
+  width: 10px;
+  display: inline-block;
+  border-radius: 30px;
+  position: relative;
+  top: 1px;
+  left: 0;
+  margin-right: 0.3em;
+}
+
+.legend-icon-developments {
+  top: none;
+  left: none;
+  background-color: #fec0aa;
+}
+
+.legend-icon-oralhistory{
+  border-radius: 0;
+  background-size: 10px;
+  background-color: transparent;
+  background-image: url('./assets/mapIcons/mic-fill.svg')
+}
+
+.legend-icon-boundary{
+  background-color: #0d3b66;
+}
+
+.legend-icon-corridor{
+  background-color: #ED5D31;
+}
+
 .popup-container {
   position: absolute;
   background: transparent;
