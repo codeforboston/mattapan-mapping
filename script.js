@@ -202,42 +202,47 @@ function addBoudaryLayers() {
         }
     }
   });
-  
+  // was #ee964b
   const neighbBoundary = L.geoJson(neighb_boundary,{
     style: function (feature){
         return {
           fillOpacity: 0.0,
-          color: "#ee964b"
+          color: "#0d3b66"
         }
     }
   });
   
+  // was #f95738
   const planningBoundary = L.geoJson(planning_boundary,{
     style: function (feature){
         return {
           fillOpacity: 0.0,
-          color: "#f95738"
+          color: "#0d3b66"
         }
     }
   });
+
+  // Was #00FF00
   const mortonBoundary = L.geoJson(morton_boundary,{
     style: function (feature){
         return {
           fillOpacity: 0.0,
-          color: "#00FF00"
+          color: "#ED5D31"
         }
     }
   });
-  
+
+  // Was #05757C
   const riverStreetBoundary = L.geoJson(river_st_boundary,{
     style: function (feature){
       return {
         fillOpacity: 0.0,
-        color: "#05757C"
+        color: "#ED5D31"
       }
     }
   });
-  
+
+  // Was #ED5D31
   const blueHillAveBoundary = L.geoJson(blue_hill_ave_corridor, {
     style: function (feature){
       return {
@@ -246,12 +251,13 @@ function addBoudaryLayers() {
       }
     }
   });
-  
+
+  // was #00D822
   const cumminsHwyBoundary = L.geoJson(cummins_hwy_corridor, {
     style: function (feature){
       return {
         fillOpacity: 0.0,
-        color: "#00D822"
+        color: "#ED5D31"
       }
     }
   });
@@ -265,29 +271,32 @@ function addBoudaryLayers() {
     }
   });
   
+  // Was #444488
   const greaterMattapanMergedBoundary = L.geoJson(greater_mattapan_merged, {
     style: function (feature){
       return {
         fillOpacity: 0.0,
-        color: "#444488"
+        color: "#0d3b66"
       }
     }
   });
   
+  // Was #4400EE
   const mattapanSqBoundary = L.geoJson(mattapan_sq_qtr_mile, {
     style: function (feature){
       return {
         fillOpacity: 0.0,
-        color: "#4400EE"
+        color: "#0d3b66"
       }
     }
   });
   
+  // Was #0000EE
   const PLANBoundary = L.geoJson(plan_mattapan, {
     style: function (feature){
       return {
         fillOpacity: 0.0,
-        color: "#0000EE"
+        color: "#0d3b66"
       }
     }
   });
@@ -302,8 +311,7 @@ function addBoudaryLayers() {
   .addOverlay(blueHillAveBoundary, "Blue Hill Ave Corridor")
   .addOverlay(cumminsHwyBoundary, "Cummins Highway Corridor")
   .addOverlay(mortonBoundary, "Morton Street Corridor")
-  .addOverlay(riverStreetBoundary, "River Street Boundary")
-  .addOverlay(dotHPBoundary, "DOT HP Zoning Subdistricts")
+  .addOverlay(riverStreetBoundary, "River Street Corridor")
 
   //Show the Greater Mattapan Zoning Boundary by default
   zoningBoundary.addTo(map);
