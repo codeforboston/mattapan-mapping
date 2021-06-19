@@ -106,19 +106,23 @@
       <div class="aemp-infowindow">
         <a class="aemp-infowindow-close" href="#close" onClick="closeInfo()">×</a>
         <div>
+          <img src="{{Image}}" width="100%">
+      </div>
+
+        <div>
           <p>
             <strong>Title: </strong>{{Submission Title}}
           </p>
         </div>
-        <div>
-          <p><strong>Description:</strong></p>
-          <p>{{Description}}</p>
+        <div class="box">
+          <input type="checkbox" id="expanded">
+          <div>
+            
+            <p><strong>Description:</strong></p>
+            <p>{{Description}}</p>
+          </div>
+          <label for="expanded" role="button" onclick="showMore(this)">read more</label>
         </div>
-        {{#img_link}}
-        <div>
-            <img src="{{img_link}}" width="100%">
-        </div>
-        {{/img_link}}
         {{#link}}
         <div>
           <p><a target="_blank" href="{{link}}" rel="noopener noreferrer">View more info.</a></p>
@@ -132,19 +136,29 @@
       <div class="aemp-infowindow aemp-modal-container">
         <a class="aemp-infowindow-close" href="#close" onClick="closeInfo()">×</a>
         <div>
+            <img src="{{Image}}" width="100%">
+        </div>
+          
+        
+        <div>
           <p>
-            <strong>Title: </strong>{{title}}
+            <strong>Title: </strong>{{Submission Title}}
           </p>
         </div>
-        <div>
-          <p><strong>Description:</strong></p>
-          <p>{{Description}}</p>
+
+        <div class="box">
+          <input type="checkbox" id="expanded">
+          <div>
+            
+            <p><strong>Description:</strong></p>
+            <p>{{Description}}</p>
+          </div>
+          <label for="expanded" role="button" onclick="showMore(this)">read more</label>
         </div>
-        {{#img_link}}
-        <div>
-            <img src="{{img_link}}" width="100%">
-        </div>
-        {{/img_link}}
+        
+       
+        
+        
         {{#link}}
         <div>
           <p><a target="_blank" href="{{link}}" rel="noopener noreferrer">View more info.</a></p>
