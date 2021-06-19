@@ -100,12 +100,41 @@
         </div>
       </div>
     </script>
-  
-    <script id="aemp-infowindow-template" type="x-tmpl-mustache">
+    
+    <!--Small pop up overlay which is rendered when indicators are initally clicked-->
+    <script id="aemp-infowindow-small-template" type="x-tmpl-mustache">
       <div class="aemp-infowindow">
         <a class="aemp-infowindow-close" href="#close" onClick="closeInfo()">×</a>
-        
-       
+        <div>
+          <img src="{{Image}}" width="100%">
+      </div>
+
+        <div>
+          <p>
+            <strong>Title: </strong>{{Submission Title}}
+          </p>
+        </div>
+        <div class="box">
+          <input type="checkbox" id="expanded">
+          <div>
+            
+            <p><strong>Description:</strong></p>
+            <p>{{Description}}</p>
+          </div>
+          <label for="expanded" role="button" onclick="showMore(this)">read more</label>
+        </div>
+        {{#link}}
+        <div>
+          <p><a target="_blank" href="{{link}}" rel="noopener noreferrer">View more info.</a></p>
+        </div>
+        {{/link}}
+      </div>
+    </script>
+
+    <!--Large pop up overlay which is rendered when more data is requried-->
+    <script id="aemp-infowindow-large-template" type="x-tmpl-mustache">
+      <div class="aemp-infowindow aemp-modal-container">
+        <a class="aemp-infowindow-close" href="#close" onClick="closeInfo()">×</a>
         <div>
             <img src="{{Image}}" width="100%">
         </div>
@@ -138,8 +167,10 @@
       </div>
     </script>
 
-    <script id="aemp-oralhistory-infowindow-template" type="x-tmpl-mustache">
-      <div class="oral-history-infowindow">
+    <!--Small pop up overlay which is rendered when oral history indicators require more information to be displayed -->
+    <script id="aemp-oralhistory-infowindow-large-template" type="x-tmpl-mustache">
+      <div class="oral-history-infowindow aemp-modal-container">
+        <div class="aemp-modal-content">
         <a class="aemp-infowindow-close" href="#close" onClick="closeInfo()">×</a>
         <div>
           <p class="infowindow-title">
@@ -171,6 +202,46 @@
           <p><a target="_blank" href="{{link}}" rel="noopener noreferrer">Listen here.</a></p>
         </div>
         {{/link}}
+        </div>
+      </div>
+    </script>
+
+    <!--Small pop up overlay which is rendered when oral history markers are initally clicked-->
+    <script id="aemp-oralhistory-infowindow-small-template" type="x-tmpl-mustache">
+      <div class="oral-history-infowindow">
+        <div class="aemp-modal-content aemp-infowindow">
+        <a class="aemp-infowindow-close" href="#close" onClick="closeInfo()">×</a>
+        <div>
+          <p class="infowindow-title">
+            <strong>{{headline}}</strong>
+          </p>
+        </div>
+        <div>
+          <p>
+            <strong>Interviewee: {{interviewee}}</strong>{{}}
+          </p>
+        </div>
+        <div>
+          <p><strong>Location:</strong></p>
+          <p>{{location}}</p>
+        </div>
+        <div class="audio-controls">
+          <audio controls>
+            <source src={{cloudinary_url}} type="audio/mpeg">
+            Your browser does not support the audio tag.
+          </audio>
+        </div>
+        {{#img_link}}
+        <div>
+            <img src="{{img_link}}" width="50%">
+        </div>
+        {{/img_link}}
+        {{#link}}
+        <div>
+          <p><a target="_blank" href="{{link}}" rel="noopener noreferrer">Listen here.</a></p>
+        </div>
+        {{/link}}
+        </div>
       </div>
     </script>
 
