@@ -105,6 +105,28 @@ function handleWindowResize() {
   map.invalidateSize();
 }
 
+//jQuery please save us!!
+function showMore(ele) {
+
+  const parentofSelected = ele.parentNode;
+
+  var children = parentofSelected.childNodes;
+
+  for (var i=0; i < children.length; i++) {
+
+    if(children[i].tagName === 'DIV') {
+      var children = children[i].childNodes;
+      for (var i=0; i < children.length; i++) {
+        if(children[i].tagName === 'P') {
+          children[i].style.display = 'block'
+        }
+      }
+    }
+  
+  }
+
+}
+
 // Ensures that map overlay pane layers are displayed in the correct Z-Order
 function fixZOrder(dataLayers) {
   dataLayers.forEach(function (layerGroup) {
@@ -123,6 +145,7 @@ map.on("popupopen", function (e) {
   }
 
   map.setView(e.popup._latlng, map.getZoom(), { animate: true });
+  
 });
 
 map.on("popupclose", function (e) {
