@@ -172,10 +172,13 @@ const attribution = L.control
 
 const zoomControl = L.control.zoom({ position: "bottomright" }).addTo(map);
 
+
 // Map layers control: add the layers later after their data has been fetched
 const layersControl = L.control
   .layers(null, null, { position: "topright", collapsed: false })
   .addTo(map);
+
+
 
 // Get the popup & infowindow templates from the HTML.
 // We can do this here because the template will never change.
@@ -377,7 +380,7 @@ if (type === 'indicators') {
     row => row["Submission Type"] === "Indicator"
     );
 
-    buildGeoJsonLayers(indicatorPoints, "Gentrification Indicators")
+    buildGeoJsonLayers(indicatorPoints, "<span><span class='legend-icon legend-icon-developments'></span>Gentrification Indicators</span>")
 }
 
 if (type === 'developments') {
@@ -511,8 +514,9 @@ function handleOralHistoriesLayer(geoJson) {
  * FETCH DATA SOURCES
  *****************************************/
  async function initMapData() {
-  
-  //The following statements determine the order in which the elements appear within the map key
+
+  //The following statements determine the order in which the elements
+  // appear within the map key
   layersControl.addOverlay(oralHistories, "<span><span class='legend-icon legend-icon-oralhistory'></span>Oral Histories</span>")
 
   await fetch(sheetURI)
