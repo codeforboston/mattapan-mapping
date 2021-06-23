@@ -196,6 +196,14 @@ a:hover {
   background-color: #0d3b66;
 }
 
+.legend-icon-boundary.medium{
+  background-color: #0c70ce;
+}
+
+.legend-icon-boundary.light{
+  background-color: #7fb8ec;
+}
+
 .legend-icon-corridor{
   background-color: #ED5D31;
 }

@@ -233,7 +233,7 @@ function addBoudaryLayers() {
     style: function (feature){
         return {
           fillOpacity: 0.0,
-          color: "#0d3b66"
+          color: "#7fb8ec"
         }
     }
   });
@@ -243,7 +243,7 @@ function addBoudaryLayers() {
     style: function (feature){
         return {
           fillOpacity: 0.0,
-          color: "#0d3b66"
+          color: "#0c70ce"
         }
     }
   });
@@ -329,8 +329,8 @@ function addBoudaryLayers() {
   
   layersControl
   .addOverlay(zoningBoundary, "<span><span class='legend-icon legend-icon-boundary'></span>Greater Mattapan Zoning Boundary</span>")
-  .addOverlay(planningBoundary, "<span><span class='legend-icon legend-icon-boundary'></span>BPDA Planning District Boundary</span>")
-  .addOverlay(neighbBoundary, "<span><span class='legend-icon legend-icon-boundary'></span>BPDA Unofficial Neighborhood Boundary</span>")
+  .addOverlay(planningBoundary, "<span><span class='legend-icon legend-icon-boundary medium'></span>BPDA Planning District Boundary</span>")
+  .addOverlay(neighbBoundary, "<span><span class='legend-icon legend-icon-boundary light'></span>BPDA Unofficial Neighborhood Boundary</span>")
   .addOverlay(PLANBoundary, "<span><span class='legend-icon legend-icon-boundary'></span>PLAN Mattapan Boundary</span>")
   .addOverlay(greaterMattapanMergedBoundary, "<span><span class='legend-icon legend-icon-boundary'></span>Greater Mattapan Merged Boundary</span>")
   .addOverlay(mattapanSqBoundary, "<span><span class='legend-icon legend-icon-boundary'></span>Mattapan Square Boundary</span>")
