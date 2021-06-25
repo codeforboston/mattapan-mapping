@@ -342,6 +342,18 @@ function addBoudaryLayers() {
   //Show the Greater Mattapan Zoning Boundary by default
   zoningBoundary.addTo(map);
 
+  const htmlLegend = document.querySelector(".leaflet-control-container > .leaflet-top.leaflet-right")
+  
+  let legendDiv = document.createElement("div");
+  let legendP = document.createElement("p");
+  let span = document.createElement("span");
+  legendP.innerHTML = "<img src='assets/images/mattapan-legend-temp.png' height='154' width='241'/>"
+  legendDiv.append(legendP);
+  legendDiv.prepend(span);
+  legendDiv.className = "leaflet-control-layers legend-header leaflet-control-layers-expanded leaflet-control"
+  htmlLegend.prepend(legendDiv)
+
+
 }
 
 function buildGeoJsonLayers(inputRows, layersTitle){
