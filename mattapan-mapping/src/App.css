@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+nav {
+  box-shadow: 0 1px 4px #ccc;
+}
+
+nav a {
+  padding: 20px;
+  display: inline-block;
+  background-color: #fff;
+  text-decoration: none;
+}
