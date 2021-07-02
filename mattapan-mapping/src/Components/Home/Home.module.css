@@ -1,0 +1,7 @@
+.Home {
+  border: 1px solid gray;
+  border-radius: 1rem;
+  box-shadow: .25rem .25rem rgb(201, 192, 192);
+  padding: 1rem;
+  width: 30%;
+}
