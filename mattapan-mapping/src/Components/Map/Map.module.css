@@ -1,0 +1,11 @@
+.Map {
+  position: fixed;
+  top: 3rem;
+  left: 25rem;
+}
+
+.markerImg {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}

@@ -1,0 +1,12 @@
+.Legend {
+  border: 1px solid gray;
+  border-radius: .5rem;
+  box-shadow: .25rem .25rem rgb(201, 192, 192);
+  height: 50%;
+  position: fixed;
+  top: 2rem;
+  left: 82rem;
+  margin: 1rem;
+  padding: 1rem;
+  width: 20rem;
+}
