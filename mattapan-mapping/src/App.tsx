@@ -17,7 +17,7 @@ const App = () => {
           <Map />
         </div>
       </Router>
-          <Legend />
+      <Legend />
     </div>
   );
 };

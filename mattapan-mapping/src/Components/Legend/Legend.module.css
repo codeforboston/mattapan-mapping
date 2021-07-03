@@ -1,12 +1,18 @@
 .Legend {
   border: 1px solid gray;
-  border-radius: .5rem;
-  box-shadow: .25rem .25rem rgb(201, 192, 192);
-  height: 50%;
+  border-radius: 0.5rem;
+  box-shadow:         3px 5px 6px #ccc;
+  -moz-box-shadow:    3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 5px 6px #ccc;
+  height: 70vh;
+  left: 63rem;
+  /* margin: 1rem; */
+  /* padding: 1rem; */
   position: fixed;
   top: 2rem;
-  left: 82rem;
-  margin: 1rem;
-  padding: 1rem;
   width: 20rem;
+}
+
+.LegendKey {
+  width: 15rem;
 }

@@ -1,11 +1,6 @@
 .Map {
+  border: 1px dashed red;
   position: fixed;
   top: 3rem;
-  left: 25rem;
-}
-
-.markerImg {
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
+  left: 24rem;
 }

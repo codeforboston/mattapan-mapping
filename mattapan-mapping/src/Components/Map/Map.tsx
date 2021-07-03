@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import ReactMapGL, { Marker } from "react-map-gl";
+import ReactMapGL from "react-map-gl";
 import styles from "./Map.module.css";
-
-import AudioMapPoints from "../../assets/audio/audio_map_points.json";
-import Mic from "../../assets/mapIcons/mic-fill.svg";
+import OralHistories from "./OralHistories/OralHistories";
 
 export default function App() {
   const [viewport, setViewport] = useState({
@@ -24,18 +22,7 @@ export default function App() {
         }}
         mapStyle="mapbox://styles/smithwebtek/ckqk5ktyu15no17o62u1pjb8n"
       >
-        {AudioMapPoints.features.map((audio) => (
-          <Marker
-            key={audio.properties.id}
-            latitude={audio.geometry.coordinates[1]}
-            longitude={audio.geometry.coordinates[0]}
-            offsetLeft={-20}
-            offsetTop={-10}
-          >
-            <img className={styles.markerImg} src={Mic} alt="microphone" />
-          </Marker>
-        ))}
-        )
+        {OralHistories()}
       </ReactMapGL>
     </div>
   );
