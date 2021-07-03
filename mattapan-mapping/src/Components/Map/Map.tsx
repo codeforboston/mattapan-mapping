@@ -8,7 +8,7 @@ export default function App() {
     latitude: 42.2819229,
     longitude: -71.0849532,
     zoom: 13,
-    width: "50vw",
+    width: "40vw",
     height: "80vh",
   });
 
