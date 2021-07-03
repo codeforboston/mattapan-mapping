@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Marker, Popup } from "react-map-gl";
 import AudioMapPoints from "../../../assets/audio/audio_map_points.json";
 import Mic from "../../../assets/mapIcons/mic-fill.svg";
@@ -6,6 +6,19 @@ import styles from "./OralHistories.module.css";
 
 const OralHistories = () => {
   const [selectedOralHistory, setSelectedOralHistory] = useState(null);
+
+  useEffect(() => {
+    const listener = (event) => {
+      if (event.key === "Escape") {
+        setSelectedOralHistory(null);
+      }
+    };
+    window.addEventListener("keydown", listener);
+
+    return () => {
+      window.removeEventListener("keydown", listener);
+    };
+  }, []);
 
   const audioPoints = AudioMapPoints.features.map((audio, index) => {
     return (
@@ -34,6 +47,7 @@ const OralHistories = () => {
     if (selectedOralHistory) {
       return (
         <Popup
+          className={styles.Popup}
           latitude={selectedOralHistory.geometry.coordinates[1]}
           longitude={selectedOralHistory.geometry.coordinates[0]}
           onClose={() => {

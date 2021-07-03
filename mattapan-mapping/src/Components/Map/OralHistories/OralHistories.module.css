@@ -7,3 +7,9 @@
 .FigCaption {
   width: 15rem;
 }
+
+button {
+  background: none;
+  border: none;
+  font-size: x-large;
+}
