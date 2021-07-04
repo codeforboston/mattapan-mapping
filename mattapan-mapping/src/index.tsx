@@ -2,11 +2,12 @@
 import * as React from 'react'
 import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { render } from 'react-dom';
-import {Home, Foo, Bar} from './Pages';
+//import {Home, Foo, Bar} from './Pages';
 import './App.css';
+import App from './App'
 
-
-class App extends React.Component {
+/*
+export default class App extends React.Component {
   render() {
     return (
       <Router>
@@ -26,5 +27,5 @@ class App extends React.Component {
     );
   }
 }
-
+*/
 render(<App />, document.getElementById('root'));
