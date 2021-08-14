@@ -18,7 +18,7 @@ const Map = ReactMapboxGl({
             }}
         >
         <Layer type="symbol" id="sm-marker" layout={{ 'icon-image': 'amusement-park-15' }}>
-            <Feature coordinates={[-0.143126, 51.532211]} />
+            <Feature coordinates={[-71.0995187, 42.277739]} />
         </Layer>
       </Map>
     );
