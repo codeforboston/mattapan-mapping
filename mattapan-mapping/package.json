@@ -11,6 +11,7 @@
     "@types/react": "^17.0.9",
     "@types/react-dom": "^17.0.6",
     "husky": "^6.0.0",
+    "jquery": "^3.6.0",
     "lint-staged": "^11.0.0",
     "mapbox-gl": "^2.3.1",
     "prettier": "^2.3.0",
@@ -57,6 +58,7 @@
     ]
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.6",
     "@types/react-router-dom": "^5.1.7"
   }
 }
