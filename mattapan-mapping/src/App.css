@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&family=Poiret+One&family=Syncopate&family=Unica+One&display=swap');
+
+body{
+  font-family: 'Montserrat', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -42,8 +48,32 @@ nav {
 }
 
 nav a {
-  padding: 20px;
+  padding: 10px 20px;
   display: inline-block;
   background-color: #fff;
   text-decoration: none;
+  color: #333;
+}
+
+.information-pane{
+  position: fixed;
+  top: 50px;
+  background: rgb(255 255 255 / 60%);
+  left: 0;
+  right: 0;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.information-pane a{ 
+  background: #2A9D8F;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: white; 
+  padding: 5px 10px;
+  max-width: 150px;
+  margin: 0 auto;
+  font-family: 'Unica One', cursive;
 }
