@@ -208,6 +208,26 @@ a:hover {
   background-color: #ED5D31;
 }
 
+.legend-icon-boundary.zoning-boundary{
+  background-color: #004373
+}
+
+.legend-icon-boundary.district-boundary{
+  background-color: #89a7ba;
+}
+
+.legend-icon-boundary.neighborhood-boundary{
+  background-color: #c5d3dc
+}
+
+.legend-icon-boundary.plan-boundary{
+  background-color: #1a6fbf;
+}
+
+.legend-icon-boundary.merged-boundary{
+  background-color: #7dafde
+}
+
 .popup-container {
   position: absolute;
   background: transparent;
