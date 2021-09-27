@@ -3,18 +3,18 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 import './App.css';
 import Header from './organisms/Header';
-import StatBanner1 from './organisms/Banner';
+import { GeneralIntro } from './organisms/GeneralIntro';
 import Map from './organisms/Map';
 import Footer from './organisms/Footer';
-import { SplashVideo } from './organisms/SplashVideo';
+import { PersonaCardSet } from './organisms/PersonaCardSet';
 import { Theme } from './theme/Theme';
 
 export default function App() {
   return (
     <ThemeProvider theme={Theme}>
       <Header />
-      <SplashVideo />
-      <StatBanner1 />
+      <PersonaCardSet />
+      <GeneralIntro />
       <Map />
       {/* <StatBanner2 /> */}
       {/* <CardList /> */}

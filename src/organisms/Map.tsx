@@ -1,28 +1,27 @@
 import { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import styled from '@emotion/styled';
+
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1ZGlja3NvbiIsImEiOiJja3RrYXpiajIwbXo1MnZxem94Z2toMjQzIn0.5WitslZwklYGvH8Rh7FuEw';
 
 const MapContainer = styled.div`
-	display: flex;
-	justify-content: center;
-	padding: ${props => props.theme.spacing.l} 0;
-	height: 50vh;
-	width: 80vw;
+	height: 100%;
+	width: 100%;
+	overflow: visible;
+`;
 
-	> .map {
-		height: 100%;
-		overflow: visible;
-		width: 70%;
-	}
+const MapContainerTwo = styled.div`
+	position: relative;
+	height: 50vh;
+	width: 100vw;
 `;
 
 export default function Map() {
 	const mapContainer = useRef<HTMLDivElement | null>(null);
 	const map = useRef<mapboxgl.Map | null>(null);
-	const [lng, setLng] = useState(-70.9);
-	const [lat, setLat] = useState(42.35);
-	const [zoom, setZoom] = useState(9);
+	const [lng, setLng] = useState(-71.08);
+	const [lat, setLat] = useState(42.271);
+	const [zoom, setZoom] = useState(13);
 
 	useEffect(() => {
 		if (map.current) return; // initialize map only once
@@ -36,22 +35,9 @@ export default function Map() {
 		}
 	});
 
-	useEffect(() => {
-		if (!map.current) return; // wait for map to initialize
-		if (map && map.current) {
-			map.current.on('move', () => {
-				if (map.current) {
-					setLng(Number(map.current.getCenter().lng.toFixed(4)));
-					setLat(Number(map.current.getCenter().lat.toFixed(4)));
-					setZoom(Number(map.current.getZoom().toFixed(2)));
-				}
-			});
-		}
-	});
-
 	return (
-		<MapContainer>
-			<div ref={mapContainer} className="map" />
-		</MapContainer>
+		<MapContainerTwo>
+			<MapContainer ref={mapContainer} />
+		</MapContainerTwo>
 	);
 }

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { HeaderLink, HeaderTitle } from '../atoms/HeaderAtoms';
 
 const HeaderContainer = styled.div`
-	background-color: black;
+	background-color: ${props => props.theme.colors.blue};
 	height: 50px;
 	width: 100%;
 	position: fixed;
@@ -22,9 +22,10 @@ export default function Header() {
 		<HeaderContainer>
 			<HeaderTitle>Mattapan Boston</HeaderTitle>
 			<Spacer />
-			<HeaderLink href='/'>Overview</HeaderLink>
-			<HeaderLink href='#work'>Work</HeaderLink>
-			<HeaderLink href='#connect'>Connect</HeaderLink>
+			<HeaderLink href='/'>View</HeaderLink>
+			<HeaderLink href='#work'>Engage</HeaderLink>
+			<HeaderLink href='#connect'>Listen</HeaderLink>
+			<HeaderLink href='#explore'>Explore</HeaderLink>
 		</HeaderContainer>
 	);
 }

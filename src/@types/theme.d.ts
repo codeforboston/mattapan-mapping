@@ -5,6 +5,8 @@ interface Theme {
     mediaQuery: MediaQuery;
 
     fonts: Fonts;
+
+    colors: Colors;
 }
 
 interface Spacing {
@@ -23,6 +25,7 @@ interface MediaQuery {
 
 interface Fonts {
     dm: string;
+    badscript: string;
     fontWeight: FontWeight
     fontSize: FontSize
 }
@@ -34,8 +37,18 @@ interface FontWeight {
 }
 
 interface FontSize {
-    title: '40px',
-    subtitle: '24px',
-    regular: '16px',
-    small: '12px'
+    title: '40px';
+    subtitle: '24px';
+    regular: '16px';
+    small: '12px';
+}
+
+interface Colors {
+    peach: string;
+    green: string;
+    teal: string;
+    orange: string;
+    brown: string;
+    red: string;
+    blue: string;
 }

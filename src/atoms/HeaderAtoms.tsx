@@ -6,8 +6,8 @@ const Link = styled.a`
 `;
 
 const LinkText = styled.span`
-    padding: 0 ${ props => props.theme.spacing.s };
-    font-family: ${ props => props.theme.fonts.dm };
+    padding: 0 ${props => props.theme.spacing.s};
+    font-family: ${props => props.theme.fonts.dm};
     font-size: 28px;
     color: white;
     transition: color ease .2s;
@@ -18,14 +18,14 @@ const LinkText = styled.span`
 `
 
 export const HeaderTitle = styled.span`
-    font-family: ${ props => props.theme.fonts.dm };
+    font-family: ${props => props.theme.fonts.dm};
     font-size: 28px;
     color: white;
-    padding: 0 ${ props => props.theme.spacing.s };
+    padding: 0 ${props => props.theme.spacing.s};
 `
 
 export const HeaderLink = ({ href, children }: { href: string, children: string }) => {
     return (
-        <Link href={ href }> <LinkText>{ children }</LinkText></Link>
+        <Link href={href}> <LinkText>{children}</LinkText></Link>
     )
 }

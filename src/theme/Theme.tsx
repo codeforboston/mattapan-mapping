@@ -16,7 +16,8 @@ export const Theme: Theme = {
     },
 
     fonts: {
-        dm:"'DM Sans', sans-serif",
+        dm: "'DM Sans', sans-serif",
+        badscript: "'Bad Script', cursive",
         fontWeight: {
             bold: 700,
             medium: 500,
@@ -28,11 +29,21 @@ export const Theme: Theme = {
             regular: '16px',
             small: '12px',
         }
+    },
+
+    colors: {
+        peach: '#FEC0AA',
+        green: '#226653',
+        teal: '#2A9D8F',
+        orange: '#ED5D31',
+        brown: '#4D4319',
+        red: '#D32F2F',
+        blue: '#B4DAF9',
     }
 }
 
 type ThemeType = typeof Theme;
 
 declare module '@emotion/react' {
-    export interface Theme extends ThemeType {}
+    export interface Theme extends ThemeType { }
 }
