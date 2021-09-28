@@ -7,7 +7,6 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ENV
 const MapContainer = styled.div`
 	position: relative;
 	height: 50vh;
-	width: 100vw;
 
 	.map {
 		height: 100%;
