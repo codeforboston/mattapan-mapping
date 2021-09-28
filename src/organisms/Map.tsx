@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
-import mapboxgl from 'mapbox-gl';
+// @ts-expect-error
+import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import styled from '@emotion/styled';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ENV
