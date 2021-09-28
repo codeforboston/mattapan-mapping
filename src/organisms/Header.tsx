@@ -1,31 +1,45 @@
 import styled from '@emotion/styled';
 
 import { HeaderLink, HeaderTitle } from '../atoms/HeaderAtoms';
+import { PowerfulPathwaysLogo, CFBLogo } from '../atoms/Logos';
 
 const HeaderContainer = styled.div`
-	background-color: ${ props => props.theme.colors.red };
-	height: 50px;
+	height: 100px;
 	width: 100%;
 	position: fixed;
 	display: flex;
-	justify-content: flex-end;
+	justify-content: center;
 	align-items: center;
 	z-index: 99;
+	background-color: white;
+
+	.header {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		width: 100%;
+		max-width: 1200px;
+	}
 `;
 
-const Spacer = styled.div`
-	flex: 1;
-`
+const LogoContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
 
 export default function Header() {
 	return (
 		<HeaderContainer>
-			<HeaderTitle>Mattapan Boston</HeaderTitle>
-			<Spacer />
-			<HeaderLink href='/'>View</HeaderLink>
-			<HeaderLink href='#work'>Engage</HeaderLink>
-			<HeaderLink href='#connect'>Listen</HeaderLink>
-			<HeaderLink href='#explore'>Explore</HeaderLink>
+			<div className='header'>
+				<LogoContainer><PowerfulPathwaysLogo /> | <CFBLogo/> </LogoContainer>
+				<HeaderTitle>Mattapan Boston</HeaderTitle>
+				<div>
+					<HeaderLink href='#engage'>Engage</HeaderLink>
+					<HeaderLink href='#connect'>Listen</HeaderLink>
+					<HeaderLink href='#explore'>Explore</HeaderLink>
+				</div>
+			</div>
 		</HeaderContainer>
 	);
 }
