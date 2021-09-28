@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { HeaderLink, HeaderTitle } from '../atoms/HeaderAtoms';
 
 const HeaderContainer = styled.div`
-	background-color: ${props => props.theme.colors.blue};
+	background-color: silver;
 	height: 50px;
 	width: 100%;
 	position: fixed;

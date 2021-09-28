@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
-import mapboxgl from 'mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import mapboxgl from 'mapbox-gl';
 import styled from '@emotion/styled';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1ZGlja3NvbiIsImEiOiJja3RrYXpiajIwbXo1MnZxem94Z2toMjQzIn0.5WitslZwklYGvH8Rh7FuEw';

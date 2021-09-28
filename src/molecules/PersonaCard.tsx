@@ -25,7 +25,6 @@ const PersonaImage = styled.div`
 
   &:hover {
     transform: scale(1.2);
-
   }
 
   &::before {
@@ -38,10 +37,15 @@ const PersonaImage = styled.div`
     left: 0;
     opacity: 0.6;
     z-index: 3;
+    transition: all ease 0.5s;
+  }
+
+  &:hover::before {
+    opacity: 0.8;
   }
 
   > span {
-    color: white;
+    color: ${ props => props.theme.colors.white };
     font-family: ${ props => props.theme.fonts.badscript };
     font-size: ${ props => props.theme.fonts.fontSize.title };
     z-index: 5;

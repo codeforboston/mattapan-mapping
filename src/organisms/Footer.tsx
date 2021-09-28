@@ -11,7 +11,7 @@ const FooterContainer = styled.div`
   
   span {
     font-family: ${ props => props.theme.fonts.dm };
-    color: white;
+    color: ${ props => props.theme.colors.white };
   }
 `;
 

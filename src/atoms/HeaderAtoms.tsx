@@ -9,7 +9,7 @@ const LinkText = styled.span`
     padding: 0 ${props => props.theme.spacing.s};
     font-family: ${props => props.theme.fonts.dm};
     font-size: 28px;
-    color: white;
+    color: ${ props => props.theme.colors.white };
     transition: color ease .2s;
 
     &:hover {
@@ -20,7 +20,7 @@ const LinkText = styled.span`
 export const HeaderTitle = styled.span`
     font-family: ${props => props.theme.fonts.dm};
     font-size: 28px;
-    color: white;
+    color: ${ props => props.theme.colors.white };
     padding: 0 ${props => props.theme.spacing.s};
 `
 

@@ -39,6 +39,8 @@ export const Theme: Theme = {
         brown: '#4D4319',
         red: '#D32F2F',
         blue: '#B4DAF9',
+        black: '#000000',
+        white: '#FFFFFF',
     }
 }
 

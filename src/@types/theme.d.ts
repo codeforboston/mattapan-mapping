@@ -51,4 +51,6 @@ interface Colors {
     brown: string;
     red: string;
     blue: string;
+    black: string;
+    white: string;
 }

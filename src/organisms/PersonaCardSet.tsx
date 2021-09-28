@@ -3,7 +3,8 @@ import { PersonaCard } from '../molecules/PersonaCard';
 
 const PersonaCardContainer = styled.div`
   display: flex;
-  height: 100vh;
+  padding-top: 50px;
+  height: calc(100vh - 50px);
   width: 100vw;
 `;
 
