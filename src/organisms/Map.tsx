@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import styled from '@emotion/styled';
 
@@ -19,9 +19,14 @@ const MapContainerTwo = styled.div`
 export default function Map() {
 	const mapContainer = useRef<HTMLDivElement | null>(null);
 	const map = useRef<mapboxgl.Map | null>(null);
-	const [lng, setLng] = useState(-71.08);
-	const [lat, setLat] = useState(42.271);
-	const [zoom, setZoom] = useState(13);
+	const lng = -71.08;
+	const lat = 42.271;
+	const zoom = 13
+
+	// When adding stuff into the map consider using useState (from mapbox tutorial):
+	// const [lng, setLng] = useState(-71.08);
+	// const [lat, setLat] = useState(42.271);
+	// const [zoom, setZoom] = useState(13);
 
 	useEffect(() => {
 		if (map.current) return; // initialize map only once

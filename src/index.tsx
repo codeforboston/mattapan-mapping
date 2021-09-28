@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './performance/reportWebVitals';
+// import reportWebVitals from './performance/reportWebVitals'; is good but not for prod, need to make this conditional if only running locally vs compiling and building app
 
 ReactDOM.render(
   <React.StrictMode>
