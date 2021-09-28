@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import styled from '@emotion/styled';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibGF1ZGlja3NvbiIsImEiOiJja3RrYXpiajIwbXo1MnZxem94Z2toMjQzIn0.5WitslZwklYGvH8Rh7FuEw';
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ENV
 
 const MapContainer = styled.div`
 	position: relative;
