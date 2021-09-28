@@ -48,6 +48,7 @@ const PersonaImage = styled.div`
     color: ${ props => props.theme.colors.white };
     font-family: ${ props => props.theme.fonts.badscript };
     font-size: ${ props => props.theme.fonts.fontSize.title };
+    text-align: center;
     z-index: 5;
 
     &:hover {
@@ -79,7 +80,7 @@ const StudentResearcherCard = styled(PersonaImage)`
   background-position-x: 35%;
 
   &::before {
-    background-color: ${ props => props.theme.colors.red };
+    background-color: ${ props => props.theme.colors.blue };
   }
 `;
 

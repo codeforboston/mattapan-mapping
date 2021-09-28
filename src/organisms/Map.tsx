@@ -5,15 +5,15 @@ import styled from '@emotion/styled';
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1ZGlja3NvbiIsImEiOiJja3RrYXpiajIwbXo1MnZxem94Z2toMjQzIn0.5WitslZwklYGvH8Rh7FuEw';
 
 const MapContainer = styled.div`
-	height: 100%;
-	width: 100%;
-	overflow: visible;
-`;
-
-const MapContainerTwo = styled.div`
 	position: relative;
 	height: 50vh;
 	width: 100vw;
+
+	.map {
+		height: 100%;
+		width: 100%;
+		overflow: visible;
+	}
 `;
 
 export default function Map() {
@@ -41,8 +41,8 @@ export default function Map() {
 	});
 
 	return (
-		<MapContainerTwo>
-			<MapContainer ref={mapContainer} />
-		</MapContainerTwo>
+		<MapContainer>
+			<div className='map' ref={mapContainer} />
+		</MapContainer>
 	);
 }
