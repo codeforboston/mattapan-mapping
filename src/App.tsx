@@ -8,13 +8,17 @@ import { Map, Map2 } from './organisms/Map';
 import Footer from './organisms/Footer';
 import { PersonaCardSet } from './organisms/PersonaCardSet';
 import { Theme } from './theme/Theme';
+import { SplashVideo } from './organisms/SplashVideo'
+import { LandingGrid } from './organisms/LandingGrid';
 
 export default function App() {
   return (
     <ThemeProvider theme={Theme}>
       <Header />
-      <PersonaCardSet />
-      <GeneralIntro />
+      <SplashVideo />
+      <LandingGrid />
+      {/* <PersonaCardSet /> */}
+      {/* <GeneralIntro /> */}
       <Map />
       <Map2 />
       {/* <StatBanner2 /> */}
