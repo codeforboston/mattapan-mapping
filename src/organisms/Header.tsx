@@ -35,9 +35,11 @@ export default function Header() {
 				<LogoContainer><PowerfulPathwaysLogo /> | <CFBLogo/> </LogoContainer>
 				<HeaderTitle>Mattapan Boston</HeaderTitle>
 				<div>
-					<HeaderLink href='#engage'>Engage</HeaderLink>
-					<HeaderLink href='#connect'>Listen</HeaderLink>
-					<HeaderLink href='#explore'>Explore</HeaderLink>
+					<HeaderLink href='#engage'>About</HeaderLink>
+					<HeaderLink href='#connect'>Explore</HeaderLink>
+					<HeaderLink href='#meet'>Meet</HeaderLink>
+					<HeaderLink href='#share'>Share</HeaderLink>
+					<HeaderLink href='#getInvolved'>Get Invovled</HeaderLink>
 				</div>
 			</div>
 		</HeaderContainer>
