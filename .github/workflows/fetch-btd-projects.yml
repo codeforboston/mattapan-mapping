@@ -1,0 +1,26 @@
+# Download and check-in BTD transportation GeoJSON file
+# on recurrring weekly schedule (every Sat. 08:30 UTC)     
+
+name: Fetch BTD Projects
+
+on:
+  schedule:
+    - cron: '30 8 * * 6'
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - run: 'node fetch-BTD-projects.js'
+    - run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .
+        git commit -m "Downloaded BTD projects GeoJSON file"
+        git push
+
