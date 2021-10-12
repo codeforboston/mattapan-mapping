@@ -3,10 +3,10 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 import './App.css';
 import Header from './organisms/Header';
-import { GeneralIntro } from './organisms/GeneralIntro';
+// import { GeneralIntro } from './organisms/GeneralIntro';
 import { Map, Map2 } from './organisms/Map';
 import Footer from './organisms/Footer';
-import { PersonaCardSet } from './organisms/PersonaCardSet';
+// import { PersonaCardSet } from './organisms/PersonaCardSet';
 import { Theme } from './theme/Theme';
 import { SplashVideo } from './organisms/SplashVideo'
 import { LandingGrid } from './organisms/LandingGrid';

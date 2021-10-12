@@ -54,23 +54,23 @@ const CardTitle = styled.span`
   text-shadow: 0 0 2px black;
 `;
 
-const CardInfo = styled.div`
-  height: 50%;
-  width: 100%;
-  transform: translateY(150%);
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #F2F2F2;
-  transition: transform ease-out 0.6s;
-`;
+// const CardInfo = styled.div`
+//   height: 50%;
+//   width: 100%;
+//   transform: translateY(150%);
+//   position: absolute;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background: #F2F2F2;
+//   transition: transform ease-out 0.6s;
+// `;
 
-const InfoText = styled.div`
-  color: black;
-  font-family: ${ props => props.theme.fonts.dm };
-  font-size: ${ props => props.theme.fonts.fontSize.regular };
-`;
+// const InfoText = styled.div`
+//   color: black;
+//   font-family: ${ props => props.theme.fonts.dm };
+//   font-size: ${ props => props.theme.fonts.fontSize.regular };
+// `;
 
 const LandingCard = ( { children, color, src, title } : { children: string; color: string; src: string; title: string }) => {
   return (
