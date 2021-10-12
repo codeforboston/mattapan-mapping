@@ -5,14 +5,16 @@ const LandingGridContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  column-gap: ${ props => props.theme.spacing.l };
-  row-gap: ${ props => props.theme.spacing.l };
+  column-gap: ${ props => props.theme.spacing.m };
+  row-gap: ${ props => props.theme.spacing.m };
   max-width: 80%;
   margin: 24px auto;
 
   @media (min-width: ${props => props.theme.mediaQuery.tablet}) {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
+    column-gap: ${ props => props.theme.spacing.l };
+    row-gap: ${ props => props.theme.spacing.l };
   }
 `
 
@@ -40,6 +42,7 @@ const CardImage = styled.div<{ src: string }>`
   background-image: url(${props => props.src});
   background-size: cover;
   background-repeat: no-repeat;
+  box-shadow: 0 0 24px 0 black;
 `;
 
 const CardTitle = styled.span`
@@ -48,10 +51,14 @@ const CardTitle = styled.span`
   transform: translateY(-50%);
   top: 50%;
   left: 8px;
-  font-size: 60px;
+  font-size: 48px;
   font-family: ${ props => props.theme.fonts.badscript };
   z-index: 4;
   text-shadow: 0 0 2px black;
+
+  @media (min-width: ${props => props.theme.mediaQuery.tablet}) {
+    font-size: 60px;
+  }
 `;
 
 // const CardInfo = styled.div`

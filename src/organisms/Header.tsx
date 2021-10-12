@@ -23,9 +23,13 @@ const HeaderContainer = styled.div`
 `;
 
 const LogoContainer = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	display: none;
+
+	@media (min-width: ${props => props.theme.mediaQuery.tablet}) {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+  }
 `;
 
 export default function Header() {
