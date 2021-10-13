@@ -7,7 +7,6 @@ import { PowerfulPathwaysLogo, CFBLogo } from '../atoms/Logos';
 const HeaderContainer = styled.div`
 	height: 100px;
 	width: 100%;
-	position: fixed;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -40,11 +39,11 @@ export default function Header() {
 				<LogoContainer><PowerfulPathwaysLogo /> | <CFBLogo/> </LogoContainer>
 				<HeaderTitle>Mattapan Boston</HeaderTitle>
 				<div>
-					<HeaderLink href='#engage' color={ Theme.colors.blue }>About</HeaderLink>
-					<HeaderLink href='#connect' color={ Theme.colors.peach }>Explore</HeaderLink>
-					<HeaderLink href='#meet' color={ Theme.colors.teal }>Meet</HeaderLink>
-					<HeaderLink href='#share' color={ Theme.colors.orange }>Share</HeaderLink>
-					<HeaderLink href='#getInvolved' color={ Theme.colors.red }>Get Invovled</HeaderLink>
+					<HeaderLink href='/about' color={ Theme.colors.blue }>About</HeaderLink>
+					<HeaderLink href='/explore' color={ Theme.colors.peach }>Explore</HeaderLink>
+					<HeaderLink href='/meet' color={ Theme.colors.teal }>Meet</HeaderLink>
+					<HeaderLink href='/share' color={ Theme.colors.orange }>Share</HeaderLink>
+					<HeaderLink href='/getInvolved' color={ Theme.colors.red }>Get Invovled</HeaderLink>
 				</div>
 			</div>
 		</HeaderContainer>

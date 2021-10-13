@@ -29,7 +29,7 @@ const FooterSubContainer = styled.div`
   flex-direction: column;
 `;
 
-export default function Footer() {
+export const Footer = () => {
   return (
     <FooterContainer>
       <div className='footer'>
