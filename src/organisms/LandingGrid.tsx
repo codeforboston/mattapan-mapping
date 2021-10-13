@@ -92,12 +92,12 @@ const LandingCard = ( { children, color, src, title } : { children: string; colo
 export const LandingGrid = () => {
   return (
     <LandingGridContainer>
-      <LandingCard title='About' color={ Theme.colors.blue } src='https://miro.medium.com/max/1838/1*BC6WfcrUboUP3MK_fP_0uw.jpeg'>More info on About</LandingCard>
-      <LandingCard title='Explore' color={ Theme.colors.peach } src='https://upload.wikimedia.org/wikipedia/commons/8/8d/Frog_on_palm_frond.jpg'>More info on Explore</LandingCard>
-      <LandingCard title='Meet' color={ Theme.colors.teal } src='https://media.wired.com/photos/5cdefb92b86e041493d389df/191:100/w_1280,c_limit/Culture-Grumpy-Cat-487386121.jpg'>Meet</LandingCard>
-      <LandingCard title='Share' color={ Theme.colors.orange } src='https://tinyurl.com/uvc9yter'>More info on Share</LandingCard>
-      <LandingCard title='Get Invovled' color={ Theme.colors.red } src='http://cdn.cnn.com/cnnnext/dam/assets/210715140819-05-modernist-pizza-travel-restricted.jpg'>More info on Get Invovled</LandingCard>
-      <LandingCard title='Contact Us?' color={ Theme.colors.brown } src='https://nickpassey.com/wp-content/uploads/2016/10/Featured.jpg'>More info on Contact Us?</LandingCard>
+      <LandingCard title='About' color={ Theme.colors.blue } src='https://upload.wikimedia.org/wikipedia/commons/3/3b/Mattapan_M_Line_Trolley_3254.jpg'>More info on About</LandingCard>
+      <LandingCard title='Explore' color={ Theme.colors.peach } src='https://cdn10.bostonmagazine.com/wp-content/uploads/sites/2/2018/12/mattapan1.jpg'>More info on Explore</LandingCard>
+      <LandingCard title='Meet' color={ Theme.colors.teal } src='https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,f_jpg,g_xy_center,h_748,q_65,w_640,x_836,y_394/v1/clients/boston/Mattapan_KyleKlein_KKP11885_6575163c-84da-4e45-a1a0-e7b1f4724191.jpg'>Meet</LandingCard>
+      <LandingCard title='Share' color={ Theme.colors.orange } src='https://i.pinimg.com/originals/b7/20/98/b720983ab02bbdf91e643427d17470cb.jpg'>More info on Share</LandingCard>
+      <LandingCard title='Get Invovled' color={ Theme.colors.red } src='https://images1.apartments.com/i2/C-nvX3YH0OZYtCUKBXUSgYr9XOvRY4U8cKwa-F2isvg/111/78-mattapan-st-unit-1-boston-ma-exterior.jpg'>More info on Get Invovled</LandingCard>
+      <LandingCard title='Contact Us?' color={ Theme.colors.brown } src='https://scontent-bos3-1.xx.fbcdn.net/v/t1.6435-9/p960x960/120760232_3847173248643441_4683888836416691032_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=36a2c1&_nc_ohc=CFsgtqppGvcAX_ZnzNE&_nc_ht=scontent-bos3-1.xx&oh=dc1f7a638e4cc2fcf5150610c79d1c42&oe=618D5C99'>More info on Contact Us?</LandingCard>
     </LandingGridContainer>
   )
 }
