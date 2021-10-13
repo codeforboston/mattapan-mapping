@@ -55,6 +55,8 @@ Sharing of any of the information pertaining to these resources outside of the a
 -----
 ## Contributing Code
 
+### Tab spaces
+For this repository please use **spaces** and a tab-width is equivilant to **two spaces**.
 ### Agile Practices
 If you are unfamiliar, Agile projects generally follow the https://agilemanifesto.org/. This project's agile practices are described below.
 
