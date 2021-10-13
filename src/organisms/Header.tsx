@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import { Theme } from '../theme/Theme';
 import { HeaderLink, HeaderTitle } from '../atoms/HeaderAtoms';
 import { PowerfulPathwaysLogo, CFBLogo } from '../atoms/Logos';
 
@@ -39,11 +40,11 @@ export default function Header() {
 				<LogoContainer><PowerfulPathwaysLogo /> | <CFBLogo/> </LogoContainer>
 				<HeaderTitle>Mattapan Boston</HeaderTitle>
 				<div>
-					<HeaderLink href='#engage'>About</HeaderLink>
-					<HeaderLink href='#connect'>Explore</HeaderLink>
-					<HeaderLink href='#meet'>Meet</HeaderLink>
-					<HeaderLink href='#share'>Share</HeaderLink>
-					<HeaderLink href='#getInvolved'>Get Invovled</HeaderLink>
+					<HeaderLink href='#engage' color={ Theme.colors.blue }>About</HeaderLink>
+					<HeaderLink href='#connect' color={ Theme.colors.peach }>Explore</HeaderLink>
+					<HeaderLink href='#meet' color={ Theme.colors.teal }>Meet</HeaderLink>
+					<HeaderLink href='#share' color={ Theme.colors.orange }>Share</HeaderLink>
+					<HeaderLink href='#getInvolved' color={ Theme.colors.red }>Get Invovled</HeaderLink>
 				</div>
 			</div>
 		</HeaderContainer>

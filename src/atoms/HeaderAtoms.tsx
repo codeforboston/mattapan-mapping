@@ -5,7 +5,7 @@ const Link = styled.a`
     text-decoration: none;
 `;
 
-const LinkText = styled.span`
+const LinkText = styled.span<{ color: string }>`
     padding: 0 ${props => props.theme.spacing.s};
     font-family: ${props => props.theme.fonts.dm};
     font-size: ${props => props.theme.fonts.fontSize.regular};
@@ -13,7 +13,7 @@ const LinkText = styled.span`
     transition: color ease .2s;
 
     &:hover {
-        color: ${ props => props.theme.colors.red };
+        color: ${ props => props.color };
     }
 `
 
@@ -25,8 +25,8 @@ export const HeaderTitle = styled.span`
     padding: 0 ${props => props.theme.spacing.s};
 `
 
-export const HeaderLink = ({ href, children }: { href: string, children: string }) => {
+export const HeaderLink = ({ href, children, color }: { href: string, children: string, color: string; }) => {
     return (
-        <Link href={href}> <LinkText>{children}</LinkText></Link>
+        <Link href={href}> <LinkText color={ color }>{children}</LinkText></Link>
     )
 }
