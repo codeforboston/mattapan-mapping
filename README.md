@@ -1,6 +1,6 @@
 # Mattapan Mapping
 
-This is the repository dedicated to the creation, ongoing development and management of the Mattapan Mapping application. This project is a collaborative project between http://powerfulpathways.org and http://www.codeforboston.org
+This is the repository dedicated to the creation, ongoing development and management of the Mattapan Mapping application. This project is a collaborative project between http://powerfulpathways.org and http://www.codeforboston.org.
 
 ## Project Description
 
@@ -55,8 +55,22 @@ Sharing of any of the information pertaining to these resources outside of the a
 -----
 ## Contributing Code
 
-### Tab spaces
+### Tab Spaces
 For this repository please use **spaces** and a tab-width is equivilant to **two spaces**.
+
+### Atomic Design
+This application loosely follows [**Atomic Design Principles**](https://bradfrost.com/blog/post/atomic-web-design/). In the context of React applications, web pages are essentially made up of components that are made up of even smaller components. Theoretically a 'component' can be as atomic as you want and entire interfaces can be broken down into fundamental building blocks.
+
+Now consider, within the context of science, that **Atoms** are the most basic unit of life.
+
+Atoms, through their different types of bonding and mechanisms, form to create **Molecules**.
+
+Molecules may coalesce and give rise to **Organisms**
+
+And, bear with me here, Organisms eventually comprise of full fledged HTML pages, which ultimately make up the contents of your application.
+
+[Read more here](https://bradfrost.com/blog/post/atomic-web-design/)
+
 ### Agile Practices
 If you are unfamiliar, Agile projects generally follow the https://agilemanifesto.org/. This project's agile practices are described below.
 
