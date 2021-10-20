@@ -21,7 +21,7 @@ const MattapanMappingRoutes = () => (
     <Route path='/explore'><ExplorePage /></Route>
     <Route path='/meet'><MeetPage /></Route>
     <Route path='/share'><SharePage /></Route>
-    <Route path='/getInvovled'><GetInvolvedPage /></Route>
+    <Route path='/getInvolved'><GetInvolvedPage /></Route>
     <Route path='/contact'><ContactPage /></Route>
     <Route path='*'><NotFound /></Route>
   </Switch>
