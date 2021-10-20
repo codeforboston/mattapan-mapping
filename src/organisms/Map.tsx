@@ -58,67 +58,8 @@ export const Map = () => {
 	const lng = -71.08;
 	const lat = 42.3;
 	const zoom = 12;
-	const data = BtdData();
-
-	// When adding stuff into the map consider using useState (from mapbox tutorial):
-	// const [lng, setLng] = useState(-71.08);
-	// const [lat, setLat] = useState(42.271);
-	// const [zoom, setZoom] = useState(13);
-
-	useEffect(() => {
-		if (map.current) return; // initialize map only once
-		if (map && !map.current && mapContainer && mapContainer.current) {
-			map.current = new mapboxgl.Map({
-				container: mapContainer.current,
-				style: 'mapbox://styles/mapbox/dark-v10',
-				center: [lng, lat],
-				zoom: zoom
-			});
-
-			map.current.addControl(new mapboxgl.NavigationControl());
-
-			map.current.once('load', function () {
-				map.current.addSource('mattapan-zones', {
-					'type': 'geojson',
-					'data': data,
-				})
-
-				map.current.addLayer({
-					'id': 'district-layer',
-					'type': 'line',
-					'source': 'mattapan-zones',
-					'layout': {},
-					'paint': {
-							'line-color': btdPaint(),
-							'line-opacity': [
-									'case',
-									['boolean', ['feature-state', 'hover'], false],
-									.8,
-									0.5
-							]
-					}
-				});
-			});
-		}
-	});
-
-	return (
-		<>
-			<MapTitle>BTD data</MapTitle>
-			<MapContainer>
-				<div className='map' ref={mapContainer} />
-			</MapContainer>
-		</>
-	);
-}
-
-export const Map2 = () => {
-	const mapContainer = useRef<HTMLDivElement | null>(null);
-	const map = useRef<mapboxgl.Map | null>(null);
-	const lng = -71.08;
-	const lat = 42.288;
-	const zoom = 13;
-	const data = MattapanZoningSubdistrictsData();
+	const data_btd = BtdData();
+	const data_zone = MattapanZoningSubdistrictsData();
 
 	// When adding stuff into the map consider using useState (from mapbox tutorial):
 	// const [lng, setLng] = useState(-71.08);
@@ -138,9 +79,32 @@ export const Map2 = () => {
 			map.current.addControl(new mapboxgl.NavigationControl());
 
 			map.current.once('load', function () {
+				map.current.addSource('btd-projects', {
+					'type': 'geojson',
+					'data': data_btd,
+				})
+
+				map.current.addLayer({
+					'id': 'btd-layer',
+					'type': 'line',
+					'source': 'btd-projects',
+					'layout': {},
+					'paint': {
+							'line-color': btdPaint(),
+							'line-opacity': [
+									'case',
+									['boolean', ['feature-state', 'hover'], false],
+									.8,
+									0.5
+							]
+					}
+				});
+			});
+
+			map.current.once('load', function () {
 				map.current.addSource('mattapan-zones', {
 					'type': 'geojson',
-					'data': data,
+					'data': data_zone,
 				})
 
 				map.current.addLayer({
@@ -153,8 +117,8 @@ export const Map2 = () => {
 							'fill-opacity': [
 									'case',
 									['boolean', ['feature-state', 'hover'], false],
-									.8,
-									0.5
+									0.1,
+									0.2
 							]
 					}
 				});
@@ -164,7 +128,7 @@ export const Map2 = () => {
 
 	return (
 		<>
-			<MapTitle>Mattapan districts</MapTitle>
+			<MapTitle>BTD Data and Mattapan Subdistricts</MapTitle>
 			<MapContainer>
 				<div className='map' ref={mapContainer} />
 			</MapContainer>
