@@ -1,10 +1,12 @@
 # Mattapan Mapping
 
-This is the repository dedicated to the creation, ongoing development and management of the Mattapan Mapping application. This project is a collaborative project between http://powerfulpathways.org and http://www.codeforboston.org
+This is the repository dedicated to the creation, ongoing development and management of the Mattapan Mapping application. This project is a collaborative project between http://powerfulpathways.org and http://www.codeforboston.org.
 
 ## Project Description
 
 The Mattapan Mapping project is a web application that is designed to be accessible while providing a similar experience/look-and-feel regardless of device. The project enables members of the greater mattapan community to share information in the form of photos, videos, audio overlayed with statistical and geographic information to provide a narrative of change in the community. This information can serve as a catalyst for change by generating conversations around the challenges facing the community in light of gentrification and housing affordability crisis.
+
+Prototype V1: https://codeforboston.github.io/mattapan-mapping-june2021/
 
 ## Project Management
 
@@ -48,11 +50,28 @@ Current members include:
 - Stephan Halarewicz (shalarewicz@gmail.com)
 - Stephen McCall (stephen.mccall@gmail.com)
 - Tejasvi Srigiriraju (sritejasvi@gmail.com)
+- Dickson Lau (kr.d.tsl@gmail.com)
 
 Sharing of any of the information pertaining to these resources outside of the accepted team members is prohibited.
 
 -----
 ## Contributing Code
+
+### Tab Spaces
+For this repository please use **spaces** and a tab-width is equivilant to **two spaces**.
+
+### Atomic Design
+This application loosely follows [**Atomic Design Principles**](https://bradfrost.com/blog/post/atomic-web-design/). In the context of React applications, web pages are essentially made up of components that are made up of even smaller components. Theoretically a 'component' can be as atomic as you want and entire interfaces can be broken down into fundamental building blocks.
+
+Now consider, within the context of science, that **Atoms** are the most basic unit of life.
+
+Atoms, through their different types of bonding and mechanisms, form to create **Molecules**.
+
+Molecules may coalesce and give rise to **Organisms**
+
+And, bear with me here, Organisms eventually comprise of full fledged HTML pages, which ultimately make up the contents of your application.
+
+[Read more here](https://bradfrost.com/blog/post/atomic-web-design/)
 
 ### Agile Practices
 If you are unfamiliar, Agile projects generally follow the https://agilemanifesto.org/. This project's agile practices are described below.
@@ -99,19 +118,18 @@ Use of an IDE is strongly recommended.
 
 Steps to build and run the application locally:
 
-1. 
+1. `git clone` the repo
 
-2. 
+2. `yarn` to install dependencies 
         
-3. 
-
+3. `yarn start` to boot up dev server hosting on port 3000
 
 ### Automated Testing
 This project will have both automated tests that are part of the standard release pipeline and
 tests that can be run adhoc locally during the local development of changes. This ensures that code that is submitted for review has been tested.
 
 -----
-This codebase makes use of the *** testing framework. 
+This codebase will make use of [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/) testing framework. 
 
 The test suites can be run using the following command...
 
@@ -131,11 +149,4 @@ All great open source projects start with amazing documentation! :)
 
 Documentation describing the Mattapan Mapping application will be avaialble in this repo and at the following locations...
 
-## Running the Code
-Once you have this repository cloned, you'll need python 3 installed.
-Ensure it is running on the command prompt by running ```python --version```
-Next, run the application locally by running ```python -m http.server```
-Open a web browser at http://localhost:8000 if you're using the defaults above, to see the project.
-
 ## External Resources
-
