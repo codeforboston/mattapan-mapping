@@ -29,7 +29,7 @@ export default function Header() {
 				<LogoContainer>
 					<Link href='/'><MattapanMappingLogo /></Link>
 				</LogoContainer>
-				<Link href='\' color={Theme.colors.black}><HeaderTitle>Mattapan Boston</HeaderTitle></Link>
+				<Link href='/' color={Theme.colors.black}><HeaderTitle>Mattapan Boston</HeaderTitle></Link>
 				<div>
 					<HeaderLink href='/about' color={ Theme.colors.blue }>About</HeaderLink>
 					<HeaderLink href='/explore' color={ Theme.colors.peach }>Explore</HeaderLink>
