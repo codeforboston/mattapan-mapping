@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 import { Theme } from '../theme/Theme';
-import { HeaderLink, HeaderTitle } from '../atoms/HeaderAtoms';
-import { PowerfulPathwaysLogo, CFBLogo } from '../atoms/Logos';
+import { HeaderLink, HeaderTitle, Link } from '../atoms/HeaderAtoms';
+import { MattapanMappingLogo, LogoContainer } from '../atoms/Logos';
 
 const HeaderContainer = styled.div`
 	height: 100px;
@@ -22,22 +22,14 @@ const HeaderContainer = styled.div`
 	}
 `;
 
-const LogoContainer = styled.div`
-	display: none;
-
-	@media (min-width: ${props => props.theme.mediaQuery.tablet}) {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-  }
-`;
-
 export default function Header() {
 	return (
 		<HeaderContainer>
 			<div className='header'>
-				<LogoContainer><PowerfulPathwaysLogo /> | <CFBLogo/> </LogoContainer>
-				<HeaderTitle>Mattapan Boston</HeaderTitle>
+				<LogoContainer>
+					<Link href='/'><MattapanMappingLogo /></Link>
+				</LogoContainer>
+				<Link href='\' color={Theme.colors.black}><HeaderTitle>Mattapan Boston</HeaderTitle></Link>
 				<div>
 					<HeaderLink href='/about' color={ Theme.colors.blue }>About</HeaderLink>
 					<HeaderLink href='/explore' color={ Theme.colors.peach }>Explore</HeaderLink>

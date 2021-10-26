@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-const Link = styled.a`
+export const Link = styled.a`
     display: inline-block;
     text-decoration: none;
 `;
@@ -28,5 +28,11 @@ export const HeaderTitle = styled.span`
 export const HeaderLink = ({ href, children, color }: { href: string, children: string, color: string; }) => {
     return (
         <Link href={href}> <LinkText color={ color }>{children}</LinkText></Link>
+    )
+}
+
+export const ExternalLink = ({ href, children }: { href: string, children: any }) => {
+    return (
+        <Link target="_blank" href={href}>{children}</Link>
     )
 }

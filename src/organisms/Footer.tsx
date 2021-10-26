@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import { HeaderTitle } from '../atoms/HeaderAtoms';
+import { HeaderTitle, ExternalLink } from '../atoms/HeaderAtoms';
+import { PowerfulPathwaysLogo, CFBLogo, LogoContainer } from '../atoms/Logos';
 
 const FooterContainer = styled.div`
   display: flex;
@@ -29,11 +30,18 @@ const FooterSubContainer = styled.div`
   flex-direction: column;
 `;
 
+
 export const Footer = () => {
   return (
     <FooterContainer>
       <div className='footer'>
         <HeaderTitle>Mattapan Boston</HeaderTitle>
+        <FooterSubContainer>
+            <LogoContainer>
+                <ExternalLink href='https://powerfulpathways.org/' ><PowerfulPathwaysLogo /></ExternalLink> |
+                <ExternalLink href='https://www.codeforboston.org/' ><CFBLogo /></ExternalLink>
+            </LogoContainer>
+        </FooterSubContainer>
         <FooterSubContainer>
           <span>About</span>
           <span>Contact</span>
