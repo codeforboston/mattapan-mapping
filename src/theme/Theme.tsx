@@ -16,8 +16,8 @@ export const Theme: Theme = {
     },
 
     fonts: {
-        dm: "'DM Sans', sans-serif",
-        badscript: "'Bad Script', cursive",
+        primary: "'Baron Neue', sans-serif",
+        secondary: "'Bad Script', cursive",
         montserrat: "'Montserrat', sans-serif",
         fontWeight: {
             bold: 700,

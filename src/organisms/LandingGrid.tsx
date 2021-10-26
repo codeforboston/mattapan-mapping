@@ -52,7 +52,7 @@ const CardTitle = styled.span`
   top: 50%;
   left: 8px;
   font-size: 48px;
-  font-family: ${ props => props.theme.fonts.badscript };
+  font-family: ${ props => props.theme.fonts.secondary };
   z-index: 4;
   text-shadow: 0 0 2px black;
 
@@ -75,7 +75,7 @@ const CardTitle = styled.span`
 
 // const InfoText = styled.div`
 //   color: black;
-//   font-family: ${ props => props.theme.fonts.dm };
+//   font-family: ${ props => props.theme.fonts.primary };
 //   font-size: ${ props => props.theme.fonts.fontSize.regular };
 // `;
 

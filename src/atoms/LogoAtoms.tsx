@@ -14,4 +14,18 @@ export const PowerfulPathwaysLogo = styled(HeaderLogo)`
 
 export const CFBLogo = styled(HeaderLogo)`
   background-image: url('https://tinyurl.com/jra96rec');
-`
+`;
+
+export const MattapanMappingLogo = styled(HeaderLogo)`
+  background-image: url('./mattapan_mapping_logo.svg')
+`;
+
+export const LogoContainer = styled.div`
+	display: none;
+
+	@media (min-width: ${props => props.theme.mediaQuery.tablet}) {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+  }
+`;

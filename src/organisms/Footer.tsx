@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { HeaderTitle } from '../atoms/HeaderAtoms';
+import { LogoContainer, PowerfulPathwaysLogo, CFBLogo, } from '../atoms/LogoAtoms';
 
 const FooterContainer = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ const FooterContainer = styled.div`
   }
 
   span {
-    font-family: ${ props => props.theme.fonts.dm };
+    font-family: ${ props => props.theme.fonts.primary };
     color: ${ props => props.theme.colors.white };
   }
 `;
@@ -33,7 +34,8 @@ export const Footer = () => {
   return (
     <FooterContainer>
       <div className='footer'>
-        <HeaderTitle>Mattapan Boston</HeaderTitle>
+        <HeaderTitle>Mattapan Mapping Project</HeaderTitle>
+        <LogoContainer><PowerfulPathwaysLogo /> | <CFBLogo/> </LogoContainer>
         <FooterSubContainer>
           <span>About</span>
           <span>Contact</span>
