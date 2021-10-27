@@ -20,7 +20,7 @@ export default function App() {
         onViewportChange={(viewport) => {
           setViewport(viewport);
         }}
-        mapStyle="mapbox://styles/smithwebtek/ckqk5ktyu15no17o62u1pjb8n"
+        mapStyle="mapbox://styles/thadk/ckv8xb5gn1do014rx0d562bpx"
       >
         {OralHistories()}
       </ReactMapGL>
