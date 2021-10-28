@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
+import mattapan_logo from '../mattapan_mapping_logo_2.svg'
 
-export const HeaderLogo = styled.div`
+
+const Logo = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -8,10 +10,31 @@ export const HeaderLogo = styled.div`
   height: 100px;
 `
 
-export const PowerfulPathwaysLogo = styled(HeaderLogo)`
+const HeaderLogo = styled(Logo)`
+	width: 200px;
+	height: 200px;
+`
+
+
+export const PowerfulPathwaysLogo = styled(Logo)`
   background-image: url('https://tinyurl.com/57ftrcev');
 `;
 
-export const CFBLogo = styled(HeaderLogo)`
+export const CFBLogo = styled(Logo)`
   background-image: url('https://tinyurl.com/jra96rec');
 `
+
+export const MattapanMappingLogo = styled(HeaderLogo)`
+  background-image: url(${mattapan_logo});
+`
+
+
+export const LogoContainer = styled.div`
+	display: none;
+
+	@media (min-width: ${props => props.theme.mediaQuery.tablet}) {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+  }
+`;
