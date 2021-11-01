@@ -1,4 +1,4 @@
-import { BannerPart, BannerContainer } from '../molecules/BannerPart';
+import { BannerPart, BannerContainer } from '@molecules/BannerPart';
 
 export default function StatBanner1() {
 	return (
