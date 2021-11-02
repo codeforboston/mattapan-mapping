@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import { Theme } from '@theme/Theme';
-import { HeaderLink, HeaderTitle, Link } from '@atoms/HeaderAtoms';
-import { MattapanMappingLogo, LogoContainer } from '@atoms/Logos';
+import { Theme } from '@/theme/Theme';
+import { HeaderLink, HeaderTitle, Link } from '@/atoms/HeaderAtoms';
+import { MattapanMappingLogo, LogoContainer } from '@/atoms/Logos';
 
 const HeaderContainer = styled.div`
 	height: 100px;

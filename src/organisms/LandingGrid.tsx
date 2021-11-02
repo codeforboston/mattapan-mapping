@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Theme } from '@theme/Theme';
+import { Theme } from '@/theme/Theme';
 
 const LandingGridContainer = styled.div`
   display: grid;
