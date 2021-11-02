@@ -20,7 +20,7 @@ const FooterContainer = styled.div`
   }
 
   span {
-    font-family: ${ props => props.theme.fonts.dm };
+    font-family: ${ props => props.theme.fonts.primary };
     color: ${ props => props.theme.colors.white };
   }
 `;

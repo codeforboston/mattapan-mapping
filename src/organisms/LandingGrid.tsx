@@ -9,6 +9,7 @@ const LandingGridContainer = styled.div`
   row-gap: ${ props => props.theme.spacing.m };
   max-width: 80%;
   margin: 24px auto;
+  background: radial-gradient(silver, transparent 60%);
 
   @media (min-width: ${props => props.theme.mediaQuery.tablet}) {
     grid-template-columns: 1fr 1fr 1fr;
@@ -52,12 +53,12 @@ const CardTitle = styled.span`
   top: 50%;
   left: 8px;
   font-size: 48px;
-  font-family: ${ props => props.theme.fonts.badscript };
+  font-family: ${ props => props.theme.fonts.primary };
   z-index: 4;
   text-shadow: 0 0 2px black;
 
   @media (min-width: ${props => props.theme.mediaQuery.tablet}) {
-    font-size: 60px;
+    font-size: 48px;
   }
 `;
 
@@ -75,7 +76,7 @@ const CardTitle = styled.span`
 
 // const InfoText = styled.div`
 //   color: black;
-//   font-family: ${ props => props.theme.fonts.dm };
+//   font-family: ${ props => props.theme.fonts.primary };
 //   font-size: ${ props => props.theme.fonts.fontSize.regular };
 // `;
 

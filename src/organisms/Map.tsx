@@ -24,7 +24,7 @@ const MapContainer = styled.div`
 `;
 
 const MapTitle = styled.p`
-	font-family: ${ props => props.theme.fonts.dm };
+	font-family: ${ props => props.theme.fonts.primary };
 	font-size: ${ props => props.theme.fonts.fontSize.subtitle };
 	text-align: center;
 	margin: 24px auto;
