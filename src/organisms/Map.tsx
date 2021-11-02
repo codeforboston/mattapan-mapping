@@ -3,8 +3,8 @@ import { useRef, useEffect } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import styled from '@emotion/styled';
 
-import MattapanZoningSubdistrictsData from '../data/MattapanZoningSubdistricts';
-import BtdData from '../data/BTD';
+import MattapanZoningSubdistrictsData from '@/data/MattapanZoningSubdistricts';
+import BtdData from '@/data/BTD';
 // var mattapanDistricts = require('../data/MattapanZoningSubdistricts.geojson');
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ENV
 

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import mattapan_logo from '../mattapan_mapping_logo_2.svg'
+import mattapan_logo from '@/mattapan_mapping_logo_2.svg'
 
 
 const Logo = styled.div`

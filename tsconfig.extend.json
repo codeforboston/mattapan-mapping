@@ -1,12 +1,7 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
     "paths": {
-      "@theme/*": [ "./theme/*" ],
-      "@atoms/*": [ "./atoms/*" ],
-      "@molecules/*": [ "./molecules/*" ],
-      "@organisms/*": [ "./organisms/*" ],
-      "@pages/*": [ "./pages/*" ]
+      "@/*": ["./src/*"]
     }
   }
 }
