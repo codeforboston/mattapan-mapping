@@ -46,7 +46,7 @@ const PersonaImage = styled.div`
 
   > span {
     color: ${ props => props.theme.colors.white };
-    font-family: ${ props => props.theme.fonts.badscript };
+    font-family: ${ props => props.theme.fonts.secondary };
     font-size: ${ props => props.theme.fonts.fontSize.title };
     text-align: center;
     z-index: 5;

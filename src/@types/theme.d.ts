@@ -24,8 +24,8 @@ interface MediaQuery {
 }
 
 interface Fonts {
-    dm: string;
-    badscript: string;
+    primary: string;
+    secondary: string;
     montserrat: string;
     fontWeight: FontWeight;
     fontSize: FontSize;

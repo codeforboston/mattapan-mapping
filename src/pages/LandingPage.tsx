@@ -1,11 +1,13 @@
 import { LandingGrid } from '@/organisms/LandingGrid';
-import { SplashVideo } from '@/organisms/SplashVideo'
+import { SplashVideo, SplashVideoContainer } from '@/organisms/SplashVideo'
 import { Footer } from '@/organisms/Footer';
 
 export default function LandingPage() {
   return (
     <>
-      <SplashVideo />
+      <SplashVideoContainer>
+        <SplashVideo />
+      </SplashVideoContainer>
       <LandingGrid />
       <Footer />
     </>
