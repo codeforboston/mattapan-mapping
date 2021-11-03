@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { HeaderTitle, ExternalLink } from '../atoms/HeaderAtoms';
-import { PowerfulPathwaysLogo, CFBLogo, LogoContainer } from '../atoms/Logos';
+import { HeaderTitle, ExternalLink } from '@/atoms/HeaderAtoms';
+import { PowerfulPathwaysLogo, CFBLogo, LogoContainer } from '@/atoms/Logos';
 
 const FooterContainer = styled.div`
   display: flex;

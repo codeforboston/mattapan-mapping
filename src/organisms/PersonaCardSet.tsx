@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { PersonaCard } from '../molecules/PersonaCard';
+import { PersonaCard } from '@/molecules/PersonaCard';
 
 const PersonaCardContainer = styled.div`
   display: flex;
