@@ -35,7 +35,7 @@ export default function Header() {
 					<HeaderLink href='/explore' color={ Theme.colors.peach }>Explore</HeaderLink>
 					<HeaderLink href='/meet' color={ Theme.colors.teal }>Meet</HeaderLink>
 					<HeaderLink href='/share' color={ Theme.colors.orange }>Share</HeaderLink>
-					<HeaderLink href='/getInvolved' color={ Theme.colors.red }>Get Invovled</HeaderLink>
+					<HeaderLink href='/getInvolved' color={ Theme.colors.red }>Get Involved</HeaderLink>
 				</div>
 			</div>
 		</HeaderContainer>
