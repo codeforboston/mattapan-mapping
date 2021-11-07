@@ -1,7 +1,8 @@
 import { MapContainer } from '@/atoms/MapAtoms';
 import { Map } from '@/organisms/Map';
 import { Theme } from '@/theme/Theme';
-import MattapanZoningSubdistrictsData from '@/data/MattapanZoningSubdistricts';
+// import MattapanZoningSubdistrictsData from '@/data/MattapanZoningSubdistricts';
+import { GreaterMattapanZoning } from '@/data/GreaterMattapanZoning';
 
 const paintGenerator = () => {
 	const paintArray: (string|number|string[])[] = [...Array(54).keys()];
@@ -15,9 +16,9 @@ const paintGenerator = () => {
 
 const generateColor = () => '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
 
-export const dataLayer = {
+export const dataLayer: MapLayer = {
   id: 'data',
-  type: 'fill',
+  type: 'line',
   paint: {
     'fill-color': paintGenerator(),
     'fill-opacity': [
@@ -29,12 +30,12 @@ export const dataLayer = {
   }
 };
 
-const mapData= MattapanZoningSubdistrictsData()
+// const mapData= MattapanZoningSubdistrictsData()
 
 export default function ExplorePage() {
   return (
     <MapContainer>
-      <Map data={ mapData } dataLayer={ dataLayer } mapStyle={ Theme.map.dark } />
+      <Map data={ GreaterMattapanZoning } dataLayer={ dataLayer } mapStyle={ Theme.map.dark } />
     </MapContainer>
   )
 }
