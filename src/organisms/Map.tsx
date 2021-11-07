@@ -5,7 +5,7 @@ import { Theme } from '@/theme/Theme';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ENV;
 
-export const Map = ({ data, dataLayer, startingCoordinates, mapStyle }: MapProps) => {
+export const Map = ({ data, dataLayer, startingCoordinates, children, mapStyle }: MapProps) => {
   const [viewport, setViewport] = React.useState({
     latitude: startingCoordinates?.lat ?? 42.28,
     longitude: startingCoordinates?.lng ?? -71.088,
@@ -26,6 +26,8 @@ export const Map = ({ data, dataLayer, startingCoordinates, mapStyle }: MapProps
       <Source type='geojson' data={ data }>
         <Layer { ...dataLayer }/>
       </Source>
+
+      { children }
     </ReactMapGL>
   )
 };
