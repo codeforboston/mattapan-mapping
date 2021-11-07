@@ -1,27 +1,9 @@
 interface MapProps {
-    data: GeoJson;
-    dataLayer?: MapLayer;
+    data: string | Feature<Geometry, GeoJsonProperties> | FeatureCollection<Geometry, GeoJsonProperties> | undefined;
+    dataLayer?: LayerProps;
     startingCoordinates?: { lat: number, lng: number };
     mapStyle?: string;
     children?: React.ReactChild;
-}
-
-interface MapLayer {
-    id: string;
-    source?: string;
-    type: 'fill' | 'line' | 'symbol' | 'circle' | 'heatmap' | 'fill-extrusion' | 'raster' | 'hillshade' | 'background' | 'sky';
-    paint: { [key: string]: any };
-}
-
-interface GeoJson {
-    [key: 'type']: string;
-    [key: 'geometry']: GeoJsonGeometry;
-    [key: 'properties']: { [key: string]: string | { [key: string]: string } }
-}
-
-interface GeoJsonGeometry {
-    [key: 'type']: string;
-    [key: 'coordinates']: number[] | number[][];
 }
 
 interface MapStyles {
