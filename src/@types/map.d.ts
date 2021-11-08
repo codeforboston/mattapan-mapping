@@ -1,6 +1,4 @@
 interface MapProps {
-    // data: string | Feature<Geometry, GeoJsonProperties> | FeatureCollection<Geometry, GeoJsonProperties> | undefined;
-    // dataLayer?: LayerProps;
     startingCoordinates?: { lat: number, lng: number };
     mapStyle?: string;
     children?: React.ReactChild;
