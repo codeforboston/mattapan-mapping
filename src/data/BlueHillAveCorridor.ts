@@ -1,4 +1,4 @@
-var blue_hill_ave_corridor = {
+export const BlueHillAveCorridor = {
   "type" : "FeatureCollection",
   "name" : "Blue Hill Ave Corridor",
   "features" : [

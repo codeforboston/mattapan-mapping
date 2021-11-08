@@ -1,25 +1,35 @@
-import { MapContainer } from '@/atoms/MapAtoms';
-import { Map } from '@/organisms/Map';
+import { Map, MapSource, MapContainer } from '@/atoms/MapAtoms';
 import { Theme } from '@/theme/Theme';
 import { GreaterMattapanZoning } from '@/data/GreaterMattapanZoning';
+import { BlueHillAveCorridor } from '@/data/BlueHillAveCorridor';
 
-export const dataLayer = {
-  id: 'data',
+const GreaterMattapanZoningData = GreaterMattapanZoning as MapData;
+const GreaterMattapanZoningLayer = {
+  id: 'greaterMattapanZoning',
   type: 'line',
   paint: {
     'line-color': 'yellow',
   }
-};
+} as MapLayer;
 
-// const mapData= MattapanZoningSubdistrictsData()
-// each data source needs a data layer
-// you can just add multiple <Source><Layer/></Source> as children nodes in the map element
-// honestly having an inhouse generic map component doesn't really make sense
+const BlueHillAveCorridorData = BlueHillAveCorridor as MapData
+const BlueHillAveCorridorLayer = {
+  id: 'blueHillAveCorridor',
+  type: 'line',
+  paint: {
+    'line-color': 'orange',
+  }
+} as MapLayer;
 
 export default function ExplorePage() {
   return (
     <MapContainer>
-      <Map data={ GreaterMattapanZoning } dataLayer={ dataLayer } mapStyle={ Theme.map.dark } />
+      <Map mapStyle={ Theme.map.dark }>
+        <>
+          <MapSource data={ GreaterMattapanZoningData } layer={ GreaterMattapanZoningLayer } />
+          <MapSource data={ BlueHillAveCorridorData } layer={ BlueHillAveCorridorLayer} />
+        </>
+      </Map>
     </MapContainer>
   )
 }

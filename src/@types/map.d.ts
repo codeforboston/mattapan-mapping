@@ -1,10 +1,13 @@
 interface MapProps {
-    data: string | Feature<Geometry, GeoJsonProperties> | FeatureCollection<Geometry, GeoJsonProperties> | undefined;
-    dataLayer?: LayerProps;
+    // data: string | Feature<Geometry, GeoJsonProperties> | FeatureCollection<Geometry, GeoJsonProperties> | undefined;
+    // dataLayer?: LayerProps;
     startingCoordinates?: { lat: number, lng: number };
     mapStyle?: string;
     children?: React.ReactChild;
 }
+
+type MapLayer = LayerProps;
+type MapData = Feature<Geometry, GeoJsonProperties> | FeatureCollection<Geometry, GeoJsonProperties>;
 
 interface MapStyles {
     street: 'mapbox://styles/mapbox/streets-v11';
