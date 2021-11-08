@@ -1,36 +1,20 @@
 import { MapContainer } from '@/atoms/MapAtoms';
 import { Map } from '@/organisms/Map';
 import { Theme } from '@/theme/Theme';
-// import MattapanZoningSubdistrictsData from '@/data/MattapanZoningSubdistricts';
 import { GreaterMattapanZoning } from '@/data/GreaterMattapanZoning';
 
-const paintGenerator = () => {
-	const paintArray: (string|number|string[])[] = [...Array(54).keys()];
-	const arrayWithColor = paintArray.map(x => [x, generateColor()])
-	const flattened = arrayWithColor.flat();
-	flattened.unshift('match', ['get', 'FID']);
-	flattened.push('blue');
-
-	return flattened
-}
-
-const generateColor = () => '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
-
-export const dataLayer: MapLayer = {
+export const dataLayer = {
   id: 'data',
   type: 'line',
   paint: {
-    'fill-color': paintGenerator(),
-    'fill-opacity': [
-      'case',
-      ['boolean', ['feature-state', 'hover'], false],
-      .8,
-      0.5
-  ]
+    'line-color': 'yellow',
   }
 };
 
 // const mapData= MattapanZoningSubdistrictsData()
+// each data source needs a data layer
+// you can just add multiple <Source><Layer/></Source> as children nodes in the map element
+// honestly having an inhouse generic map component doesn't really make sense
 
 export default function ExplorePage() {
   return (
