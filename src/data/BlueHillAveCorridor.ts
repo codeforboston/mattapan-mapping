@@ -1,4 +1,4 @@
-export const BlueHillAveCorridor = {
+export const BlueHillAveCorridor: MapData = {
   "type" : "FeatureCollection",
   "name" : "Blue Hill Ave Corridor",
   "features" : [
@@ -1371,4 +1371,4 @@ export const BlueHillAveCorridor = {
       }
     }
   ]
-}
+} as MapData;

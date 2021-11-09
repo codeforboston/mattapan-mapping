@@ -3,23 +3,23 @@ import { Theme } from '@/theme/Theme';
 import { GreaterMattapanZoning } from '@/data/GreaterMattapanZoning';
 import { BlueHillAveCorridor } from '@/data/BlueHillAveCorridor';
 
-const GreaterMattapanZoningData = GreaterMattapanZoning as MapData;
-const GreaterMattapanZoningLayer = {
+const GreaterMattapanZoningData = GreaterMattapanZoning;
+const GreaterMattapanZoningLayer: MapLayer = {
   id: 'greaterMattapanZoning',
   type: 'line',
   paint: {
     'line-color': 'yellow',
   }
-} as MapLayer;
+};
 
-const BlueHillAveCorridorData = BlueHillAveCorridor as MapData
-const BlueHillAveCorridorLayer = {
+const BlueHillAveCorridorData = BlueHillAveCorridor;
+const BlueHillAveCorridorLayer: MapLayer = {
   id: 'blueHillAveCorridor',
   type: 'line',
   paint: {
     'line-color': 'orange',
   }
-} as MapLayer;
+};
 
 export default function ExplorePage() {
   return (

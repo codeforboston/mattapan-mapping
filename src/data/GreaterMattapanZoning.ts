@@ -1,4 +1,4 @@
-export const GreaterMattapanZoning = {
+export const GreaterMattapanZoning: MapData = {
 "type": "FeatureCollection",
 "name": "14a697e6-b309-45a0-8689-565a216cfad1202042-1-158yow2.4mc8",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
