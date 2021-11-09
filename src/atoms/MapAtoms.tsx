@@ -51,8 +51,8 @@ export const MapTitle = styled.p`
 	margin: 24px auto;
 `;
 
-export const MapSource = ({ data, layer }: { data: MapData, layer: MapLayer}) => {
-  return ( 
+export const MapGeoJsonSource = ({ data, layer }: { data: MapData, layer: MapLayer}) => {
+  return (
     <Source type='geojson' data={ data }>
       <Layer { ...layer }/>
     </Source>

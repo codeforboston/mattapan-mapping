@@ -1,4 +1,4 @@
-import { Map, MapSource, MapContainer } from '@/atoms/MapAtoms';
+import { Map, MapGeoJsonSource, MapContainer } from '@/atoms/MapAtoms';
 import { Theme } from '@/theme/Theme';
 import { GreaterMattapanZoning as GreaterMattapanZoningData } from '@/data/GreaterMattapanZoning';
 import { BlueHillAveCorridor as BlueHillAveCorridorData } from '@/data/BlueHillAveCorridor';
@@ -24,8 +24,8 @@ export default function ExplorePage() {
     <MapContainer>
       <Map mapStyle={ Theme.map.dark }>
         <>
-          <MapSource data={ GreaterMattapanZoningData } layer={ GreaterMattapanZoningLayer } />
-          <MapSource data={ BlueHillAveCorridorData } layer={ BlueHillAveCorridorLayer} />
+          <MapGeoJsonSource data={ GreaterMattapanZoningData } layer={ GreaterMattapanZoningLayer } />
+          <MapGeoJsonSource data={ BlueHillAveCorridorData } layer={ BlueHillAveCorridorLayer} />
         </>
       </Map>
     </MapContainer>
