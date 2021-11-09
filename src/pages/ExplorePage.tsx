@@ -1,9 +1,8 @@
 import { Map, MapSource, MapContainer } from '@/atoms/MapAtoms';
 import { Theme } from '@/theme/Theme';
-import { GreaterMattapanZoning } from '@/data/GreaterMattapanZoning';
-import { BlueHillAveCorridor } from '@/data/BlueHillAveCorridor';
+import { GreaterMattapanZoning as GreaterMattapanZoningData } from '@/data/GreaterMattapanZoning';
+import { BlueHillAveCorridor as BlueHillAveCorridorData } from '@/data/BlueHillAveCorridor';
 
-const GreaterMattapanZoningData = GreaterMattapanZoning;
 const GreaterMattapanZoningLayer: MapLayer = {
   id: 'greaterMattapanZoning',
   type: 'line',
@@ -12,7 +11,6 @@ const GreaterMattapanZoningLayer: MapLayer = {
   }
 };
 
-const BlueHillAveCorridorData = BlueHillAveCorridor;
 const BlueHillAveCorridorLayer: MapLayer = {
   id: 'blueHillAveCorridor',
   type: 'line',
