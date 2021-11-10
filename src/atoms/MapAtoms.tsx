@@ -54,23 +54,23 @@ export const MapTitle = styled.p`
 export const MapGeoJsonSource = ({ data, id, type, color }: MapGeoJson) => {
   const paint = () => {
     if (type === 'line') {
-      return { 'line-color': color }
+      return { 'line-color': color };
     }
 
     if (type === 'fill') {
-      return { 'fill-color': color }
+      return { 'fill-color': color };
     }
   }
 
   const layer: MapLayer = {
     id: id,
     type: type,
-    paint: paint,
-  }
+    paint: paint(),
+  };
 
   return (
     <Source type='geojson' data={ data }>
       <Layer { ...layer }/>
     </Source>
   );
-}
+};

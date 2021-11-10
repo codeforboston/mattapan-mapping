@@ -1,4 +1,4 @@
-export const BlueHillAveCorridor: MapData = {
+export const BlueHillAveCorridor: MapGeoJsonData = {
   "type" : "FeatureCollection",
   "name" : "Blue Hill Ave Corridor",
   "features" : [
@@ -1371,4 +1371,4 @@ export const BlueHillAveCorridor: MapData = {
       }
     }
   ]
-} as MapData;
+};

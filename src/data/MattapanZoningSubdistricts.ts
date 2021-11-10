@@ -1,4 +1,4 @@
-export const  MattapanZoningSubdistrictsData: MapData = {
+export const  MattapanZoningSubdistrictsData: MapGeoJsonData = {
   "type" : "FeatureCollection",
   "features" : [
     {
