@@ -5,9 +5,16 @@ interface MapProps {
 }
 
 type MapLayer = LayerProps;
-type MapData = Feature<Geometry, GeoJsonProperties> | FeatureCollection<Geometry, GeoJsonProperties>;
+type MapGeoJsonData = Feature<Geometry, GeoJsonProperties> | FeatureCollection<Geometry, GeoJsonProperties>;
 
-interface MapStyles {
+interface MapGeoJson {
+    data: MapGeoJsonData;
+    id: string;
+    type: string;
+    color: string;
+}
+
+interface MapBaseStyles {
     street: 'mapbox://styles/mapbox/streets-v11';
     outdoor: 'mapbox://styles/mapbox/outdoors-v11';
     light: 'mapbox://styles/mapbox/light-v10';
