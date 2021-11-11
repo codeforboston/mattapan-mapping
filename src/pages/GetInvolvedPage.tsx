@@ -1,5 +1,9 @@
+import StandardLayout from "@/templates/StandardLayout"
+
 export default function GetInvolvedPage() {
   return (
-    <h1>Get Invovled</h1>
+    <StandardLayout>
+      <h1>Get Invovled</h1>
+    </StandardLayout>
   )
 }

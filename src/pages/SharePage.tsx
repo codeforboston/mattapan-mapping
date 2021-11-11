@@ -1,5 +1,9 @@
+import StandardLayout from "@/templates/StandardLayout"
+
 export default function SharePage() {
   return (
-    <h1>Share</h1>
+    <StandardLayout>
+      <h1>Share</h1>
+    </StandardLayout>
   )
 }
