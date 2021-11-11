@@ -1,17 +1,7 @@
 interface MapProps {
     startingCoordinates?: { lat: number, lng: number };
     mapStyle?: string;
-    children?: React.ReactChild;
-}
-
-type MapLayer = LayerProps;
-type MapGeoJsonData = Feature<Geometry, GeoJsonProperties> | FeatureCollection<Geometry, GeoJsonProperties>;
-
-interface MapGeoJson {
-    data: MapGeoJsonData;
-    id: string;
-    type: string;
-    color: string;
+    children?: React.ReactChild | React.ReactChild[];
 }
 
 interface MapBaseStyles {
@@ -23,4 +13,31 @@ interface MapBaseStyles {
     satelliteStreet: 'mapbox://styles/mapbox/satellite-streets-v11';
     navigationDay: 'mapbox://styles/mapbox/navigation-day-v1';
     navigationNight: 'mapbox://styles/mapbox/navigation-night-v1';
+}
+
+type MapLayer = LayerProps;
+type GeoJson = Feature<Geometry, GeoJsonProperties> | FeatureCollection<Geometry, GeoJsonProperties>;
+
+interface MapGeoJsonData {
+    data: GeoJson;
+    id: string;
+    type: string;
+    name: string;
+    color: Omit<Colors>;
+    visible: boolean;
+}
+
+interface FeatureToggleState {
+    [index: string]: boolean;
+}
+
+interface ToggleList {
+    [index: id]: string;
+    [index: name]: string;
+}
+
+interface TogglePanel {
+    data: MapGeoJsonData[];
+    toggleState: FeatureToggleState;
+    toggleHandler: (id: string) => void
 }
