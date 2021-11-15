@@ -1,13 +1,11 @@
 import StandardLayout from '@/templates/StandardLayout';
 import { LandingGrid } from '@/organisms/LandingGrid';
-import { SplashVideo, SplashVideoContainer } from '@/organisms/SplashVideo'
+import { SplashVideo } from '@/organisms/SplashVideo'
 
 export default function LandingPage() {
   return (
     <StandardLayout>
-      <SplashVideoContainer>
-        <SplashVideo />
-      </SplashVideoContainer>
+      <SplashVideo />
       <LandingGrid />
     </StandardLayout>
   )

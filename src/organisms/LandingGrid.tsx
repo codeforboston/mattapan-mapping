@@ -7,8 +7,6 @@ const LandingGridContainer = styled.div`
   grid-template-rows: 1fr 1fr 1fr;
   column-gap: ${ props => props.theme.spacing.m };
   row-gap: ${ props => props.theme.spacing.m };
-  max-width: 80%;
-  margin: 24px auto;
   background: radial-gradient(silver, transparent 60%);
 
   @media (min-width: ${props => props.theme.mediaQuery.tablet}) {
