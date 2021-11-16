@@ -19,8 +19,9 @@ const FooterContainer = styled.div`
 		max-width: 1600px;
   }
 
+  /* FIXME: also styles HeaderTitle */
   span {
-    font-family: ${ props => props.theme.fonts.primary };
+    font-family: ${ props => props.theme.fonts.body };
     color: ${ props => props.theme.colors.white };
   }
 `;

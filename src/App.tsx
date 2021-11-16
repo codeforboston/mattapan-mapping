@@ -11,6 +11,7 @@ import MeetPage from './pages/MeetPage';
 import LandingPage from './pages/LandingPage';
 import SharePage from './pages/SharePage';
 import Header from './organisms/Header';
+import GlobalStyle from './GlobalStyle';
 
 const NotFound = () => <h1>Path Not Recognized</h1>
 
@@ -28,11 +29,14 @@ const MattapanMappingRoutes = () => (
 )
 export default function App() {
   return (
-    <ThemeProvider theme={Theme}>
-      <Router>
-        <Header />
-        <MattapanMappingRoutes />
-      </Router>
-    </ThemeProvider>
+    <>
+      <GlobalStyle />
+      <ThemeProvider theme={Theme}>
+        <Router>
+          <Header />
+          <MattapanMappingRoutes />
+        </Router>
+      </ThemeProvider>
+    </>
   );
 }
