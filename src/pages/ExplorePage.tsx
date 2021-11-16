@@ -1,4 +1,4 @@
-import { ExplorePageMap } from '@/organisms/ExplorePageMap';
+import { ExplorePageMap } from '@/organisms/PageMap';
 import { ExplorePageData, ExplorePageToggleStates } from '@/data/ExplorePageData';
 
 export default function ExplorePage() {
