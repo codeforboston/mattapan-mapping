@@ -15,8 +15,8 @@ export const ExplorePageMap = ({ data, featureToggleStates }: { data: MapGeoJson
     <MapContainer>
     <Map mapStyle={ Theme.map.dark }>
       <MapLayers geoJsonData={ data } toggleState={ featureToggle } />
-      <TogglePanel data={ data } toggleState={ featureToggle } toggleHandler={ onToggleChange }/>
     </Map>
+    <TogglePanel data={ data } toggleState={ featureToggle } toggleHandler={ onToggleChange }/>
   </MapContainer>
   );
 };
