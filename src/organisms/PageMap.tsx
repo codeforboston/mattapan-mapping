@@ -8,7 +8,7 @@ export const ExplorePageMap = ({ data, featureToggleStates }: { data: MapGeoJson
   const [featureToggle, setFeatureToggle]: [FeatureToggleState, React.Dispatch<React.SetStateAction<any>>] = React.useState(featureToggleStates);
 
   const onToggleChange = (id: string) => {
-    setFeatureToggle({...featureToggle, [id]: !featureToggle[id] });
+    setFeatureToggle({ ...featureToggle, [id]: !featureToggle[id] });
   };
 
   return(
