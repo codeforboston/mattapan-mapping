@@ -1,0 +1,15 @@
+.markerImg {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+.FigCaption {
+  width: 15rem;
+}
+
+button {
+  background: none;
+  border: none;
+  font-size: x-large;
+}
