@@ -13,20 +13,37 @@ const TogglePanelContainer = styled.div`
   cursor: auto;
 `;
 
+const CircleIcon = styled.div<{color: string}>`
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  margin: 0 ${ props => props.theme.spacing.xs };
+  border: 1px solid ${ props => props.color};
+  background-color: ${ props => props.color };
+  width: ${ props => props.theme.spacing.s };
+  height: ${ props => props.theme.spacing.s };
+`
+
+const ToggleItem = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 export const TogglePanel = ({ data, toggleState, toggleHandler }: TogglePanel) => {
-  const toggleList = data.map((item: any) => { return { id: item.id, name: item.name } });
+  const toggleList = data.map((item: any) => { return { id: item.id, name: item.name, color: item.color } });
 
   return (
     <TogglePanelContainer>
       { toggleList.map((toggleFeature: any) => (
-        <div key={ toggleFeature.id }>
+        <ToggleItem key={ toggleFeature.id }>
           <input
             checked={ toggleState[toggleFeature.id] }
             type='checkbox'
             onChange={ () => toggleHandler(toggleFeature.id) }
           />
+          <CircleIcon color={ toggleFeature.color } />
           <span>{ toggleFeature.name }</span>
-        </div>
+        </ToggleItem>
       ))}
     </TogglePanelContainer>
   );
