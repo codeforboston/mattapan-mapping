@@ -7,6 +7,8 @@ interface Theme {
     fonts: Fonts;
 
     colors: Colors;
+
+    map: MapStyles;
 }
 
 interface Spacing {
