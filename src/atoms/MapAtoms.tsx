@@ -35,11 +35,10 @@ export const Map = ({ startingCoordinates, children, mapStyle }: MapProps) => {
 
 export const MapContainer = styled.div`
 	position: relative;
-  height: 90vh;
-	width: 80vw;
+  height: 100vh;
+	width: 100vw;
 	box-shadow: 0 0 2px 2px black;
 	margin: 0 auto;
-	margin-bottom: 24px;
 
 	.map {
 		height: 100%;
