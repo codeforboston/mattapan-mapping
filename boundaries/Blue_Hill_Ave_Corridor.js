@@ -1,4 +1,4 @@
-export const BlueHillAveCorridor: GeoJson = {
+var blue_hill_ave_corridor = {
   "type" : "FeatureCollection",
   "name" : "Blue Hill Ave Corridor",
   "features" : [
@@ -1371,4 +1371,4 @@ export const BlueHillAveCorridor: GeoJson = {
       }
     }
   ]
-};
+}
