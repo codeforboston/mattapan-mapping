@@ -18,6 +18,16 @@ interface MapBaseStyles {
 type MapLayer = LayerProps;
 type GeoJson = Feature<Geometry, GeoJsonProperties> | FeatureCollection<Geometry, GeoJsonProperties>;
 
+interface InterimData {
+    [index: string]: GeoJsonDetails;
+}
+
+interface GeoJsonDetails {
+    data: string;
+    color: Omit<Colors>;
+    visible: boolean;
+}
+
 interface MapGeoJsonData {
     data: GeoJson;
     id: string;
@@ -26,7 +36,6 @@ interface MapGeoJsonData {
     color: Omit<Colors>;
     visible: boolean;
 }
-
 interface FeatureToggleState {
     [index: string]: boolean;
 }
