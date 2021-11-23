@@ -49,7 +49,7 @@ export const MapContainer = styled.div`
 `;
 
 export const MapTitle = styled.p`
-	font-family: ${ props => props.theme.fonts.header };
+	font-family: ${ props => props.theme.fonts.fontFamily.header };
 	font-size: ${ props => props.theme.fonts.fontSize.subtitle };
 	text-align: center;
 	margin: 24px auto;

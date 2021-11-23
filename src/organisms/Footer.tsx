@@ -11,7 +11,7 @@ const FooterContainer = styled.div`
 
   /* FIXME: also styles HeaderTitle */
   span {
-    font-family: ${ props => props.theme.fonts.body };
+    font-family: ${ props => props.theme.fonts.fontFamily.body };
     color: ${ props => props.theme.colors.white };
   }
 `;

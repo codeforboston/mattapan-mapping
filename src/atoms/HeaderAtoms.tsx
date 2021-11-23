@@ -7,7 +7,7 @@ export const Link = styled.a`
 
 const LinkText = styled.span<{ color: string }>`
     padding: 0 ${props => props.theme.spacing.s};
-    font-family: ${props => props.theme.fonts.body};
+    font-family: ${props => props.theme.fonts.fontFamily.body};
     font-size: ${props => props.theme.fonts.fontSize.regular};
     color: ${ props => props.theme.colors.black };
     transition: color ease .2s;
@@ -18,7 +18,7 @@ const LinkText = styled.span<{ color: string }>`
 `
 
 export const HeaderTitle = styled.span`
-    font-family: ${ props => props.theme.fonts.header };
+    font-family: ${ props => props.theme.fonts.fontFamily.header };
     font-size: ${props => props.theme.fonts.fontSize.subtitle};
     font-weight: ${ props => props.theme.fonts.fontWeight.bold };
     color: ${ props => props.theme.colors.black };

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Header from '@/organisms/Header';
 import Footer from '@/organisms/Footer';
 
-const Layout = styled.div`
+export const Layout = styled.div`
   min-height: 100vh;
 
   display: flex;
@@ -24,7 +24,7 @@ const LayoutContent = styled.div`
   }
 `;
 
-const StyledHeader = styled(Header)`
+export const StyledHeader = styled(Header)`
   padding: 0 16px;
 
   @media (min-width: ${props => props.theme.mediaQuery.tablet}) {
@@ -36,7 +36,7 @@ const StyledHeader = styled(Header)`
   }
 `;
 
-const StyledFooter = styled(Footer)`
+export const StyledFooter = styled(Footer)`
   padding: 0 16px;
 
   @media (min-width: ${props => props.theme.mediaQuery.tablet}) {

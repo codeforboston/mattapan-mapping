@@ -1,11 +1,9 @@
 import { TogglePanelContainer, CircleIcon, ToggleItemContainer } from '@/atoms/TogglePanelAtoms';
 
 export const TogglePanel = ({ data, toggleState, toggleHandler }: TogglePanel) => {
-  const toggleList = data.map((item: any) => { return { id: item.id, name: item.name, color: item.color } });
-
   return (
     <TogglePanelContainer>
-      { toggleList.map((toggleFeature: any) => (
+      { data.map((toggleFeature: any) => (
         <ToggleItemContainer key={ toggleFeature.id }>
           <input
             checked={ toggleState[toggleFeature.id] }
@@ -18,4 +16,4 @@ export const TogglePanel = ({ data, toggleState, toggleHandler }: TogglePanel) =
       ))}
     </TogglePanelContainer>
   );
-}
+};

@@ -26,21 +26,28 @@ interface MediaQuery {
 }
 
 interface Fonts {
-    header: string;
-    body: string;
+    fontFamily: FontFamily;
     fontWeight: FontWeight;
     fontSize: FontSize;
 }
 
+interface FontFamily {
+    header: string;
+    body: string;
+}
+
 interface FontWeight {
     bold: 700;
-    medium: 500;
+    semiBold: 500;
     regular: 400;
 }
 
 interface FontSize {
+    headline: '72px';
+    subHeadline: '60px';
     title: '40px';
-    subtitle: '24px';
+    subtitle: '32px';
+    large: '24px';
     regular: '16px';
     small: '12px';
 }

@@ -9,12 +9,12 @@ const GeneralIntroContainer = styled.div`
 `;
 
 const GeneralIntroTitle = styled.span`
-  font-family: ${ props => props.theme.fonts.header };
+  font-family: ${ props => props.theme.fonts.fontFamily.header };
   font-size: ${ props => props.theme.fonts.fontSize.title };
 `;
 
 const GeneralIntroSubtitle = styled.span`
-  font-family: ${ props => props.theme.fonts.body };
+  font-family: ${ props => props.theme.fonts.fontFamily.body };
   font-size: ${ props => props.theme.fonts.fontSize.subtitle };
 `;
 
