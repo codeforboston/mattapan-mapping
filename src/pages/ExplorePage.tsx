@@ -1,27 +1,26 @@
 import * as React from 'react';
-import fetchAll from '@/utils/fetchAll';
-import { Theme } from '@/theme/Theme';
+// import fetchAll from '@/utils/fetchAll';
 import { ExplorePageMap } from '@/organisms/PageMap';
 import { EXPLORE_PAGE_DATA_ENUM } from '@/data/ExplorePageData';
 
-const getExplorePageData = async () => {
-  const boundaryDataFiles = Object.values(EXPLORE_PAGE_DATA_ENUM).map(boundary => boundary.data);
-  const boundaryIds = Object.keys(EXPLORE_PAGE_DATA_ENUM);
-  const data: GeoJson[] = await fetchAll(boundaryDataFiles);
+// const getExplorePageData = async () => {
+//   const boundaryDataFiles = Object.values(EXPLORE_PAGE_DATA_ENUM).map(boundary => boundary.data);
+//   const boundaryIds = Object.keys(EXPLORE_PAGE_DATA_ENUM);
+//   const data: GeoJson[] = await fetchAll(boundaryDataFiles);
 
-  const ExplorePageData = boundaryIds.map((id: string, idx) => {
-    return {
-      data: data[idx],
-      name: data[idx]['name'],
-      id: id,
-      type: 'line',
-      color: EXPLORE_PAGE_DATA_ENUM[id].color,
-      visible: EXPLORE_PAGE_DATA_ENUM[id].visible,
-    }
-  });
+//   const ExplorePageData = boundaryIds.map((id: string, idx) => {
+//     return {
+//       data: data[idx],
+//       name: data[idx]['name'],
+//       id: id,
+//       type: 'line',
+//       color: EXPLORE_PAGE_DATA_ENUM[id].color,
+//       visible: EXPLORE_PAGE_DATA_ENUM[id].visible,
+//     }
+//   });
 
-  return ExplorePageData
-}
+//   return ExplorePageData
+// }
 
 export default function ExplorePage() {
   const urls = Object.values(EXPLORE_PAGE_DATA_ENUM).map(boundary => boundary.data);
