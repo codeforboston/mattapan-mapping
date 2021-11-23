@@ -18,6 +18,13 @@ interface MapBaseStyles {
 type MapLayer = LayerProps;
 type GeoJson = Feature<Geometry, GeoJsonProperties> | FeatureCollection<Geometry, GeoJsonProperties>;
 
+interface GeoJsonMeta {
+    id: string
+    file: string;
+    color: Omit<Colors>;
+    visible: boolean;
+}
+
 interface MapGeoJsonData {
     data: GeoJson;
     id: string;

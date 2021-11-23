@@ -6,9 +6,6 @@ export const TogglePanelContainer = styled.div`
   box-shadow: 0 0 4px ${ props => props.theme.colors.black };
   margin: 24px;
   padding: ${ props => props.theme.spacing.m } ${ props => props.theme.spacing.l };
-  position: absolute;
-  top: 0;
-  right: 0;
   outline: none;
   cursor: auto;
 `;
