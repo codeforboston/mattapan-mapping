@@ -26,9 +26,8 @@ interface MediaQuery {
 }
 
 interface Fonts {
-    primary: string;
-    secondary: string;
-    montserrat: string;
+    header: string;
+    body: string;
     fontWeight: FontWeight;
     fontSize: FontSize;
 }
