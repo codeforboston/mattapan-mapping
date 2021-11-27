@@ -51,7 +51,7 @@ const CardTitle = styled.span`
   top: 50%;
   left: 8px;
   font-size: 48px;
-  font-family: ${ props => props.theme.fonts.primary };
+  font-family: ${ props => props.theme.fonts.header };
   z-index: 4;
   text-shadow: 0 0 2px black;
 

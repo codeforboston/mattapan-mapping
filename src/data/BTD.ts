@@ -1,4 +1,4 @@
-export const BtdData: MapGeoJsonData = {
+export const BtdData: GeoJson = {
   "type" : "FeatureCollection",
   "features" : [
     {

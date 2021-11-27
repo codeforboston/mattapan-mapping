@@ -9,8 +9,9 @@ const FooterContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  /* FIXME: also styles HeaderTitle */
   span {
-    font-family: ${ props => props.theme.fonts.primary };
+    font-family: ${ props => props.theme.fonts.body };
     color: ${ props => props.theme.colors.white };
   }
 `;
