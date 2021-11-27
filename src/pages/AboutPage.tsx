@@ -1,5 +1,9 @@
+import StandardLayout from "@/templates/StandardLayout"
+
 export default function AboutPage() {
   return (
-    <h1>About</h1>
+    <StandardLayout>
+      <h1>About</h1>
+    </StandardLayout>
   )
 }
