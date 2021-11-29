@@ -13,22 +13,39 @@ const Layout = styled.div`
 const LayoutContent = styled.div`
   /* TODO: wrap in component selector */
   flex-grow: 1;
+  padding: 0 16px;
 
-  box-sizing: border-box;
-  width: 100%;
-  padding: 0 10%;
+  @media (min-width: ${props => props.theme.mediaQuery.tablet}) {
+    padding: 0 32px;
+  }
+
+  @media (min-width: ${props => props.theme.mediaQuery.desktop}) {
+    padding: 0 200px;
+  }
 `;
 
 const StyledHeader = styled(Header)`
-  box-sizing: border-box;
-  width: 100%;
-  padding: 0 10%;
+  padding: 0 16px;
+
+  @media (min-width: ${props => props.theme.mediaQuery.tablet}) {
+    padding: 0 32px;
+  }
+
+  @media (min-width: ${props => props.theme.mediaQuery.desktop}) {
+    padding: 0 200px;
+  }
 `;
 
 const StyledFooter = styled(Footer)`
-  box-sizing: border-box;
-  width: 100%;
-  padding: 0 10%;
+  padding: 0 16px;
+
+  @media (min-width: ${props => props.theme.mediaQuery.tablet}) {
+    padding: 0 32px;
+  }
+
+  @media (min-width: ${props => props.theme.mediaQuery.desktop}) {
+    padding: 0 200px;
+  }
 `;
 
 const StandardLayout: React.FC = function StandardLayoutComponent({children}) {
