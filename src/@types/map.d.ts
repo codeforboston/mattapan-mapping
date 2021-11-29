@@ -18,12 +18,9 @@ interface MapBaseStyles {
 type MapLayer = LayerProps;
 type GeoJson = Feature<Geometry, GeoJsonProperties> | FeatureCollection<Geometry, GeoJsonProperties>;
 
-interface InterimData {
-    [index: string]: GeoJsonDetails;
-}
-
 interface GeoJsonDetails {
-    data: string;
+    id: string
+    file: string;
     color: Omit<Colors>;
     visible: boolean;
 }
