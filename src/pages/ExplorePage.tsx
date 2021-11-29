@@ -23,8 +23,8 @@ export default function ExplorePage() {
           }
         })
         setData(ExplorePageData)
-      } catch (err) {
-          console.log('error')
+      } catch (error) {
+          console.log('Explore page data fetch failed: ' + error)
       }
     }
 
