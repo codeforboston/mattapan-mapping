@@ -1,23 +1,8 @@
 import StandardLayout from "@/templates/StandardLayout"
 import styled from "@emotion/styled";
 import { CommunityVideoComponent } from "@/organisms/CommunityVideo" 
-import { CommunityVideos } from "@/data/CommunityVideos"
-import { useState } from "react";
-
-// pull in the set of videos at the beginning so webpack 
-// can figure out the pathing
-const videos = [...CommunityVideos].map((video: any) => {
-  let vidModule = undefined;
-  try{
-     vidModule = require(`../data/videos/${video.src}`);
-  }catch(e){ /* do nothing. vidModule is undefined */ }
-
-  return {
-    src: vidModule,
-    name: video.name,
-    transcript: video.transcript
-  };
-});
+import { CommunityVideos, CommunityVideo } from "@/data/CommunityVideos"
+import { useState } from "react";;
 
 // styled video container
 const CommunityVideoContainer = styled.div`
@@ -42,12 +27,12 @@ export default function MeetPage() {
     <StandardLayout>
       <CommunityVideoContainer>
       {
-        [...videos].map((video: any, index: number) => {
+        [...CommunityVideos].map((video: CommunityVideo, index: number) => {
           return <CommunityVideoComponent
             key={index}
             id={index}
             loop={selectedVideo === -1 || selectedVideo === index} 
-            src={video.src?.default}
+            src={video.src}
             speakerName={video.name}
             transcript={video.transcript}
             autoplay={selectedVideo === -1 || selectedVideo === index}
