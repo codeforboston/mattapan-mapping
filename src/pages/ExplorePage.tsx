@@ -1,10 +1,11 @@
-import { Map, Map2 } from '@/organisms/Map';
+import StandardLayout from '@/templates/StandardLayout';
+import { ExplorePageMap } from '@/organisms/PageMap';
+import { ExplorePageData, ExplorePageToggleStates } from '@/data/ExplorePageData';
 
 export default function ExplorePage() {
   return (
-    <>
-      <Map />
-      <Map2 />
-    </>
+    <StandardLayout>
+      <ExplorePageMap data={ ExplorePageData } featureToggleStates={ ExplorePageToggleStates() }/>
+    </StandardLayout>
   )
 }

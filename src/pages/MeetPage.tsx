@@ -1,4 +1,4 @@
-import { Theme } from "../theme/Theme";
+import StandardLayout from "@/templates/StandardLayout"
 import styled from "@emotion/styled";
 import { CommunityVideoComponent } from "@/organisms/CommunityVideo" 
 import { CommunityVideos } from "@/data/CommunityVideos"
@@ -39,22 +39,24 @@ export default function MeetPage() {
   }
 
   return (
-    <CommunityVideoContainer>
-    {
-      [...videos].map((video: any, index: number) => {
-        return <CommunityVideoComponent
-          key={index}
-          id={index}
-          loop={selectedVideo === -1 || selectedVideo === index} 
-          src={video.src?.default}
-          speakerName={video.name}
-          transcript={video.transcript}
-          autoplay={selectedVideo === -1 || selectedVideo === index}
-          muted={selectedVideo !== index}
-          onVideoClickHander={onVideoClickPauseVideos}
-        ></CommunityVideoComponent>
-      })
-    }
-    </CommunityVideoContainer>
+    <StandardLayout>
+      <CommunityVideoContainer>
+      {
+        [...videos].map((video: any, index: number) => {
+          return <CommunityVideoComponent
+            key={index}
+            id={index}
+            loop={selectedVideo === -1 || selectedVideo === index} 
+            src={video.src?.default}
+            speakerName={video.name}
+            transcript={video.transcript}
+            autoplay={selectedVideo === -1 || selectedVideo === index}
+            muted={selectedVideo !== index}
+            onVideoClickHander={onVideoClickPauseVideos}
+          ></CommunityVideoComponent>
+        })
+      }
+      </CommunityVideoContainer>
+    </StandardLayout>
   )
 }

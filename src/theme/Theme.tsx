@@ -16,9 +16,8 @@ export const Theme: Theme = {
     },
 
     fonts: {
-        primary: "'Baron Neue', sans-serif",
-        secondary: "'Bad Script', cursive",
-        montserrat: "'Montserrat', sans-serif",
+        header: "'Baron Neue', sans-serif",
+        body: "'Lato', sans-serif",
         fontWeight: {
             bold: 700,
             medium: 500,
@@ -42,6 +41,17 @@ export const Theme: Theme = {
         blue: '#B4DAF9',
         black: '#000000',
         white: '#FFFFFF',
+    },
+
+    map: {
+        street: 'mapbox://styles/mapbox/streets-v11',
+        outdoor: 'mapbox://styles/mapbox/outdoors-v11',
+        light: 'mapbox://styles/mapbox/light-v10',
+        dark: 'mapbox://styles/mapbox/dark-v10',
+        satellite: 'mapbox://styles/mapbox/satellite-v9',
+        satelliteStreet: 'mapbox://styles/mapbox/satellite-streets-v11',
+        navigationDay: 'mapbox://styles/mapbox/navigation-day-v1',
+        navigationNight: 'mapbox://styles/mapbox/navigation-night-v1',
     }
 }
 

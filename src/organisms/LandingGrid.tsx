@@ -7,8 +7,6 @@ const LandingGridContainer = styled.div`
   grid-template-rows: 1fr 1fr 1fr;
   column-gap: ${ props => props.theme.spacing.m };
   row-gap: ${ props => props.theme.spacing.m };
-  max-width: 80%;
-  margin: 24px auto;
   background: radial-gradient(silver, transparent 60%);
 
   @media (min-width: ${props => props.theme.mediaQuery.tablet}) {
@@ -53,7 +51,7 @@ const CardTitle = styled.span`
   top: 50%;
   left: 8px;
   font-size: 48px;
-  font-family: ${ props => props.theme.fonts.primary };
+  font-family: ${ props => props.theme.fonts.header };
   z-index: 4;
   text-shadow: 0 0 2px black;
 

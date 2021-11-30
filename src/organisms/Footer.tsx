@@ -3,24 +3,15 @@ import { HeaderTitle, ExternalLink } from '@/atoms/HeaderAtoms';
 import { PowerfulPathwaysLogo, CFBLogo, LogoContainer } from '@/atoms/Logos';
 
 const FooterContainer = styled.div`
-  display: flex;
-  justify-content: center;
   height: 250px;
-  width: 100%;
-  align-items: center;
-  width 100%;
   background-color: #4c4141;
-  
-  .footer {
-		display: flex;
-		justify-content: space-evenly;
-		align-items: center;
-		width: 100%;
-		max-width: 1600px;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
+  /* FIXME: also styles HeaderTitle */
   span {
-    font-family: ${ props => props.theme.fonts.primary };
+    font-family: ${ props => props.theme.fonts.body };
     color: ${ props => props.theme.colors.white };
   }
 `;
@@ -30,29 +21,28 @@ const FooterSubContainer = styled.div`
   flex-direction: column;
 `;
 
-
-export const Footer = () => {
+const Footer: React.FC<{className?: string}> = function FooterComponent({className}) {
   return (
-    <FooterContainer>
-      <div className='footer'>
-        <HeaderTitle>Mattapan Boston</HeaderTitle>
-        <FooterSubContainer>
-            <LogoContainer>
-                <ExternalLink href='https://powerfulpathways.org/' ><PowerfulPathwaysLogo /></ExternalLink> |
-                <ExternalLink href='https://www.codeforboston.org/' ><CFBLogo /></ExternalLink>
-            </LogoContainer>
-        </FooterSubContainer>
-        <FooterSubContainer>
-          <span>About</span>
-          <span>Contact</span>
-          <span>Donate</span>
-        </FooterSubContainer>
-        <FooterSubContainer>
-          <span>For Media</span>
-          <span>Careers</span>
-          <span>Newsletter</span>
-        </FooterSubContainer>
-      </div>
+    <FooterContainer className={className}>
+      <HeaderTitle>Mattapan Boston</HeaderTitle>
+      <FooterSubContainer>
+          <LogoContainer>
+              <ExternalLink href='https://powerfulpathways.org/' ><PowerfulPathwaysLogo /></ExternalLink> |
+              <ExternalLink href='https://www.codeforboston.org/' ><CFBLogo /></ExternalLink>
+          </LogoContainer>
+      </FooterSubContainer>
+      <FooterSubContainer>
+        <span>About</span>
+        <span>Contact</span>
+        <span>Donate</span>
+      </FooterSubContainer>
+      <FooterSubContainer>
+        <span>For Media</span>
+        <span>Careers</span>
+        <span>Newsletter</span>
+      </FooterSubContainer>
     </FooterContainer>
   )
 }
+
+export default Footer;
