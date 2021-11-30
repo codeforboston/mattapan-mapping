@@ -1,5 +1,6 @@
 {
   "type" : "FeatureCollection",
+  "name": "Mattapan Zoning Subdistricts",
   "features" : [
     {
       "type" : "Feature",

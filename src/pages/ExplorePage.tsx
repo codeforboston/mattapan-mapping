@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ExplorePageMap } from '@/organisms/PageMap';
-import { EXPLORE_PAGE_BOUNDARY_DATA } from '@/data/ExplorePageData';
+import { EXPLORE_PAGE_BOUNDARY_DATA, ExplorePageToggleStates } from '@/data/ExplorePageData';
 
 export default function ExplorePage() {
   const urls = EXPLORE_PAGE_BOUNDARY_DATA.map(boundary => boundary.file);
@@ -15,13 +15,13 @@ export default function ExplorePage() {
         const ExplorePageData = boundaryIds.map((id: string, idx) => {
           return {
             data: rawData[idx],
-            name: rawData[idx]['name'],
+            name: rawData[idx]['name'] ?? 'Name missing from data',
             id: id,
             type: 'line',
             color: EXPLORE_PAGE_BOUNDARY_DATA[idx].color,
             visible: EXPLORE_PAGE_BOUNDARY_DATA[idx].visible,
           }
-        })
+        });
         setData(ExplorePageData)
       } catch (error) {
           console.log('Explore page data fetch failed: ' + error)
@@ -32,6 +32,6 @@ export default function ExplorePage() {
   }, [boundaryIds, boundaryDataFileLocations]);
 
   return (
-    <ExplorePageMap data={ data } />
+    <ExplorePageMap data={ data } initialToggleStates={ ExplorePageToggleStates() } />
   )
 }
