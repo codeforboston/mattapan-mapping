@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import { Theme } from '@/theme/Theme';
-import { HeaderLink, HeaderTitle, Link } from '@/atoms/HeaderAtoms';
+import { HeaderLink, HeaderTitle, StyledLink } from '@/atoms/HeaderAtoms';
 import { MattapanMappingLogo, LogoContainer } from '@/atoms/Logos';
 
 const HeaderContainer = styled.div`
@@ -15,9 +15,9 @@ const Header: React.FC<{className?: string}> = function HeaderComponent({classNa
 	return (
 		<HeaderContainer className={className}>
 			<LogoContainer>
-				<Link href='/'><MattapanMappingLogo /></Link>
+        <StyledLink to='/'><MattapanMappingLogo /></StyledLink>
 			</LogoContainer>
-			<Link href='/' color={Theme.colors.black}><HeaderTitle>Mattapan Boston</HeaderTitle></Link>
+      <StyledLink to='/' color={Theme.colors.black}><HeaderTitle>Mattapan Boston</HeaderTitle></StyledLink>
 			<div>
 				<HeaderLink href='/about' color={ Theme.colors.blue }>About</HeaderLink>
 				<HeaderLink href='/explore' color={ Theme.colors.peach }>Explore</HeaderLink>
