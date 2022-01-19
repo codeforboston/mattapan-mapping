@@ -100,8 +100,8 @@ export const ExplorePageToggleStates: (data: MapGeoJsonData[]) => FeatureToggleS
 };
 
 export const NARRATIVES = [
-  { name: 'Informed Researcher', color: Theme.colors.orange, visible: ['greaterMattapanZoning', 'dotHpZoningSubdistricts', 'mattapanSquare']},
-  { name: 'Longtime Resident', color: Theme.colors.green, visible: ['cummimnsHwyCorridor', 'mattapanPlanBoundary', 'mattapanSquare'] },
+  { name: 'Housing', color: Theme.colors.orange, visible: ['greaterMattapanZoning', 'dotHpZoningSubdistricts', 'mattapanSquare']},
+  { name: 'How is Land Used', color: Theme.colors.green, visible: ['cummimnsHwyCorridor', 'mattapanPlanBoundary', 'mattapanSquare'] },
   { name: 'New to Mattapan', color: Theme.colors.blue, visible: ['blueHillAveCorridor', 'greaterMattapanMergedPoly', 'zoningSubdistricts'] },
-  { name: 'Public Servent', color: Theme.colors.brown, visible: ['subDistricts', 'riverStCorridor', 'mattapanZoningSubdistricts']},
+  { name: 'Mattapan Love Stories', color: Theme.colors.brown, visible: ['subDistricts', 'riverStCorridor', 'mattapanZoningSubdistricts']},
 ];
