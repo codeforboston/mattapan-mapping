@@ -1,6 +1,6 @@
 // Module to fetch GeoJSON files
 
-"use strict";
+
 
 const https = require('https')
 const fs = require('fs');
@@ -24,7 +24,7 @@ function fetchData(url, options, saveName, ext) {
       });
     
       resp.on('end', () => {
-        fs.writeFile('./assets/csvFiles/' + saveName + '.' + ext, data, err => {
+        fs.writeFile('./public/boundaries/' + saveName + '.' + ext, data, err => {
           if (err) {
             console.error(err)
             return
