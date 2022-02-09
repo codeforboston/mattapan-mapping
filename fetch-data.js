@@ -24,6 +24,10 @@ function fetchData(url, options, saveName, ext) {
       });
     
       resp.on('end', () => {
+        /* Mattapan map expects a name at the root of FeatureCollections
+           for the table of contents */
+        const parsedJson = JSON.parse(data)
+        const addNameToJson = {...parsedJson, name: saveName.replace("_"," ")}
         fs.writeFile('./public/boundaries/' + saveName + '.' + ext, data, err => {
           if (err) {
             console.error(err)
