@@ -1,4 +1,4 @@
-import { Theme } from '@/theme/Theme';
+import { Theme } from '@/theme/Theme'
 
 export const EXPLORE_PAGE_BOUNDARY_DATA: GeoJsonMeta[] = [
   {
@@ -91,17 +91,50 @@ export const EXPLORE_PAGE_BOUNDARY_DATA: GeoJsonMeta[] = [
     color: Theme.colors.blue,
     visible: false,
   },
-];
+  {
+    id: 'transportLayer',
+    file: './boundaries/BTD_transportation_projects.geojson',
+    color: Theme.colors.orange,
+    visible: false,
+  },
+]
 
-export const ExplorePageToggleStates: (data: MapGeoJsonData[]) => FeatureToggleState = (data) => {
+export const ExplorePageToggleStates: (
+  data: MapGeoJsonData[]
+) => FeatureToggleState = (data) => {
   return data.reduce(
-    (obj: any, item: any) => Object.assign(obj,{ [item.id]: item.visible }
-  ), {});
-};
+    (obj: any, item: any) => Object.assign(obj, { [item.id]: item.visible }),
+    {}
+  )
+}
 
 export const NARRATIVES = [
-  { name: 'Housing', color: Theme.colors.orange, visible: ['greaterMattapanZoning', 'dotHpZoningSubdistricts', 'mattapanSquare']},
-  { name: 'How is Land Used', color: Theme.colors.green, visible: ['cummimnsHwyCorridor', 'mattapanPlanBoundary', 'mattapanSquare'] },
-  { name: 'New to Mattapan', color: Theme.colors.blue, visible: ['blueHillAveCorridor', 'greaterMattapanMergedPoly', 'zoningSubdistricts'] },
-  { name: 'Mattapan Love Stories', color: Theme.colors.brown, visible: ['subDistricts', 'riverStCorridor', 'mattapanZoningSubdistricts']},
-];
+  {
+    name: 'Housing',
+    color: Theme.colors.orange,
+    visible: [
+      'greaterMattapanZoning',
+      'dotHpZoningSubdistricts',
+      'mattapanSquare',
+    ],
+  },
+  {
+    name: 'How is Land Used',
+    color: Theme.colors.green,
+    visible: ['cummimnsHwyCorridor', 'mattapanPlanBoundary', 'mattapanSquare'],
+  },
+  {
+    name: 'New to Mattapan',
+    color: Theme.colors.blue,
+    visible: [
+      'blueHillAveCorridor',
+      'greaterMattapanMergedPoly',
+      'zoningSubdistricts',
+    ],
+  },
+  {
+    name: 'Mattapan Love Stories',
+    color: Theme.colors.brown,
+    visible: ['subDistricts', 'riverStCorridor', 'mattapanZoningSubdistricts'],
+  },
+]
