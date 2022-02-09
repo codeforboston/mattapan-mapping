@@ -1,30 +1,30 @@
-import { ThemeProvider } from '@emotion/react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import { ThemeProvider } from '@emotion/react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import 'mapbox-gl/dist/mapbox-gl.css'
 
-import { Theme } from './theme/Theme';
-import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
-import ExplorePage from './pages/ExplorePage';
-import GetInvolvedPage from './pages/GetInvolvedPage';
-import MeetPage from './pages/MeetPage';
-import LandingPage from './pages/LandingPage';
-import SharePage from './pages/SharePage';
-import GlobalStyle from './GlobalStyle';
+import { Theme } from './theme/Theme'
+import AboutPage from './pages/AboutPage'
+import ContactPage from './pages/ContactPage'
+import ExplorePage from './pages/ExplorePage'
+import GetInvolvedPage from './pages/GetInvolvedPage'
+import MeetPage from './pages/MeetPage'
+import LandingPage from './pages/LandingPage'
+import SharePage from './pages/SharePage'
+import GlobalStyle from './GlobalStyle'
 
 const NotFound = () => <h1>Path Not Recognized</h1>
 
 const MattapanMappingRoutes = () => (
-  <Switch>
-    <Route exact path='/'><LandingPage /></Route>
-    <Route path='/about'><AboutPage /></Route>
-    <Route path='/explore'><ExplorePage /></Route>
-    <Route path='/meet'><MeetPage /></Route>
-    <Route path='/share'><SharePage /></Route>
-    <Route path='/getInvolved'><GetInvolvedPage /></Route>
-    <Route path='/contact'><ContactPage /></Route>
-    <Route path='*'><NotFound /></Route>
-  </Switch>
+  <Routes>
+    <Route path='/' element={<LandingPage />} />
+    <Route path='/about' element={<AboutPage />} />
+    <Route path='/explore' element={<ExplorePage />} />
+    <Route path='/meet' element={<MeetPage />} />
+    <Route path='/share' element={<SharePage />} />
+    <Route path='/getInvolved' element={<GetInvolvedPage />} />
+    <Route path='/contact' element={<ContactPage />} />
+    <Route path='*' element={<NotFound />} />
+  </Routes>
 )
 
 export default function App() {
@@ -32,10 +32,10 @@ export default function App() {
     <>
       <GlobalStyle />
       <ThemeProvider theme={Theme}>
-        <Router>
+        <BrowserRouter>
           <MattapanMappingRoutes />
-        </Router>
+        </BrowserRouter>
       </ThemeProvider>
     </>
-  );
+  )
 }
