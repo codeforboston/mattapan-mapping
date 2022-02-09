@@ -28,7 +28,8 @@ function fetchData(url, options, saveName, ext) {
            for the table of contents */
         const parsedJson = JSON.parse(data)
         const addNameToJson = {...parsedJson, name: saveName.replace("_"," ")}
-        fs.writeFile('./public/boundaries/' + saveName + '.' + ext, addNameToJson, err => {
+        const patchedData = JSON.stringify(addNameToJson)
+        fs.writeFile('./public/boundaries/' + saveName + '.' + ext, patchedData, err => {
           if (err) {
             console.error(err)
             return
