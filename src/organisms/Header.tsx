@@ -20,10 +20,11 @@ const Header: React.FC<{className?: string}> = function HeaderComponent({classNa
 			<Link href='/' color={Theme.colors.black}><HeaderTitle>Mattapan Boston</HeaderTitle></Link>
 			<div>
 				<HeaderLink href='/about' color={ Theme.colors.blue }>About</HeaderLink>
-				<HeaderLink href='/explore' color={ Theme.colors.peach }>Explore</HeaderLink>
+				<HeaderLink href='/explore' color={ Theme.colors.blue }>Explore</HeaderLink>
+				<HeaderLink href='/map' color={ Theme.colors.peach }>Map</HeaderLink>
 				<HeaderLink href='/meet' color={ Theme.colors.teal }>Meet</HeaderLink>
 				<HeaderLink href='/share' color={ Theme.colors.orange }>Share</HeaderLink>
-				<HeaderLink href='/getInvolved' color={ Theme.colors.red }>Get Invovled</HeaderLink>
+				<HeaderLink href='/act' color={ Theme.colors.red }>Act</HeaderLink>
 			</div>
 		</HeaderContainer>
 	);
