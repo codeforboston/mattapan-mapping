@@ -1,7 +1,6 @@
 import { ThemeProvider } from '@emotion/react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import 'mapbox-gl/dist/mapbox-gl.css'
-
 import { Theme } from './theme/Theme'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
