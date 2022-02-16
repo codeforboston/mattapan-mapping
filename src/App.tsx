@@ -5,8 +5,12 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import { Theme } from './theme/Theme'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
+import MapPage from './pages/MapPage'
+import ExplorePage from './pages/ExplorePage'
+import ActPage from './pages/ActPage'
 import ExplorePage from './pages/ExplorePage'
 import GetInvolvedPage from './pages/GetInvolvedPage'
+
 import MeetPage from './pages/MeetPage'
 import LandingPage from './pages/LandingPage'
 import SharePage from './pages/SharePage'
@@ -19,9 +23,10 @@ const MattapanMappingRoutes = () => (
     <Route path='/' element={<LandingPage />} />
     <Route path='/about' element={<AboutPage />} />
     <Route path='/explore' element={<ExplorePage />} />
+    <Route path='/map' element={<MapPage />} />
     <Route path='/meet' element={<MeetPage />} />
     <Route path='/share' element={<SharePage />} />
-    <Route path='/getInvolved' element={<GetInvolvedPage />} />
+    <Route path='/act' element={<ActPage />} />
     <Route path='/contact' element={<ContactPage />} />
     <Route path='*' element={<NotFound />} />
   </Routes>
