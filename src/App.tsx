@@ -1,16 +1,12 @@
 import { ThemeProvider } from '@emotion/react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import 'mapbox-gl/dist/mapbox-gl.css'
-
 import { Theme } from './theme/Theme'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import MapPage from './pages/MapPage'
 import ExplorePage from './pages/ExplorePage'
 import ActPage from './pages/ActPage'
-import ExplorePage from './pages/ExplorePage'
-import GetInvolvedPage from './pages/GetInvolvedPage'
-
 import MeetPage from './pages/MeetPage'
 import LandingPage from './pages/LandingPage'
 import SharePage from './pages/SharePage'
