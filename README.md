@@ -124,6 +124,14 @@ Steps to build and run the application locally:
         
 3. `yarn start` to boot up dev server hosting on port 3000
 
+#### Required Environment Variables
+
+There some important and sensitive environment variables are required in order for the app to work as intended. Create a `.env` file at the project root, then ask a fellow member for the following environment variables:
+
+- `REACT_APP_GRAPHQL_URI`
+
+> ⚠️ ***Caution:** Do **NOT** stage and commit your `.env` file into `git` version control, much less at the public GitHub repo. The `.gitignore` file is intended to prevent you from accidentally pushing the file and exposing those variables to the public.*
+
 ### Automated Testing
 This project will have both automated tests that are part of the standard release pipeline and
 tests that can be run adhoc locally during the local development of changes. This ensures that code that is submitted for review has been tested.
