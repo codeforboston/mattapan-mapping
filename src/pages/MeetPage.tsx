@@ -1,8 +1,9 @@
 import StandardLayout from "@/templates/StandardLayout"
 import styled from "@emotion/styled";
 import { CommunityVideoComponent } from "@/organisms/CommunityVideo" 
-import { CommunityVideos, CommunityVideo } from "@/data/CommunityVideos"
-import { useState } from "react";;
+import { useState } from "react"
+import { useCommunityVideosQuery } from "@/graphql/generated"
+
 
 // styled video container
 const CommunityVideoContainer = styled.div`
@@ -17,6 +18,7 @@ const CommunityVideoContainer = styled.div`
  * @returns Renders the meet the community page
  */
 export default function MeetPage() {
+  const { data, loading, error } = useCommunityVideosQuery();
   const [selectedVideo, onSelectedVideo] = useState(-1);
   
   function onVideoClickPauseVideos(id: number) {
@@ -27,14 +29,17 @@ export default function MeetPage() {
     <StandardLayout>
       <CommunityVideoContainer>
       {
-        [...CommunityVideos].map((video: CommunityVideo, index: number) => {
+        loading ? <span>Loading</span> :
+        error ? <span>Error</span> :
+        data === undefined ? <span>There's no video...</span> :
+        data.Videos.map(({ id: index, name, src, transcript }) => {
           return <CommunityVideoComponent
             key={index}
             id={index}
             loop={selectedVideo === -1 || selectedVideo === index} 
-            src={video.src}
-            speakerName={video.name}
-            transcript={video.transcript}
+            src={src}
+            speakerName={name}
+            transcript={transcript || "No description."}
             autoplay={selectedVideo === -1 || selectedVideo === index}
             muted={selectedVideo !== index}
             onVideoClickHander={onVideoClickPauseVideos}
