@@ -25,9 +25,9 @@ const boundaryIds = EXPLORE_PAGE_BOUNDARY_DATA.map(boundary => boundary.id);
 const boundaryDataFileLocations = urls.map(url => fetch(url).then(res => res.json()));
 
 export default function MapPage() {
-  const [data, setData]: [MapGeoJsonData[], React.Dispatch<React.SetStateAction<any>>] = React.useState([]);
-  const [narrativeData, setNarrativeData]: [MapGeoJsonData[], React.Dispatch<React.SetStateAction<any>>] = React.useState([]);
-  const [featureToggle, setFeatureToggle]: [FeatureToggleState, React.Dispatch<React.SetStateAction<any>>] = React.useState({});
+  const [data, setData] = React.useState<Array<MapGeoJsonData>>([]);
+  const [narrativeData, setNarrativeData] = React.useState<Array<MapGeoJsonData>>([]);
+  const [featureToggle, setFeatureToggle]= React.useState<FeatureToggleState>({});
   const [narrative, setNarrative] = React.useState('');
 
   const onToggleChange = (id: string) => {
@@ -51,7 +51,7 @@ export default function MapPage() {
 
         setData(ExplorePageData)
       } catch (error) {
-          console.log('Explore page data fetch failed: ' + error);
+        console.log('Explore page data fetch failed: ' + error);
       }
     }
 
@@ -74,7 +74,7 @@ export default function MapPage() {
       setFeatureToggle(ExplorePageToggleStates(dataWithNarrative));
     } else {
       setNarrativeData(data);
-      setFeatureToggle([]);
+      setFeatureToggle({});
     }
   }, [narrative, data]);
 
@@ -82,10 +82,19 @@ export default function MapPage() {
     <Layout>
       <StyledHeader />
       <ExplorePageContainer>
-        <ExplorePageNarratives narrative={ narrative } data={ narrativeData } toggleState={ featureToggle } toggleHandler={ onToggleChange } setNarrative={ setNarrative } />
+        <ExplorePageNarratives
+          narrative={ narrative }
+          data={ narrativeData }
+          toggleState={ featureToggle }
+          toggleHandler={ onToggleChange }
+          setNarrative={ setNarrative }
+        />
         <MapContainer>
           <Map mapStyle={ Theme.map.dark }>
-            <MapLayers geoJsonData={ narrativeData } toggleState={ featureToggle } />
+            <MapLayers
+              geoJsonData={ narrativeData }
+              toggleState={ featureToggle }
+            />
           </Map>
         </MapContainer>
       </ExplorePageContainer>
