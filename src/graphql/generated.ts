@@ -1869,6 +1869,11 @@ export type CommunityVideosQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type CommunityVideosQuery = { __typename?: 'query_root', Videos: Array<{ __typename?: 'Videos', id: number, src: string, transcript?: string | null, name: string }> };
 
+export type MapPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MapPageQuery = { __typename?: 'query_root', Narratives: Array<{ __typename?: 'Narratives', id: number, name: any, color: any, boundaries: Array<{ __typename?: 'narrative_boundary_view', id?: number | null }> }>, Boundaries: Array<{ __typename?: 'Boundaries', id: number, name: string, color?: any | null, data: string }> };
+
 
 export const CommunityVideosDocument = gql`
     query communityVideos {
@@ -1907,3 +1912,48 @@ export function useCommunityVideosLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
 export type CommunityVideosQueryHookResult = ReturnType<typeof useCommunityVideosQuery>;
 export type CommunityVideosLazyQueryHookResult = ReturnType<typeof useCommunityVideosLazyQuery>;
 export type CommunityVideosQueryResult = Apollo.QueryResult<CommunityVideosQuery, CommunityVideosQueryVariables>;
+export const MapPageDocument = gql`
+    query mapPage {
+  Narratives(order_by: {id: asc}) {
+    id
+    name
+    color
+    boundaries(order_by: {boundary_id: asc}) {
+      id: boundary_id
+    }
+  }
+  Boundaries {
+    id
+    name
+    data: file
+    color
+  }
+}
+    `;
+
+/**
+ * __useMapPageQuery__
+ *
+ * To run a query within a React component, call `useMapPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMapPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMapPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useMapPageQuery(baseOptions?: Apollo.QueryHookOptions<MapPageQuery, MapPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MapPageQuery, MapPageQueryVariables>(MapPageDocument, options);
+      }
+export function useMapPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MapPageQuery, MapPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MapPageQuery, MapPageQueryVariables>(MapPageDocument, options);
+        }
+export type MapPageQueryHookResult = ReturnType<typeof useMapPageQuery>;
+export type MapPageLazyQueryHookResult = ReturnType<typeof useMapPageLazyQuery>;
+export type MapPageQueryResult = Apollo.QueryResult<MapPageQuery, MapPageQueryVariables>;

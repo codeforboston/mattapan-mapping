@@ -1,0 +1,16 @@
+query mapPage {
+  Narratives(order_by: {id: asc}) {
+    id
+    name
+    color
+    boundaries(order_by: {boundary_id: asc}) {
+      id: boundary_id
+    }
+  }
+  Boundaries {
+    id
+    name
+    data: file
+    color
+  }
+}
