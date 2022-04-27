@@ -11,6 +11,7 @@ import MeetPage from './pages/MeetPage'
 import LandingPage from './pages/LandingPage'
 import SharePage from './pages/SharePage'
 import GlobalStyle from './GlobalStyle'
+import StorytellingMap from './pages/StorytellingMap'
 
 const NotFound = () => <h1>Path Not Recognized</h1>
 
@@ -24,6 +25,7 @@ const MattapanMappingRoutes = () => (
     <Route path='/share' element={<SharePage />} />
     <Route path='/act' element={<ActPage />} />
     <Route path='/contact' element={<ContactPage />} />
+    <Route path='/story' element={<StorytellingMap />} />
     <Route path='*' element={<NotFound />} />
   </Routes>
 )
