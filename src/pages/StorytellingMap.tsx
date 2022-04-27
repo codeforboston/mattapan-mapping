@@ -165,34 +165,18 @@ const Chapter = (
   );
 };
 
-interface MapContextInterface {
-  name: string,
-}
-// TODO: These are built into react-map-gl v7
-// const MapContext = React.createContext<MapContextInterface>({} as MapContextInterface);
-
-// export function MapProvider(props: any) {
-//   const [map, setMap] = React.useState();
-//   return <MapContext.Provider value={[map, setMap]} {...props} />;
-// }
-
-// export function useMap() {
-//   const context = useContext(MapContext);
-//   if (context === undefined) throw Error('Cant useMap outside of a MapProvider');
-//   return context;
-// }
+const transformRequest = (url: string) => {
+  const hasQuery = url.indexOf('?') !== -1;
+  const suffix = hasQuery ? '&pluginName=scrollytellingV2' : '?pluginName=scrollytellingV2';
+  return {
+    url: url + suffix
+  };
+};
 
 const StorytellingMap = (props: any) => {
   // TODO: Intitialize these markers
-  // const mapRef = React.useRef();
-  
-  // const [map, setMap] = React.useState(null);
   const markerRef = React.useRef();
 
-            // center={config.chapters[0].location.center}
-          // zoom={config.chapters[0].location.zoom}
-          // bearing={config.chapters[0].location.bearing}
-          // pitch={config.chapters[0].location.pitch}
   const [viewport, setViewport] = React.useState({
     latitude: config.chapters[0].location.center[1] ?? 42.286,
     longitude: config.chapters[0].location.center[0] ?? -71.088,
@@ -203,27 +187,11 @@ const StorytellingMap = (props: any) => {
     height: '100%'
   });
 
-    
-
-  const transformRequest = (url: string) => {
-    const hasQuery = url.indexOf('?') !== -1;
-    const suffix = hasQuery ? '&pluginName=scrollytellingV2' : '?pluginName=scrollytellingV2';
-    return {
-      url: url + suffix
-    };
-  };
-
   // TODO:
   // if (config.showMarkers) {
   //     var marker = new mapboxgl.Marker({ color: config.markerColor });
   //     marker.setLngLat(config.chapters[0].location.center).addTo(map);
   // }
-
-
-  // setup resize event
-  // TODO: How do i do this? 
-  // window.addEventListener('resize', scroller.resize);
-
 
   // TODO: Add header and footer
   return (
@@ -242,7 +210,8 @@ const StorytellingMap = (props: any) => {
           interactive={false}
           transformRequest={transformRequest}
           projection={config.projection}
-          mapboxApiAccessToken={MAPBOX_TOKEN}
+        mapboxApiAccessToken={config.accessToken || MAPBOX_TOKEN}
+        // onLoad={onMapLoad}
         />
         <Story />
     </MapContext.Provider> 
@@ -253,10 +222,13 @@ const StorytellingMap = (props: any) => {
 
 const Story = (props) => {
   const { map, setMap } = React.useContext(MapContext);
+  const markerRef = React.useRef();
 
-   const onMapLoad = React.useCallback(() => {
-
+  // React.useCallback(() => {
     // instantiate the scrollama
+  console.log(map);
+  if (map) {
+    console.log('doing map shit', map);
     const scroller = scrollama();
     // setup the instance, pass callback functions
     scroller
@@ -266,15 +238,18 @@ const Story = (props) => {
         progress: true
       })
       .onStepEnter(async response => {
+        console.log('enter step');
         const chapter = config.chapters.find(chap => chap.id === response.element.id);
 
         // TODO: Don't know if this will work
         response.element.classList.add('active');
+        console.log(response.element.classList);
         map[chapter.mapAnimation || 'flyTo'](chapter.location);
         
-        if (config.showMarkers) {
-          markerRef.current.setLngLat(chapter.location.center);
-        }
+        // if (config.showMarkers) {
+        // TODO: figure out what marker ref is
+        //   markerRef.current.setLngLat(chapter.location.center);
+        // }
 
         if (chapter.onChapterEnter.length > 0) {
           chapter.onChapterEnter.forEach(setLayerOpacity);
@@ -288,7 +263,8 @@ const Story = (props) => {
           map.once('moveend', () => {
             const rotateNumber = map.getBearing();
             map.rotateTo(rotateNumber + 180, {
-              duration: 30000, easing: function (t) {
+              // TODO: this was 30000
+              duration: 5000, easing: function (t) {
                 return t;
               }
             });
@@ -303,8 +279,8 @@ const Story = (props) => {
         }
       });
         
-  }, []);
-
+    // }, [map]);
+  }
 
   const chapters = config.chapters.map((record, idx) => <Chapter
     id={record.id}
@@ -315,27 +291,37 @@ const Story = (props) => {
     alignment={alignments[record.alignment] || 'centered'}
     hidden={record.hidden}
     isActive={idx === 0}
-    onLoad={onMapLoad}
   />);
   
  
   function getLayerPaintType(layer: string) {
-    const layerType: keyof typeof layerTypes = map.getLayer(layer).type;
-    return layerTypes[layerType];
+    if (map) {
+      // FIXME: This sometimes throws an error figure out why 
+      console.log('layer', layer);
+      console.log(map);
+      console.log(map.getLayer(layer));
+      const layerType: keyof typeof layerTypes = map.getLayer(layer)?.type;
+      
+      return layerTypes[layerType];
+    }
   }
 
   function setLayerOpacity(layer: any) {
-    const paintProps = getLayerPaintType(layer.layer);
-      
-    paintProps.forEach(function(prop) {
-      let options = {};
-      if (layer.duration) {
-        const transitionProp = `${prop}-transition`;
-        options = { 'duration': layer.duration };
-        map.setPaintProperty(layer.layer, transitionProp, options);
-      }
-      map.setPaintProperty(layer.layer, prop, layer.opacity, options);
-    });
+    if (map) {
+      console.log('layer opacity');
+      console.log(layer);
+      const paintProps = getLayerPaintType(layer.layer);
+        
+      paintProps?.forEach(function(prop) {
+        let options = {};
+        if (layer.duration) {
+          const transitionProp = `${prop}-transition`;
+          options = { 'duration': layer.duration };
+          map.setPaintProperty(layer.layer, transitionProp, options);
+        }
+        map.setPaintProperty(layer.layer, prop, layer.opacity, options);
+      });
+    }
   }
 
   return (
