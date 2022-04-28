@@ -1,30 +1,15 @@
 //@ts-nocheck
-import React, { useContext } from 'react';
-import styled from '@emotion/styled';
-import ReactMapGL, { Marker, Source, Layer, MapContext } from 'react-map-gl';
-import scrollama from 'scrollama';
+import React, { useEffect } from 'react';
+import ReactMapGL, { Marker, MapContext } from 'react-map-gl';
+
+
+import { Pin } from '@/atoms/StoryMapAtoms';
+import { Story } from '@/molecules/MapStory';
 import { Theme } from '@/theme/Theme';
+
 import './mapStyles.css';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ENV;
-
-// var initLoad = true;
-const layerTypes = {
-  'fill': ['fill-opacity'],
-  'line': ['line-opacity'],
-  'circle': ['circle-opacity', 'circle-stroke-opacity'],
-  'symbol': ['icon-opacity', 'text-opacity'],
-  'raster': ['raster-opacity'],
-  'fill-extrusion': ['fill-extrusion-opacity'],
-  'heatmap': ['heatmap-opacity']
-};
-
-const alignments = {
-  'left': 'lefty',
-  'center': 'centered',
-  'right': 'righty',
-  'full': 'fully'
-};
 
 const config = {
   style: 'mapbox://styles/mattapan-mapping/cl1mtp3gy000k14mblgpwmoh8',
@@ -112,59 +97,6 @@ const config = {
   ]
 };
 
-const Header = ({title, subtitle, byline, theme}:{title: string, subtitle: string, byline: string, theme: string} ) => {
-
-  // FIXME: Add the theme
-  // if (header.innerText.length > 0) {
-  //   header.classList.add(config.theme);
-  // story.appendChild(header);
-  // }
-  
-  return (
-    <header id='header'>
-      <h1>{title}</h1>
-      <h2>{subtitle}</h2>
-      <p>{byline}</p>
-    </header>
-  );
-};
-
-const Footer = ({footerText}: {footerText: string}) => {
-  
-  // TODO: dynamically add theme
-  //    if (footer.innerText.length > 0) {
-  //       footer.classList.add(config.theme);
-  //       footer.setAttribute('id', 'footer');
-  //       story.appendChild(footer);
-  // }
-  
-  return (
-    <footer>
-      <p>
-        {footerText}
-      </p>
-    </footer>
-  );
-};
-
-const Chapter = (
-  { id, content, title, image, isActive, hidden, alignment }:
-  { id: string, content: string, title: string, image: string, isActive: boolean, hidden: boolean, alignment: string }
-  ) => {
-  return (
-    <div id={id} className={`step ${isActive ? 'active' : ''} ${alignment} ${hidden ? 'hidden' : ''}`}>
-      {/* FIXME: replace with theme? */}
-      <div className="light">
-        <h3>{title}</h3>
-        <img src={image} />
-        <p>
-          {content}
-        </p>
-      </div>
-    </div>
-  );
-};
-
 const transformRequest = (url: string) => {
   const hasQuery = url.indexOf('?') !== -1;
   const suffix = hasQuery ? '&pluginName=scrollytellingV2' : '?pluginName=scrollytellingV2';
@@ -174,12 +106,10 @@ const transformRequest = (url: string) => {
 };
 
 const StorytellingMap = (props: any) => {
-  // TODO: Intitialize these markers
-  const markerRef = React.useRef();
 
   const [viewport, setViewport] = React.useState({
-    latitude: config.chapters[0].location.center[1] ?? 42.286,
     longitude: config.chapters[0].location.center[0] ?? -71.088,
+    latitude: config.chapters[0].location.center[1] ?? 42.286,
     zoom: config.chapters[0].location.zoom ?? 12.1,
     bearing: config.chapters[0].location.bearing ?? 0,
     pitch: config.chapters[0].location.pitch ?? 0,
@@ -187,13 +117,15 @@ const StorytellingMap = (props: any) => {
     height: '100%'
   });
 
-  // TODO:
-  // if (config.showMarkers) {
-  //     var marker = new mapboxgl.Marker({ color: config.markerColor });
-  //     marker.setLngLat(config.chapters[0].location.center).addTo(map);
-  // }
+  const [markerCoords, setMarkerCoords] = React.useState(config.chapters[0].location.center);
+  // const [markerLong, setMarkerLong] = React.useState(config.chapters[0].location.center[0])
+  // const [markerLat, setMarkerLat] = React.useState(config.chapters[0].location.center[1])
 
-  // TODO: Add header and footer
+  const onMarkerCoordsChange = (coords) => {
+    // if (coords[0] != markerCoords[0] || coords[1] != markerCoords[1]) {
+      setMarkerCoords(coords);
+  };
+
   return (
     <MapContext.Provider>
       <ReactMapGL
@@ -202,137 +134,41 @@ const StorytellingMap = (props: any) => {
             height: '100vh',
             width:'100vw',
             position: 'fixed',
-          }}
-          mapStyle={config.style}
-          {...viewport}
-          // TODO: Do we need to handle viewport chnages? 
-          // onViewportChange={ (viewport: any) => setViewport(viewport) }
-          interactive={false}
-          transformRequest={transformRequest}
-          projection={config.projection}
+        }}
+        mapStyle={config.style}
+        {...viewport}
+        // Uncomment to enable user interction
+        // onViewportChange={ (viewport: any) => setViewport(viewport) }
+        interactive={false}
+        transformRequest={transformRequest}
+        projection={config.projection}
         mapboxApiAccessToken={config.accessToken || MAPBOX_TOKEN}
         // onLoad={onMapLoad}
-        />
-        <Story />
+      >
+        {/* FIXME: Bottom of pin isn't fixed. Gives a rotation effect */}
+        {/* FIXME: Marker appears in top left corner on intial page load despite correct state. 
+          A refresh or scrollling to a step fixes this
+          A hard refresh restarts this cycle
+        */}
+        <Marker longitude={markerCoords[0]} latitude={markerCoords[1]} anchor='bottom'>
+          <Pin size={32} color={config.markerColor} />
+        </Marker>
+      </ReactMapGL>
+      <Story
+        onMarkerCoordsChange={onMarkerCoordsChange}
+        chapterData={config.chapters}
+        headerTitle={config.title}
+        headerSubtitle={config.subtitle}
+        headerByline={config.byline}
+        footerHtml={config.footer}
+        showMarkers={config.showMarkers}
+      />
     </MapContext.Provider> 
 
   );
 
 };
-
-const Story = (props) => {
-  const { map, setMap } = React.useContext(MapContext);
-  const markerRef = React.useRef();
-
-  // React.useCallback(() => {
-    // instantiate the scrollama
-  console.log(map);
-  if (map) {
-    console.log('doing map shit', map);
-    const scroller = scrollama();
-    // setup the instance, pass callback functions
-    scroller
-      .setup({
-        step: '.step',
-        offset: 0.5,
-        progress: true
-      })
-      .onStepEnter(async response => {
-        console.log('enter step');
-        const chapter = config.chapters.find(chap => chap.id === response.element.id);
-
-        // TODO: Don't know if this will work
-        response.element.classList.add('active');
-        console.log(response.element.classList);
-        map[chapter.mapAnimation || 'flyTo'](chapter.location);
-        
-        // if (config.showMarkers) {
-        // TODO: figure out what marker ref is
-        //   markerRef.current.setLngLat(chapter.location.center);
-        // }
-
-        if (chapter.onChapterEnter.length > 0) {
-          chapter.onChapterEnter.forEach(setLayerOpacity);
-        }
-
-        if (chapter.callback) {
-          // window[chapter.callback]();
-        }
-
-        if (chapter.rotateAnimation) {
-          map.once('moveend', () => {
-            const rotateNumber = map.getBearing();
-            map.rotateTo(rotateNumber + 180, {
-              // TODO: this was 30000
-              duration: 5000, easing: function (t) {
-                return t;
-              }
-            });
-          });
-        }
-      })
-      .onStepExit(response => {
-        const chapter = config.chapters.find(chap => chap.id === response.element.id);
-        response.element.classList.remove('active');
-        if (chapter.onChapterExit.length > 0) {
-          chapter.onChapterExit.forEach(setLayerOpacity);
-        }
-      });
-        
-    // }, [map]);
-  }
-
-  const chapters = config.chapters.map((record, idx) => <Chapter
-    id={record.id}
-    key={record.id}
-    title={record.title}
-    content={record.description}
-    image={record.image}
-    alignment={alignments[record.alignment] || 'centered'}
-    hidden={record.hidden}
-    isActive={idx === 0}
-  />);
-  
- 
-  function getLayerPaintType(layer: string) {
-    if (map) {
-      // FIXME: This sometimes throws an error figure out why 
-      console.log('layer', layer);
-      console.log(map);
-      console.log(map.getLayer(layer));
-      const layerType: keyof typeof layerTypes = map.getLayer(layer)?.type;
-      
-      return layerTypes[layerType];
-    }
-  }
-
-  function setLayerOpacity(layer: any) {
-    if (map) {
-      console.log('layer opacity');
-      console.log(layer);
-      const paintProps = getLayerPaintType(layer.layer);
-        
-      paintProps?.forEach(function(prop) {
-        let options = {};
-        if (layer.duration) {
-          const transitionProp = `${prop}-transition`;
-          options = { 'duration': layer.duration };
-          map.setPaintProperty(layer.layer, transitionProp, options);
-        }
-        map.setPaintProperty(layer.layer, prop, layer.opacity, options);
-      });
-    }
-  }
-
-  return (
-    <div id="story">
-      <div id='features'>
-        {chapters}
-      </div>  
-    </div>
-  )
-}
-      
+    
 
 // /* Fetch data from GraphQL below before running above code */
 // /* If failed, still run with original config.js */
