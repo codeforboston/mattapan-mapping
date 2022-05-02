@@ -1,10 +1,10 @@
-import React, { forwardRef, useEffect } from 'react';
+import React from 'react';
 import ReactMapGL, { Marker, MapContext, MapRef } from 'react-map-gl';
 
 
 import { Pin } from '@/atoms/StoryMapAtoms';
 import { Story } from '@/molecules/MapStory';
-import { Theme } from '@/theme/Theme';
+// import { Theme } from '@/theme/Theme';
 
 import './mapStyles.css';
 
@@ -106,7 +106,7 @@ const transformRequest = (url?: string) => {
 
 const StorytellingMap = (props: any) => {
 
-  const [viewport, setViewport] = React.useState({
+  const [viewport] = React.useState({
     longitude: config.chapters[0].location.center[0] ?? -71.088,
     latitude: config.chapters[0].location.center[1] ?? 42.286,
     zoom: config.chapters[0].location.zoom ?? 12.1,

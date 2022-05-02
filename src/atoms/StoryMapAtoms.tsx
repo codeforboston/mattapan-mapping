@@ -26,7 +26,7 @@ export function Chapter({ id, content, title, image, isActive, hidden, alignment
       {/* FIXME: replace with theme? */}
       <div className="light">
         <h3>{title}</h3>
-        <img src={image} />
+        <img src={image} alt=''/>
         <p>
           {content}
         </p>

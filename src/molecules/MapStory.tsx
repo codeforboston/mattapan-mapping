@@ -25,33 +25,32 @@ export function Story({onMarkerCoordsChange, chapterData, headerTitle, headerSub
   const { map: mapRef } = React.useContext(MapContext);
   const map = mapRef.current?.getMap();
 
-  function getLayerPaintType(layer: string) {
-    if (map) {
-      const layerType: Layer = map.getLayer(layer)?.type;
-      
-      return layerTypes[layerType];
-    }
-  }
-  
-  function setLayerOpacity({ layer, duration, opacity }: { layer: string, duration: number, opacity: number }) {
-    if (map) {
-      const paintProps = getLayerPaintType(layer);
-        
-      paintProps?.forEach(function(prop) {
-        let options = {};
-        if (duration) {
-          const transitionProp = `${prop}-transition`;
-          options = { 'duration': duration };
-          map.setPaintProperty(layer, transitionProp, options);
-        }
-        map.setPaintProperty(layer, prop, opacity, options);
-      });
-    }
-  }
-  
   React.useEffect(() => {
     // instantiate the scrollama
     if (map) {
+      function getLayerPaintType(layer: string) {
+        if (map) {
+          const layerType: Layer = map.getLayer(layer)?.type;
+          
+          return layerTypes[layerType];
+        }
+      }
+
+      function setLayerOpacity({ layer, duration, opacity }: { layer: string, duration: number, opacity: number }) {
+        if (map) {
+          const paintProps = getLayerPaintType(layer);
+            
+          paintProps?.forEach(function(prop) {
+            let options = {};
+            if (duration) {
+              const transitionProp = `${prop}-transition`;
+              options = { 'duration': duration };
+              map.setPaintProperty(layer, transitionProp, options);
+            }
+            map.setPaintProperty(layer, prop, opacity, options);
+          });
+        }
+      }
       const scroller = scrollama();
       // setup the instance, pass callback functions
       scroller
@@ -97,7 +96,7 @@ export function Story({onMarkerCoordsChange, chapterData, headerTitle, headerSub
           }
         });
     }
-    }, [map]);
+    }, [map, chapterData, onMarkerCoordsChange, showMarkers]);
 
   const chapters = chapterData.map((record: Chapter, idx: number) => <Chapter
     id={record.id}
