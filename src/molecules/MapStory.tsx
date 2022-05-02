@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React from 'react';
 import scrollama from 'scrollama';
 import { MapContext } from 'react-map-gl';
@@ -22,19 +21,19 @@ const alignments = {
   'full': 'fully'
 };
 
-export function Story({onMarkerCoordsChange, chapterData, headerTitle, headerSubtitle, headerByline, footerHtml, showMarkers }) {
-  const { map } = React.useContext(MapContext);
+export function Story({onMarkerCoordsChange, chapterData, headerTitle, headerSubtitle, headerByline, footerHtml, showMarkers }: StoryProps) {
+  const { map: mapRef } = React.useContext(MapContext);
+  const map = mapRef.current?.getMap();
 
   function getLayerPaintType(layer: string) {
     if (map) {
-      // FIXME: This sometimes throws an error figure out why 
-      const layerType: keyof typeof layerTypes = map.getLayer(layer)?.type;
+      const layerType: Layer = map.getLayer(layer)?.type;
       
       return layerTypes[layerType];
     }
   }
   
-  function setLayerOpacity({layer, duration, opacity}) {
+  function setLayerOpacity({ layer, duration, opacity }: { layer: string, duration: number, opacity: number }) {
     if (map) {
       const paintProps = getLayerPaintType(layer);
         
@@ -62,7 +61,7 @@ export function Story({onMarkerCoordsChange, chapterData, headerTitle, headerSub
           progress: true
         })
         .onStepEnter(async response => {
-          const chapter = chapterData.find(chap => chap.id === response.element.id);
+          const chapter = chapterData.find((chap: Chapter) => chap.id === response.element.id);
 
           response.element.classList.add('active');
           map[chapter.mapAnimation || 'flyTo'](chapter.location);
@@ -83,7 +82,7 @@ export function Story({onMarkerCoordsChange, chapterData, headerTitle, headerSub
             map.once('moveend', () => {
               const rotateNumber = map.getBearing();
               map.rotateTo(rotateNumber + 180, {
-                duration: 30000, easing: function (t) {
+                duration: 30000, easing: function (t: number) {
                   return t;
                 }
               });
@@ -91,7 +90,7 @@ export function Story({onMarkerCoordsChange, chapterData, headerTitle, headerSub
           }
         })
         .onStepExit(response => {
-          const chapter = chapterData.find(chap => chap.id === response.element.id);
+          const chapter = chapterData.find((chap: Chapter) => chap.id === response.element.id);
           response.element.classList.remove('active');
           if (chapter.onChapterExit.length > 0) {
             chapter.onChapterExit.forEach(setLayerOpacity);
@@ -100,7 +99,7 @@ export function Story({onMarkerCoordsChange, chapterData, headerTitle, headerSub
     }
     }, [map]);
 
-  const chapters = chapterData.map((record, idx) => <Chapter
+  const chapters = chapterData.map((record: Chapter, idx: number) => <Chapter
     id={record.id}
     key={record.id}
     title={record.title}

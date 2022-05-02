@@ -1,6 +1,5 @@
-//@ts-nocheck
-import React, { useEffect } from 'react';
-import ReactMapGL, { Marker, MapContext } from 'react-map-gl';
+import React, { forwardRef, useEffect } from 'react';
+import ReactMapGL, { Marker, MapContext, MapRef } from 'react-map-gl';
 
 
 import { Pin } from '@/atoms/StoryMapAtoms';
@@ -16,7 +15,7 @@ const config = {
   accessToken: 'pk.eyJ1IjoibWF0dGFwYW4tbWFwcGluZyIsImEiOiJjbDFtdGx0ZGswNGM3M2Ntb2s3dXRjazA4In0.rNVTt3z1Fr52sjFi1BGLfg',
   showMarkers: true,
   markerColor: '#3FB1CE',
-  //projection: 'equirectangular',
+  // projection: 'equirectangular',
   //Read more about available projections here
   //https://docs.mapbox.com/mapbox-gl-js/example/projections/
   inset: true,
@@ -97,8 +96,8 @@ const config = {
   ]
 };
 
-const transformRequest = (url: string) => {
-  const hasQuery = url.indexOf('?') !== -1;
+const transformRequest = (url?: string) => {
+  const hasQuery = url?.indexOf('?') !== -1;
   const suffix = hasQuery ? '&pluginName=scrollytellingV2' : '?pluginName=scrollytellingV2';
   return {
     url: url + suffix
@@ -116,18 +115,26 @@ const StorytellingMap = (props: any) => {
     width: '100%',
     height: '100%'
   });
-
   const [markerCoords, setMarkerCoords] = React.useState(config.chapters[0].location.center);
   // const [markerLong, setMarkerLong] = React.useState(config.chapters[0].location.center[0])
   // const [markerLat, setMarkerLat] = React.useState(config.chapters[0].location.center[1])
 
-  const onMarkerCoordsChange = (coords) => {
-    // if (coords[0] != markerCoords[0] || coords[1] != markerCoords[1]) {
-      setMarkerCoords(coords);
-  };
+  const mapRef = React.createRef<MapRef>();
 
+  const onMarkerCoordsChange = (coords: [number, number]) => {
+    // if (coords[0] != markerCoords[0] || coords[1] != markerCoords[1]) {
+    setMarkerCoords(coords);
+  };
+  
+
+  console.log(`render ${markerCoords[0]}`);
   return (
-    <MapContext.Provider>
+    <MapContext.Provider value={{
+    map: mapRef,
+    container: null,
+    isDragging: false,
+    eventManager: undefined,
+  }}>
       <ReactMapGL
         style={{
             top:0,
@@ -138,19 +145,26 @@ const StorytellingMap = (props: any) => {
         mapStyle={config.style}
         {...viewport}
         // Uncomment to enable user interction
-        // onViewportChange={ (viewport: any) => setViewport(viewport) }
-        interactive={false}
+        // onViewportChange={ (viewport: any) => {setViewport(viewport)} }
+        // interactive={false} react-map-gl v7 only
+        // projection={config.projection} react-map-gl v7 only
         transformRequest={transformRequest}
-        projection={config.projection}
         mapboxApiAccessToken={config.accessToken || MAPBOX_TOKEN}
-        // onLoad={onMapLoad}
+        ref={mapRef}
+        onLoad={() => {
+          setMarkerCoords(config.chapters[0].location.center);
+        }}
       >
-        {/* FIXME: Bottom of pin isn't fixed. Gives a rotation effect */}
         {/* FIXME: Marker appears in top left corner on intial page load despite correct state. 
+          Inspecting the element shows that the css transform is not properly applied
+          transform: translate(-31px, -32px); instead of transform: translate(~919px, ~246px);
           A refresh or scrollling to a step fixes this
           A hard refresh restarts this cycle
+          Render occurs before initial coord change
+          works as expected if on viewPortChange is defined. 
         */}
-        <Marker longitude={markerCoords[0]} latitude={markerCoords[1]} anchor='bottom'>
+        <Marker longitude={markerCoords[0]} latitude={markerCoords[1]} offsetLeft={-32} offsetTop={-32}>
+        {/* <Marker longitude={-71.088} latitude={42.286} offsetLeft={-32} offsetTop={-32}> */}
           <Pin size={32} color={config.markerColor} />
         </Marker>
       </ReactMapGL>
