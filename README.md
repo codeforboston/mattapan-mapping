@@ -40,17 +40,21 @@ Current members include:
 - Allentza Michel (powerfulpathwaysinc@gmail.com)
 - Barry Fradkin (bfradkin@comcast.net)
 - Brad Smith (brad@smithwebtek.com)
-- David Morrison (morrisond7@gmail.com)
-- James Gui (zkgui98@gmail.com)
-- Jed Pittman (edpittman@gmail.com)
 - Jeff Korenstein (j.korenstein@gmail.com)
 - Kayla Patel (kayla.patel@tufts.edu)
 - Sasha Hulk (srhu222@gmail.com)
 - Shay McDonough (shay.m.mcdonough@gmail.com)
 - Stephan Halarewicz (shalarewicz@gmail.com)
 - Stephen McCall (stephen.mccall@gmail.com)
-- Tejasvi Srigiriraju (sritejasvi@gmail.com)
 - Dickson Lau (kr.d.tsl@gmail.com)
+- Anita Yip
+
+Past members include:
+
+- David Morrison
+- James Gui
+- Jed Pittman 
+- Tejasvi Srigiriraju 
 
 Sharing of any of the information pertaining to these resources outside of the accepted team members is prohibited.
 
