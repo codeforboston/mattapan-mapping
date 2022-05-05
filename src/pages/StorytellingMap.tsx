@@ -10,7 +10,51 @@ import './mapStyles.css';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ENV;
 
-const config = {
+const GRAPHQL_ENDPOINT = 'https://evolved-serval-70.hasura.app/v1/graphql';
+
+const chaptersListQuery = `
+    query ChaptersList {
+        chapters: storytelling_chapter(order_by: {id: asc}) {
+            id: name
+            alignment
+            hidden
+            title
+            image
+            description
+            location {
+                center
+                zoom
+                pitch
+                bearing
+                curve
+                max_duration
+                min_zoom
+                screen_speed
+                speed
+            }
+            mapAnimation
+            rotateAnimation
+            callback
+            onChapterEnter {
+                layer
+                opacity
+                duration
+            }
+            onChapterExit {
+                layer
+                opacity
+                duration
+            }
+        }
+    }`;
+
+const options = {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query: chaptersListQuery }),
+};
+
+const DEFAULT_CONFIG = {
   style: 'mapbox://styles/mattapan-mapping/cl1mtp3gy000k14mblgpwmoh8',
   accessToken: 'pk.eyJ1IjoibWF0dGFwYW4tbWFwcGluZyIsImEiOiJjbDFtdGx0ZGswNGM3M2Ntb2s3dXRjazA4In0.rNVTt3z1Fr52sjFi1BGLfg',
   showMarkers: true,
@@ -30,7 +74,7 @@ const config = {
       id: 'slug-style-id',
       alignment: 'left',
       hidden: false,
-      title: 'Display Title',
+      title: 'Base Title',
       image: './path/to/image/source.png',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       location: {
@@ -105,6 +149,7 @@ const transformRequest = (url?: string) => {
 };
 
 const StorytellingMap = (props: any) => {
+  const [config, setConfig] = React.useState(DEFAULT_CONFIG);
 
   const [viewport] = React.useState({
     longitude: config.chapters[0].location.center[0] ?? -71.088,
@@ -115,7 +160,8 @@ const StorytellingMap = (props: any) => {
     width: '100%',
     height: '100%'
   });
-  const [markerCoords, setMarkerCoords] = React.useState(config.chapters[0].location.center);
+
+  const [markerCoords, setMarkerCoords] = React.useState([-71.0869, 42.27]);
   // const [markerLong, setMarkerLong] = React.useState(config.chapters[0].location.center[0])
   // const [markerLat, setMarkerLat] = React.useState(config.chapters[0].location.center[1])
 
@@ -126,8 +172,20 @@ const StorytellingMap = (props: any) => {
     setMarkerCoords(coords);
   };
   
+  /* Fetch data from GraphQL below before running above code */
+  /* If failed, still run with original config.js */
+  /* If succeed, override config.chapters with fetched values */
+  React.useEffect(() => {
+    fetch(GRAPHQL_ENDPOINT, options)
+      .then(res => res.json())
+      .then(({ data }) => {
+        const newConfig = { ...DEFAULT_CONFIG, ...data };
+        setConfig(newConfig)
+        console.log('query success');
+      }).catch((err) => console.error(err));
+  }, [])
+  
 
-  console.log(`render ${markerCoords[0]}`);
   return (
     <MapContext.Provider value={{
     map: mapRef,
@@ -164,7 +222,6 @@ const StorytellingMap = (props: any) => {
           works as expected if on viewPortChange is defined. 
         */}
         <Marker longitude={markerCoords[0]} latitude={markerCoords[1]} offsetLeft={-32} offsetTop={-32}>
-        {/* <Marker longitude={-71.088} latitude={42.286} offsetLeft={-32} offsetTop={-32}> */}
           <Pin size={32} color={config.markerColor} />
         </Marker>
       </ReactMapGL>
@@ -184,60 +241,8 @@ const StorytellingMap = (props: any) => {
 };
     
 
-// /* Fetch data from GraphQL below before running above code */
-// /* If failed, still run with original config.js */
-// /* If succeed, override config.chapters with fetched values */
-// const init = () => {
-//     const GRAPHQL_ENDPOINT = 'https://evolved-serval-70.hasura.app/v1/graphql';
 
-//     const chaptersListQuery = `
-//         query ChaptersList {
-//             chapters: storytelling_chapter(order_by: {id: asc}) {
-//                 id: name
-//                 alignment
-//                 hidden
-//                 title
-//                 image
-//                 description
-//                 location {
-//                     center
-//                     zoom
-//                     pitch
-//                     bearing
-//                     curve
-//                     max_duration
-//                     min_zoom
-//                     screen_speed
-//                     speed
-//                 }
-//                 mapAnimation
-//                 rotateAnimation
-//                 callback
-//                 onChapterEnter {
-//                     layer
-//                     opacity
-//                     duration
-//                 }
-//                 onChapterExit {
-//                     layer
-//                     opacity
-//                     duration
-//                 }
-//             }
-//         }`;
 
-//     const options = {
-//         method: "post",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({ query: chaptersListQuery }),
-//     };
 
-//     return fetch(GRAPHQL_ENDPOINT, options)
-//         .then(res => res.json())
-//         .then(({ data }) => { config = { ...config, ...data }; })
-//         .finally(() => dispatch());
-// };
-
-// init();
 
 export default StorytellingMap;
