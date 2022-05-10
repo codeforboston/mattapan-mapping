@@ -1,7 +1,9 @@
 interface MapProps {
     startingCoordinates?: { lat: number, lng: number };
     mapStyle?: string;
+    interactive?: booolean;
     children?: React.ReactChild | React.ReactChild[];
+    ref?: MapRef
 }
 
 interface MapBaseStyles {

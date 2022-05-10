@@ -1,7 +1,7 @@
 import React from 'react';
 import scrollama from 'scrollama';
 import { MapContext } from 'react-map-gl';
-import { Chapter, Header, Footer } from '@/atoms/StoryMapAtoms';
+import { Chapter, Header, Footer } from '@/atoms/MapStoryAtoms';
 
 
 const layerTypes = {

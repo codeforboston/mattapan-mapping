@@ -11,7 +11,7 @@ import MeetPage from './pages/MeetPage'
 import LandingPage from './pages/LandingPage'
 import SharePage from './pages/SharePage'
 import GlobalStyle from './GlobalStyle'
-import StorytellingMap from './pages/StorytellingMap'
+import StorytellingMap from './pages/MapStoryPage'
 
 const NotFound = () => <h1>Path Not Recognized</h1>
 

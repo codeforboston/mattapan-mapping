@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactMapGL, { Marker, MapContext, MapRef } from 'react-map-gl';
 
-
-import { Pin } from '@/atoms/StoryMapAtoms';
+import { Pin } from '@/atoms/MapAtoms';
 import { Story } from '@/molecules/MapStory';
 // import { Theme } from '@/theme/Theme';
 
-import './mapStyles.css';
+import './mapStoryStyles.css';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ENV;
-
-const GRAPHQL_ENDPOINT = 'https://evolved-serval-70.hasura.app/v1/graphql';
+const GRAPHQL_ENDPOINT = process.env.REACT_APP_GRAPHQL_ENDPOINT;
 
 const chaptersListQuery = `
     query ChaptersList {
@@ -56,7 +54,7 @@ const options = {
 
 const DEFAULT_CONFIG = {
   style: 'mapbox://styles/mattapan-mapping/cl1mtp3gy000k14mblgpwmoh8',
-  accessToken: 'pk.eyJ1IjoibWF0dGFwYW4tbWFwcGluZyIsImEiOiJjbDFtdGx0ZGswNGM3M2Ntb2s3dXRjazA4In0.rNVTt3z1Fr52sjFi1BGLfg',
+  accessToken: MAPBOX_TOKEN,
   showMarkers: true,
   markerColor: '#3FB1CE',
   // projection: 'equirectangular',
@@ -162,14 +160,13 @@ const StorytellingMap = (props: any) => {
   });
 
   const [markerCoords, setMarkerCoords] = React.useState([-71.0869, 42.27]);
-  // const [markerLong, setMarkerLong] = React.useState(config.chapters[0].location.center[0])
-  // const [markerLat, setMarkerLat] = React.useState(config.chapters[0].location.center[1])
 
   const mapRef = React.createRef<MapRef>();
 
   const onMarkerCoordsChange = (coords: [number, number]) => {
-    // if (coords[0] != markerCoords[0] || coords[1] != markerCoords[1]) {
-    setMarkerCoords(coords);
+    if (coords[0] != markerCoords[0] || coords[1] != markerCoords[1]) {
+      setMarkerCoords(coords);
+    }
   };
   
   /* Fetch data from GraphQL below before running above code */
@@ -181,7 +178,6 @@ const StorytellingMap = (props: any) => {
       .then(({ data }) => {
         const newConfig = { ...DEFAULT_CONFIG, ...data };
         setConfig(newConfig)
-        console.log('query success');
       }).catch((err) => console.error(err));
   }, [])
   
@@ -202,10 +198,10 @@ const StorytellingMap = (props: any) => {
         }}
         mapStyle={config.style}
         {...viewport}
-        // Uncomment to enable user interction
-        // onViewportChange={ (viewport: any) => {setViewport(viewport)} }
         // interactive={false} react-map-gl v7 only
         // projection={config.projection} react-map-gl v7 only
+        // Uncomment to enable user interction
+        // onViewportChange={ (viewport: any) => {setViewport(viewport)} }
         transformRequest={transformRequest}
         mapboxApiAccessToken={config.accessToken || MAPBOX_TOKEN}
         ref={mapRef}
@@ -213,14 +209,6 @@ const StorytellingMap = (props: any) => {
           setMarkerCoords(config.chapters[0].location.center);
         }}
       >
-        {/* FIXME: Marker appears in top left corner on intial page load despite correct state. 
-          Inspecting the element shows that the css transform is not properly applied
-          transform: translate(-31px, -32px); instead of transform: translate(~919px, ~246px);
-          A refresh or scrollling to a step fixes this
-          A hard refresh restarts this cycle
-          Render occurs before initial coord change
-          works as expected if on viewPortChange is defined. 
-        */}
         <Marker longitude={markerCoords[0]} latitude={markerCoords[1]} offsetLeft={-32} offsetTop={-32}>
           <Pin size={32} color={config.markerColor} />
         </Marker>
@@ -240,9 +228,4 @@ const StorytellingMap = (props: any) => {
 
 };
     
-
-
-
-
-
 export default StorytellingMap;
