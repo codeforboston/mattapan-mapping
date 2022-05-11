@@ -183,7 +183,7 @@ const transformRequest = (url?: string) => {
 };
 
 const StorytellingMap = (props: any) => {
-  const [config, setConfig] = React.useState(DEFAULT_CONFIG);
+  const [chapterData, setChapterData] = React.useState(DEFAULT_CONFIG.chapters);
   const [markerCoords, setMarkerCoords] = React.useState(DEFAULT_CONFIG.chapters[0].location.center);
   const [data, setData]: [MapGeoJsonData[], React.Dispatch<React.SetStateAction<any>>] = React.useState([]);
 
@@ -226,11 +226,10 @@ const StorytellingMap = (props: any) => {
 
   React.useEffect(() => {
     /* Fetch data from GraphQL on intial render or fall back to default config*/
-    const fetchConfig = async () => {
+    const fetchChapters = async () => {
       try {
         const { data } = await fetch(GRAPHQL_ENDPOINT, options).then(res => res.json());
-        const newConfig = { ...DEFAULT_CONFIG, ...data };
-        setConfig(newConfig)
+        setChapterData(data.chapters)
       } catch (error) {
         console.error('Story map page failed to fetch config data from graphql', error);
       }
@@ -259,7 +258,7 @@ const StorytellingMap = (props: any) => {
     }
 
     fetchAll();
-    fetchConfig();
+    fetchChapters();
   }, [])
   
   return (
@@ -276,30 +275,30 @@ const StorytellingMap = (props: any) => {
             width:'100vw',
             position: 'fixed',
         }}
-        mapStyle={config.style}
+        mapStyle={DEFAULT_CONFIG.style}
         {...viewport}
         // interactive={false} react-map-gl v7 only
         // projection={config.projection} react-map-gl v7 only
         // Uncomment to enable user interction
         // onViewportChange={ (viewport: any) => {setViewport(viewport)} }
         transformRequest={transformRequest}
-        mapboxApiAccessToken={config.accessToken || MAPBOX_TOKEN}
+        mapboxApiAccessToken={DEFAULT_CONFIG.accessToken || MAPBOX_TOKEN}
         ref={mapRef}
       >
         {/* FIXME: Marker doesn't adjust on screen resize */}
         <Marker longitude={markerCoords[0]} latitude={markerCoords[1]} offsetLeft={-32} offsetTop={-32}>
-          <Pin size={32} color={config.markerColor} />
+          <Pin size={32} color={DEFAULT_CONFIG.markerColor} />
         </Marker>
         <MapLayers geoJsonData={ data } toggleState={ activeLayers } /> 
       </ReactMapGL>
       <Story
         onMarkerCoordsChange={onMarkerCoordsChange}
-        chapterData={config.chapters}
-        headerTitle={config.title}
-        headerSubtitle={config.subtitle}
-        headerByline={config.byline}
-        footerHtml={config.footer}
-        showMarkers={config.showMarkers}
+        chapterData={chapterData}
+        headerTitle={DEFAULT_CONFIG.title}
+        headerSubtitle={DEFAULT_CONFIG.subtitle}
+        headerByline={DEFAULT_CONFIG.byline}
+        footerHtml={DEFAULT_CONFIG.footer}
+        showMarkers={DEFAULT_CONFIG.showMarkers}
         toggleLayer={toggleLayer}
       />
     </MapContext.Provider> 
