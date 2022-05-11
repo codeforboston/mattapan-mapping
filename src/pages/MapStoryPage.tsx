@@ -183,8 +183,8 @@ const transformRequest = (url?: string) => {
 };
 
 const StorytellingMap = (props: any) => {
-  const [chapterData, setChapterData] = React.useState(DEFAULT_CONFIG.chapters);
-  const [markerCoords, setMarkerCoords] = React.useState(DEFAULT_CONFIG.chapters[0].location.center);
+  const [chapterData, setChapterData]: [Chapter[], React.Dispatch<React.SetStateAction<any>>] = React.useState([]);
+  const [markerCoords, setMarkerCoords]: [number[], React.Dispatch<React.SetStateAction<any>>] = React.useState(DEFAULT_CONFIG.chapters[0].location.center);
   const [data, setData]: [MapGeoJsonData[], React.Dispatch<React.SetStateAction<any>>] = React.useState([]);
 
   // Use a ref in combination with state to so that toggleLayer can always reference the current state
@@ -231,6 +231,7 @@ const StorytellingMap = (props: any) => {
         const { data } = await fetch(GRAPHQL_ENDPOINT, options).then(res => res.json());
         setChapterData(data.chapters)
       } catch (error) {
+        setChapterData(DEFAULT_CONFIG.chapters)
         console.error('Story map page failed to fetch config data from graphql', error);
       }
     }

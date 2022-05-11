@@ -78,3 +78,5 @@ interface Config {
   footer: string
   chapters: Chapter[]
 }
+
+declare module 'react-scrollama'
