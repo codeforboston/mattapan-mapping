@@ -71,7 +71,7 @@ export function Story({onMarkerCoordsChange, chapterData, headerTitle, headerSub
 
           if (chapter.onChapterEnter.length > 0) {
             chapter.onChapterEnter.forEach((transition: ChapterTransition) => {
-              // toggleLayer(transition.layer);
+              toggleLayer(transition.layer);
               setLayerOpacity(transition)
             });
           }
@@ -96,7 +96,7 @@ export function Story({onMarkerCoordsChange, chapterData, headerTitle, headerSub
           response.element.classList.remove('active');
           if (chapter.onChapterExit.length > 0) {
             chapter.onChapterExit.forEach((transition: ChapterTransition) => {
-              // toggleLayer(transition.layer);
+              toggleLayer(transition.layer);
               setLayerOpacity(transition)
             });
           }

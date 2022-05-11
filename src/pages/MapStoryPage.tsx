@@ -150,12 +150,12 @@ const DEFAULT_CONFIG = {
         {
           layer: 'zoning-subdistricts',
           opacity: 1,
-          duration: 5000
+          duration: 1000
         },
         {
           layer: 'mattapanPlanBoundary',
           opacity: 1,
-          duration: 5000
+          duration: 1000
         }
       ],
       onChapterExit: [
@@ -166,7 +166,7 @@ const DEFAULT_CONFIG = {
         {
           layer: 'mattapanPlanBoundary',
           opacity: 0,
-          duration: 5000
+          duration: 1000
         }
       ]
     }
@@ -186,9 +186,21 @@ const StorytellingMap = (props: any) => {
   const [config, setConfig] = React.useState(DEFAULT_CONFIG);
   const [markerCoords, setMarkerCoords] = React.useState(DEFAULT_CONFIG.chapters[0].location.center);
   const [data, setData]: [MapGeoJsonData[], React.Dispatch<React.SetStateAction<any>>] = React.useState([]);
+
+  // Use a ref in combination with state to so that toggleLayer can always reference the current state
+  // With just state, toggleLayer would only use the initial state when updating so intermediate state updates
+  // would just be overwritten. If all layers were initially active then all layers appear in the initial chapter and aren't
+  // toggled off unless they are referenced later. This occurs since the data fetch completes after the scrollama component is 
+  // initialized in <Story>'s initial render. 
+  // With just a ref, a change in active layers wouldn't update the <MapLayers> component (need the state change to render).
+  const [activeLayers, _setActiveLayers]: [FeatureToggleState, React.Dispatch<React.SetStateAction<any>>] = React.useState({});
+  const activeLayersRef = React.useRef<FeatureToggleState>({});
   
-  const layerToggle = React.useRef<FeatureToggleState>({});
-  
+  const setActiveLayers = (layers: FeatureToggleState) => {
+    activeLayersRef.current = layers;
+    _setActiveLayers(layers);
+  }
+
   const [viewport] = React.useState({
     longitude: DEFAULT_CONFIG.chapters[0].location.center[0] ?? -71.088,
     latitude: DEFAULT_CONFIG.chapters[0].location.center[1] ?? 42.286,
@@ -208,13 +220,10 @@ const StorytellingMap = (props: any) => {
     }
   };
 
-  // FIXME: This isn't controlling the layers. Only layers referenced in the intial chapter are painted
   const toggleLayer = (id: string) => {
-    console.log(id, layerToggle.current[id]);
-    layerToggle.current[id] = !layerToggle.current[id];
-    // layerToggle.current = { ...layerToggle.current, [id]: true };
+    setActiveLayers({ ...activeLayersRef.current, [id]: !activeLayersRef.current[id] });
   };
-  
+
   React.useEffect(() => {
     /* Fetch data from GraphQL on intial render or fall back to default config*/
     const fetchConfig = async () => {
@@ -243,7 +252,7 @@ const StorytellingMap = (props: any) => {
         });
 
         setData(ExplorePageData)
-        // layerToggle.current = ExplorePageToggleStates(ExplorePageData);
+        setActiveLayers({ ...ExplorePageToggleStates(ExplorePageData), ...activeLayersRef.current });
       } catch (error) {
           console.log('Map Story data fetch failed: ' + error);
       }
@@ -281,7 +290,7 @@ const StorytellingMap = (props: any) => {
         <Marker longitude={markerCoords[0]} latitude={markerCoords[1]} offsetLeft={-32} offsetTop={-32}>
           <Pin size={32} color={config.markerColor} />
         </Marker>
-        <MapLayers geoJsonData={ data } toggleState={ layerToggle.current } /> 
+        <MapLayers geoJsonData={ data } toggleState={ activeLayers } /> 
       </ReactMapGL>
       <Story
         onMarkerCoordsChange={onMarkerCoordsChange}
@@ -294,7 +303,6 @@ const StorytellingMap = (props: any) => {
         toggleLayer={toggleLayer}
       />
     </MapContext.Provider> 
-
   );
 
 };
