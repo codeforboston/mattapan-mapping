@@ -67,4 +67,3 @@ export function Footer({footerHtml}: {footerHtml: string}) {
     </StyledFooter>
   );
 };
-

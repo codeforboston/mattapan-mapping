@@ -21,7 +21,7 @@ const alignments = {
   'full': 'fully'
 };
 
-export function Story({onMarkerCoordsChange, chapterData, headerTitle, headerSubtitle, headerByline, footerHtml, showMarkers }: StoryProps) {
+export function Story({onMarkerCoordsChange, chapterData, headerTitle, headerSubtitle, headerByline, footerHtml, showMarkers, toggleLayer }: StoryProps) {
   const { map: mapRef } = React.useContext(MapContext);
   const map = mapRef.current?.getMap();
 
@@ -39,7 +39,6 @@ export function Story({onMarkerCoordsChange, chapterData, headerTitle, headerSub
       function setLayerOpacity({ layer, duration, opacity }: { layer: string, duration: number, opacity: number }) {
         if (map) {
           const paintProps = getLayerPaintType(layer);
-            
           paintProps?.forEach(function(prop) {
             let options = {};
             if (duration) {
@@ -51,6 +50,7 @@ export function Story({onMarkerCoordsChange, chapterData, headerTitle, headerSub
           });
         }
       }
+
       const scroller = scrollama();
       // setup the instance, pass callback functions
       scroller
@@ -70,7 +70,10 @@ export function Story({onMarkerCoordsChange, chapterData, headerTitle, headerSub
           }
 
           if (chapter.onChapterEnter.length > 0) {
-            chapter.onChapterEnter.forEach(setLayerOpacity);
+            chapter.onChapterEnter.forEach((transition: ChapterTransition) => {
+              // toggleLayer(transition.layer);
+              setLayerOpacity(transition)
+            });
           }
 
           if (chapter.callback) {
@@ -92,11 +95,14 @@ export function Story({onMarkerCoordsChange, chapterData, headerTitle, headerSub
           const chapter = chapterData.find((chap: Chapter) => chap.id === response.element.id);
           response.element.classList.remove('active');
           if (chapter.onChapterExit.length > 0) {
-            chapter.onChapterExit.forEach(setLayerOpacity);
+            chapter.onChapterExit.forEach((transition: ChapterTransition) => {
+              // toggleLayer(transition.layer);
+              setLayerOpacity(transition)
+            });
           }
         });
     }
-    }, [map, chapterData, onMarkerCoordsChange, showMarkers]);
+    }, [map, chapterData, onMarkerCoordsChange, showMarkers, toggleLayer]);
 
   const chapters = chapterData.map((record: Chapter, idx: number) => <Chapter
     id={record.id}

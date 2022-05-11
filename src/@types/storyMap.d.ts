@@ -1,3 +1,10 @@
+interface MapStoryProps {
+    startingCoordinates?: { lat: number, lng: number };
+    mapStyle?: string;
+    interactive?: booolean;
+    children?: React.ReactChild | React.ReactChild[];
+    mapRef?: MapRef
+}
 interface ChapterProps {
   id: string,
   content: string,
@@ -15,7 +22,8 @@ interface HeaderProps {
 }
 
 interface StoryProps {
-  onMarkerCoordsChange: any,
+  onMarkerCoordsChange: any, // FIXME: function
+  toggleLayer: any, // FIXME: function
   chapterData: any
   headerTitle: string
   headerSubtitle: string
@@ -27,6 +35,12 @@ interface StoryProps {
 type Alignment = 'left' | 'right' | 'center' | 'full';
 
 type Layer = 'fill' | 'line' | 'circle' | 'symbol' | 'raster' | 'fill-extrusion' | 'heatmap';
+
+interface ChapterTransition {
+  layer: string,
+  opacity: number
+  duration: number
+}
 
 interface Chapter {
   id: string,
@@ -44,19 +58,8 @@ interface Chapter {
       mapAnimation: string, // TODO: enum?
       rotateAnimation: boolean,
       callback: string, // TODO: function?
-      onChapterEnter: [
-        {
-          layer: string,
-          opacity: number
-          duration: number
-        }
-      ],
-      onChapterExit: [
-        {
-          layer: 'string'
-          opacity: number
-        }
-      ]
+      onChapterEnter: ChapterTransition[],
+      onChapterExit: ChapterTransition[]
 }
 
 

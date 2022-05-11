@@ -6,7 +6,7 @@ import { Theme } from '@/theme/Theme';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ENV;
 
-export const Map = ({ startingCoordinates, children, mapStyle, interactive = true }: MapProps) => {
+export const Map = ({ startingCoordinates, children, mapStyle }: MapProps) => {
   const [viewport, setViewport] = React.useState({
     latitude: startingCoordinates?.lat ?? 42.286,
     longitude: startingCoordinates?.lng ?? -71.088,
@@ -25,8 +25,8 @@ export const Map = ({ startingCoordinates, children, mapStyle, interactive = tru
       {...viewport}
       {...settings}
       mapboxApiAccessToken={MAPBOX_TOKEN}
-      onViewportChange={ (viewport: any) => interactive && setViewport(viewport)}
-      mapStyle={ mapStyle ?? Theme.map.light }
+      onViewportChange={ (viewport: any) => setViewport(viewport)}
+      mapStyle={mapStyle ?? Theme.map.light}
     >
       { children }
     </ReactMapGL>
