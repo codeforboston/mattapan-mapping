@@ -10,7 +10,7 @@ import { MapLayers } from '@/molecules/MapLayers';
 import './mapStoryStyles.css';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ENV;
-const GRAPHQL_ENDPOINT = process.env.REACT_APP_GRAPHQL_ENDPOINT;
+const GRAPHQL_URI = process.env.REACT_APP_GRAPHQL_URI;
 
 const urls = EXPLORE_PAGE_BOUNDARY_DATA.map(boundary => boundary.file);
 const boundaryIds = EXPLORE_PAGE_BOUNDARY_DATA.map(boundary => boundary.id);
@@ -228,7 +228,7 @@ const StorytellingMap = (props: any) => {
     /* Fetch data from GraphQL on intial render or fall back to default config*/
     const fetchChapters = async () => {
       try {
-        const { data } = await fetch(GRAPHQL_ENDPOINT, options).then(res => res.json());
+        const { data } = await fetch(GRAPHQL_URI, options).then(res => res.json());
         setChapterData(data.chapters)
       } catch (error) {
         setChapterData(DEFAULT_CONFIG.chapters)
