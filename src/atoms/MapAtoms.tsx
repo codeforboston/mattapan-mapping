@@ -22,11 +22,11 @@ export const Map = ({ startingCoordinates, children, mapStyle }: MapProps) => {
 
   return (
     <ReactMapGL
-      { ...viewport }
-      { ...settings }
-      mapboxApiAccessToken={ MAPBOX_TOKEN }
-      onViewportChange={ (viewport: any) => setViewport(viewport) }
-      mapStyle={ mapStyle ?? Theme.map.light }
+      {...viewport}
+      {...settings}
+      mapboxApiAccessToken={MAPBOX_TOKEN}
+      onViewportChange={ (viewport: any) => setViewport(viewport)}
+      mapStyle={mapStyle ?? Theme.map.light}
     >
       { children }
     </ReactMapGL>
@@ -80,5 +80,22 @@ export const MapGeoJsonSource = ({ data, id, type, color, visible }: Omit<MapGeo
     <Source type='geojson' data={ data }>
       <Layer { ...layer }/>
     </Source>
+  );
+};
+
+export function Pin({ size = 20, color = Theme.colors.orange}: {size: number, color: string}) {
+  const ICON = 'M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z';
+  
+  const pinStyle = {
+    // cursor: 'pointer',
+    fill: color,
+    stroke: 'none',
+    display: 'block',
+  };
+
+  return (
+    <svg height={size} viewBox="0 0 16 16" style={pinStyle}>
+      <path d={ICON} />
+    </svg>
   );
 };
