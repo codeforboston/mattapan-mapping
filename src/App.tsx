@@ -1,6 +1,8 @@
 import { ThemeProvider } from '@emotion/react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ApolloProvider } from '@apollo/client'
 import 'mapbox-gl/dist/mapbox-gl.css'
+import client from './graphql/apolloClient'
 import { Theme } from './theme/Theme'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
@@ -32,13 +34,13 @@ const MattapanMappingRoutes = () => (
 
 export default function App() {
   return (
-    <>
+    <ApolloProvider client={client}>
       <GlobalStyle />
       <ThemeProvider theme={Theme}>
         <BrowserRouter>
           <MattapanMappingRoutes />
         </BrowserRouter>
       </ThemeProvider>
-    </>
+    </ApolloProvider>
   )
 }

@@ -40,17 +40,21 @@ Current members include:
 - Allentza Michel (powerfulpathwaysinc@gmail.com)
 - Barry Fradkin (bfradkin@comcast.net)
 - Brad Smith (brad@smithwebtek.com)
-- David Morrison (morrisond7@gmail.com)
-- James Gui (zkgui98@gmail.com)
-- Jed Pittman (edpittman@gmail.com)
 - Jeff Korenstein (j.korenstein@gmail.com)
 - Kayla Patel (kayla.patel@tufts.edu)
 - Sasha Hulk (srhu222@gmail.com)
 - Shay McDonough (shay.m.mcdonough@gmail.com)
 - Stephan Halarewicz (shalarewicz@gmail.com)
 - Stephen McCall (stephen.mccall@gmail.com)
-- Tejasvi Srigiriraju (sritejasvi@gmail.com)
 - Dickson Lau (kr.d.tsl@gmail.com)
+- Anita Yip
+
+Past members include:
+
+- David Morrison
+- James Gui
+- Jed Pittman 
+- Tejasvi Srigiriraju 
 
 Sharing of any of the information pertaining to these resources outside of the accepted team members is prohibited.
 
@@ -123,6 +127,25 @@ Steps to build and run the application locally:
 2. `yarn` to install dependencies 
         
 3. `yarn start` to boot up dev server hosting on port 3000
+
+#### Required Environment Variables
+
+There some important and sensitive environment variables are required in order for the app to work as intended. Create a `.env` file at the project root, then ask a fellow member for the following environment variables:
+
+- `REACT_APP_MAPBOX_ENV`
+- `REACT_APP_GRAPHQL_URI`
+
+> ⚠️ ***Caution:** Do **NOT** stage and commit your `.env` file into `git` version control, much less at the public GitHub repo. The `.gitignore` file is intended to prevent you from accidentally pushing the file and exposing those variables to the public.*
+
+When deciding on adding more environment variables for the React App, refer to [this documentation](https://create-react-app.dev/docs/adding-custom-environment-variables/) for more info.
+
+### GraphQl TypeScript Code Generator
+
+While GraphQl is a strongly typed query language, there are no way for TypeScript to understand the typing of GraphQl queries out of the box. While it can be possible to manually create interface/types by hand, it's time consuming. [GraphQL Code Generator](https://www.graphql-code-generator.com/) makes generating TypeScript types and hooks from GraphQl queries/files as simple as typing `yarn codegen` on the CLI and generate the functions and types to use in `src/graphql/generated.ts` file.
+
+For convenience, all GraphQl queries are under the `src/graphql/queries/` directory as referred to the `codegen.yml` file. All GraphQl must have a unique name for codegen to name React hooks from. (Ex. a `.gql` file with "query queryName" will create "useQueryNameQuery" and "useQueryNameLazyQuery")
+
+Refer to [this GraphQL Code Generator documentation](https://www.graphql-code-generator.com/docs/config-reference/codegen-config) for more info.
 
 ### Automated Testing
 This project will have both automated tests that are part of the standard release pipeline and
