@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.5.10",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@fontsource/baron-neue": "file:assets/Baron Neue",
     "@fontsource/lato": "^4.5.0",
     "dotenv": "^10.0.0",
+    "graphql": "^16.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-map-gl": "^6.1.17",
@@ -19,6 +21,7 @@
     "@babel/plugin-transform-react-jsx": "^7.14.9",
     "@babel/preset-typescript": "^7.15.0",
     "@craco/craco": "^6.4.0",
+    "@graphql-codegen/cli": "2.6.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -36,14 +39,18 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "stylelint": "^13.13.1",
     "stylelint-processor-styled-components": "^1.10.0",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.3",
+    "@graphql-codegen/typescript": "2.4.8",
+    "@graphql-codegen/typescript-operations": "2.3.5",
+    "@graphql-codegen/typescript-react-apollo": "3.2.11"
   },
   "scripts": {
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
-    "tsc": "npx tsc --p tsconfig.json"
+    "tsc": "npx tsc --p tsconfig.json",
+    "codegen": "graphql-codegen --config codegen.yml -r dotenv/config"
   },
   "eslintConfig": {
     "extends": [

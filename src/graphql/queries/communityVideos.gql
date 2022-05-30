@@ -1,0 +1,8 @@
+query communityVideos {
+  Videos(order_by: {id: desc}) {
+    id
+    name: author
+    src
+    transcript
+  }
+}
