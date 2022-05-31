@@ -2,6 +2,7 @@
   "name": "mattapan-project",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@apollo/client": "^3.5.10",
     "@emotion/react": "^11.4.1",
