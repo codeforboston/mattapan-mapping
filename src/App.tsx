@@ -21,13 +21,12 @@ const MattapanMappingRoutes = () => (
   <Routes>
     <Route path='/' element={<LandingPage />} />
     <Route path='/about' element={<AboutPage />} />
-    <Route path='/explore' element={<ExplorePage />} />
-    <Route path='/map' element={<MapPage />} />
+    <Route path='/explore' element={<MapPage />} />
+    <Route path='/story' element={<StorytellingMap />} />
     <Route path='/meet' element={<MeetPage />} />
     <Route path='/share' element={<SharePage />} />
     <Route path='/act' element={<ActPage />} />
     <Route path='/contact' element={<ContactPage />} />
-    <Route path='/story' element={<StorytellingMap />} />
     <Route path='*' element={<NotFound />} />
   </Routes>
 )

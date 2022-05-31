@@ -21,7 +21,7 @@ const Header: React.FC<{className?: string}> = function HeaderComponent({classNa
 			<div>
 				<HeaderLink href='/about' color={ Theme.colors.blue }>About</HeaderLink>
 				<HeaderLink href='/explore' color={ Theme.colors.blue }>Explore</HeaderLink>
-				<HeaderLink href='/map' color={ Theme.colors.peach }>Map</HeaderLink>
+				<HeaderLink href='/story' color={ Theme.colors.peach }>MapBox</HeaderLink>
 				<HeaderLink href='/meet' color={ Theme.colors.teal }>Meet</HeaderLink>
 				<HeaderLink href='/share' color={ Theme.colors.orange }>Share</HeaderLink>
 				<HeaderLink href='/act' color={ Theme.colors.red }>Act</HeaderLink>
