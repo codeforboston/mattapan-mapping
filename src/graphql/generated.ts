@@ -13,7 +13,23 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  _float4: any;
+  alignment: any;
+  animation: any;
   bpchar: any;
+};
+
+/** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
+export type Boolean_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['Boolean']>;
+  _gt?: InputMaybe<Scalars['Boolean']>;
+  _gte?: InputMaybe<Scalars['Boolean']>;
+  _in?: InputMaybe<Array<Scalars['Boolean']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['Boolean']>;
+  _lte?: InputMaybe<Scalars['Boolean']>;
+  _neq?: InputMaybe<Scalars['Boolean']>;
+  _nin?: InputMaybe<Array<Scalars['Boolean']>>;
 };
 
 /** columns and relationships of "Boundaries" */
@@ -225,6 +241,19 @@ export type Boundaries_Variance_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** Boolean expression to compare columns of type "Float". All fields are combined with logical 'AND'. */
+export type Float_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['Float']>;
+  _gt?: InputMaybe<Scalars['Float']>;
+  _gte?: InputMaybe<Scalars['Float']>;
+  _in?: InputMaybe<Array<Scalars['Float']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['Float']>;
+  _lte?: InputMaybe<Scalars['Float']>;
+  _neq?: InputMaybe<Scalars['Float']>;
+  _nin?: InputMaybe<Array<Scalars['Float']>>;
+};
+
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type Int_Comparison_Exp = {
   _eq?: InputMaybe<Scalars['Int']>;
@@ -245,6 +274,10 @@ export type Narratives = {
   boundaries: Array<Narrative_Boundary_View>;
   /** An aggregate relationship */
   boundaries_aggregate: Narrative_Boundary_View_Aggregate;
+  /** An array relationship */
+  chapters: Array<Chapter>;
+  /** An aggregate relationship */
+  chapters_aggregate: Chapter_Aggregate;
   color: Scalars['bpchar'];
   id: Scalars['Int'];
   name: Scalars['bpchar'];
@@ -272,6 +305,26 @@ export type NarrativesBoundaries_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<Narrative_Boundary_View_Order_By>>;
   where?: InputMaybe<Narrative_Boundary_View_Bool_Exp>;
+};
+
+
+/** columns and relationships of "Narratives" */
+export type NarrativesChaptersArgs = {
+  distinct_on?: InputMaybe<Array<Chapter_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Chapter_Order_By>>;
+  where?: InputMaybe<Chapter_Bool_Exp>;
+};
+
+
+/** columns and relationships of "Narratives" */
+export type NarrativesChapters_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Chapter_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Chapter_Order_By>>;
+  where?: InputMaybe<Chapter_Bool_Exp>;
 };
 
 
@@ -336,6 +389,7 @@ export type Narratives_Bool_Exp = {
   _not?: InputMaybe<Narratives_Bool_Exp>;
   _or?: InputMaybe<Array<Narratives_Bool_Exp>>;
   boundaries?: InputMaybe<Narrative_Boundary_View_Bool_Exp>;
+  chapters?: InputMaybe<Chapter_Bool_Exp>;
   color?: InputMaybe<Bpchar_Comparison_Exp>;
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<Bpchar_Comparison_Exp>;
@@ -370,6 +424,7 @@ export type Narratives_Mutation_Response = {
 /** Ordering options when selecting data from "Narratives". */
 export type Narratives_Order_By = {
   boundaries_aggregate?: InputMaybe<Narrative_Boundary_View_Aggregate_Order_By>;
+  chapters_aggregate?: InputMaybe<Chapter_Aggregate_Order_By>;
   color?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
@@ -635,7 +690,7 @@ export type Visibles = {
   /** An object relationship */
   boundary: Boundaries;
   boundary_id: Scalars['Int'];
-  /** A computed field, executes function "visibles_id" */
+  /** Required `id` for `react-admin` app */
   id?: Maybe<Scalars['String']>;
   /** An object relationship */
   narrative: Narratives;
@@ -900,6 +955,45 @@ export type Visibles_Variance_Order_By = {
   narrative_id?: InputMaybe<Order_By>;
 };
 
+/** Boolean expression to compare columns of type "_float4". All fields are combined with logical 'AND'. */
+export type _Float4_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['_float4']>;
+  _gt?: InputMaybe<Scalars['_float4']>;
+  _gte?: InputMaybe<Scalars['_float4']>;
+  _in?: InputMaybe<Array<Scalars['_float4']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['_float4']>;
+  _lte?: InputMaybe<Scalars['_float4']>;
+  _neq?: InputMaybe<Scalars['_float4']>;
+  _nin?: InputMaybe<Array<Scalars['_float4']>>;
+};
+
+/** Boolean expression to compare columns of type "alignment". All fields are combined with logical 'AND'. */
+export type Alignment_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['alignment']>;
+  _gt?: InputMaybe<Scalars['alignment']>;
+  _gte?: InputMaybe<Scalars['alignment']>;
+  _in?: InputMaybe<Array<Scalars['alignment']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['alignment']>;
+  _lte?: InputMaybe<Scalars['alignment']>;
+  _neq?: InputMaybe<Scalars['alignment']>;
+  _nin?: InputMaybe<Array<Scalars['alignment']>>;
+};
+
+/** Boolean expression to compare columns of type "animation". All fields are combined with logical 'AND'. */
+export type Animation_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['animation']>;
+  _gt?: InputMaybe<Scalars['animation']>;
+  _gte?: InputMaybe<Scalars['animation']>;
+  _in?: InputMaybe<Array<Scalars['animation']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['animation']>;
+  _lte?: InputMaybe<Scalars['animation']>;
+  _neq?: InputMaybe<Scalars['animation']>;
+  _nin?: InputMaybe<Array<Scalars['animation']>>;
+};
+
 /** columns and relationships of "boundary_narrative_view" */
 export type Boundary_Narrative_View = {
   __typename?: 'boundary_narrative_view';
@@ -1156,6 +1250,479 @@ export type Bpchar_Comparison_Exp = {
   _similar?: InputMaybe<Scalars['bpchar']>;
 };
 
+/** columns and relationships of "chapter" */
+export type Chapter = {
+  __typename?: 'chapter';
+  alignment: Scalars['alignment'];
+  callback?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id: Scalars['Int'];
+  image?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  location: Location;
+  location_id: Scalars['Int'];
+  mapAnimation?: Maybe<Scalars['animation']>;
+  name: Scalars['String'];
+  narrative_chapter_index?: Maybe<Scalars['Int']>;
+  narrative_id?: Maybe<Scalars['Int']>;
+  /** An array relationship */
+  onChapterEnter: Array<Transition>;
+  /** An array relationship */
+  onChapterExit: Array<Transition>;
+  rotateAnimation: Scalars['Boolean'];
+  title?: Maybe<Scalars['String']>;
+};
+
+
+/** columns and relationships of "chapter" */
+export type ChapterOnChapterEnterArgs = {
+  distinct_on?: InputMaybe<Array<Transition_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Transition_Order_By>>;
+  where?: InputMaybe<Transition_Bool_Exp>;
+};
+
+
+/** columns and relationships of "chapter" */
+export type ChapterOnChapterExitArgs = {
+  distinct_on?: InputMaybe<Array<Transition_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Transition_Order_By>>;
+  where?: InputMaybe<Transition_Bool_Exp>;
+};
+
+/** aggregated selection of "chapter" */
+export type Chapter_Aggregate = {
+  __typename?: 'chapter_aggregate';
+  aggregate?: Maybe<Chapter_Aggregate_Fields>;
+  nodes: Array<Chapter>;
+};
+
+/** aggregate fields of "chapter" */
+export type Chapter_Aggregate_Fields = {
+  __typename?: 'chapter_aggregate_fields';
+  avg?: Maybe<Chapter_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Chapter_Max_Fields>;
+  min?: Maybe<Chapter_Min_Fields>;
+  stddev?: Maybe<Chapter_Stddev_Fields>;
+  stddev_pop?: Maybe<Chapter_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Chapter_Stddev_Samp_Fields>;
+  sum?: Maybe<Chapter_Sum_Fields>;
+  var_pop?: Maybe<Chapter_Var_Pop_Fields>;
+  var_samp?: Maybe<Chapter_Var_Samp_Fields>;
+  variance?: Maybe<Chapter_Variance_Fields>;
+};
+
+
+/** aggregate fields of "chapter" */
+export type Chapter_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Chapter_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "chapter" */
+export type Chapter_Aggregate_Order_By = {
+  avg?: InputMaybe<Chapter_Avg_Order_By>;
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Chapter_Max_Order_By>;
+  min?: InputMaybe<Chapter_Min_Order_By>;
+  stddev?: InputMaybe<Chapter_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Chapter_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Chapter_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Chapter_Sum_Order_By>;
+  var_pop?: InputMaybe<Chapter_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Chapter_Var_Samp_Order_By>;
+  variance?: InputMaybe<Chapter_Variance_Order_By>;
+};
+
+/** aggregate avg on columns */
+export type Chapter_Avg_Fields = {
+  __typename?: 'chapter_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+  location_id?: Maybe<Scalars['Float']>;
+  narrative_chapter_index?: Maybe<Scalars['Float']>;
+  narrative_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "chapter" */
+export type Chapter_Avg_Order_By = {
+  id?: InputMaybe<Order_By>;
+  location_id?: InputMaybe<Order_By>;
+  narrative_chapter_index?: InputMaybe<Order_By>;
+  narrative_id?: InputMaybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "chapter". All fields are combined with a logical 'AND'. */
+export type Chapter_Bool_Exp = {
+  _and?: InputMaybe<Array<Chapter_Bool_Exp>>;
+  _not?: InputMaybe<Chapter_Bool_Exp>;
+  _or?: InputMaybe<Array<Chapter_Bool_Exp>>;
+  alignment?: InputMaybe<Alignment_Comparison_Exp>;
+  callback?: InputMaybe<String_Comparison_Exp>;
+  description?: InputMaybe<String_Comparison_Exp>;
+  hidden?: InputMaybe<Boolean_Comparison_Exp>;
+  id?: InputMaybe<Int_Comparison_Exp>;
+  image?: InputMaybe<String_Comparison_Exp>;
+  location?: InputMaybe<Location_Bool_Exp>;
+  location_id?: InputMaybe<Int_Comparison_Exp>;
+  mapAnimation?: InputMaybe<Animation_Comparison_Exp>;
+  name?: InputMaybe<String_Comparison_Exp>;
+  narrative_chapter_index?: InputMaybe<Int_Comparison_Exp>;
+  narrative_id?: InputMaybe<Int_Comparison_Exp>;
+  onChapterEnter?: InputMaybe<Transition_Bool_Exp>;
+  onChapterExit?: InputMaybe<Transition_Bool_Exp>;
+  rotateAnimation?: InputMaybe<Boolean_Comparison_Exp>;
+  title?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** input type for incrementing numeric columns in table "chapter" */
+export type Chapter_Inc_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  location_id?: InputMaybe<Scalars['Int']>;
+  narrative_chapter_index?: InputMaybe<Scalars['Int']>;
+  narrative_id?: InputMaybe<Scalars['Int']>;
+};
+
+/** aggregate max on columns */
+export type Chapter_Max_Fields = {
+  __typename?: 'chapter_max_fields';
+  alignment?: Maybe<Scalars['alignment']>;
+  callback?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  image?: Maybe<Scalars['String']>;
+  location_id?: Maybe<Scalars['Int']>;
+  mapAnimation?: Maybe<Scalars['animation']>;
+  name?: Maybe<Scalars['String']>;
+  narrative_chapter_index?: Maybe<Scalars['Int']>;
+  narrative_id?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "chapter" */
+export type Chapter_Max_Order_By = {
+  alignment?: InputMaybe<Order_By>;
+  callback?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  image?: InputMaybe<Order_By>;
+  location_id?: InputMaybe<Order_By>;
+  mapAnimation?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  narrative_chapter_index?: InputMaybe<Order_By>;
+  narrative_id?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Chapter_Min_Fields = {
+  __typename?: 'chapter_min_fields';
+  alignment?: Maybe<Scalars['alignment']>;
+  callback?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  image?: Maybe<Scalars['String']>;
+  location_id?: Maybe<Scalars['Int']>;
+  mapAnimation?: Maybe<Scalars['animation']>;
+  name?: Maybe<Scalars['String']>;
+  narrative_chapter_index?: Maybe<Scalars['Int']>;
+  narrative_id?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "chapter" */
+export type Chapter_Min_Order_By = {
+  alignment?: InputMaybe<Order_By>;
+  callback?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  image?: InputMaybe<Order_By>;
+  location_id?: InputMaybe<Order_By>;
+  mapAnimation?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  narrative_chapter_index?: InputMaybe<Order_By>;
+  narrative_id?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "chapter" */
+export type Chapter_Mutation_Response = {
+  __typename?: 'chapter_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Chapter>;
+};
+
+/** Ordering options when selecting data from "chapter". */
+export type Chapter_Order_By = {
+  alignment?: InputMaybe<Order_By>;
+  callback?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  hidden?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  image?: InputMaybe<Order_By>;
+  location?: InputMaybe<Location_Order_By>;
+  location_id?: InputMaybe<Order_By>;
+  mapAnimation?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  narrative_chapter_index?: InputMaybe<Order_By>;
+  narrative_id?: InputMaybe<Order_By>;
+  onChapterEnter_aggregate?: InputMaybe<Transition_Aggregate_Order_By>;
+  onChapterExit_aggregate?: InputMaybe<Transition_Aggregate_Order_By>;
+  rotateAnimation?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: chapter */
+export type Chapter_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "chapter" */
+export enum Chapter_Select_Column {
+  /** column name */
+  Alignment = 'alignment',
+  /** column name */
+  Callback = 'callback',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Hidden = 'hidden',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Image = 'image',
+  /** column name */
+  LocationId = 'location_id',
+  /** column name */
+  MapAnimation = 'mapAnimation',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  NarrativeChapterIndex = 'narrative_chapter_index',
+  /** column name */
+  NarrativeId = 'narrative_id',
+  /** column name */
+  RotateAnimation = 'rotateAnimation',
+  /** column name */
+  Title = 'title'
+}
+
+/** input type for updating data in table "chapter" */
+export type Chapter_Set_Input = {
+  alignment?: InputMaybe<Scalars['alignment']>;
+  callback?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  hidden?: InputMaybe<Scalars['Boolean']>;
+  id?: InputMaybe<Scalars['Int']>;
+  image?: InputMaybe<Scalars['String']>;
+  location_id?: InputMaybe<Scalars['Int']>;
+  mapAnimation?: InputMaybe<Scalars['animation']>;
+  name?: InputMaybe<Scalars['String']>;
+  narrative_chapter_index?: InputMaybe<Scalars['Int']>;
+  narrative_id?: InputMaybe<Scalars['Int']>;
+  rotateAnimation?: InputMaybe<Scalars['Boolean']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate stddev on columns */
+export type Chapter_Stddev_Fields = {
+  __typename?: 'chapter_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+  location_id?: Maybe<Scalars['Float']>;
+  narrative_chapter_index?: Maybe<Scalars['Float']>;
+  narrative_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "chapter" */
+export type Chapter_Stddev_Order_By = {
+  id?: InputMaybe<Order_By>;
+  location_id?: InputMaybe<Order_By>;
+  narrative_chapter_index?: InputMaybe<Order_By>;
+  narrative_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Chapter_Stddev_Pop_Fields = {
+  __typename?: 'chapter_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  location_id?: Maybe<Scalars['Float']>;
+  narrative_chapter_index?: Maybe<Scalars['Float']>;
+  narrative_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "chapter" */
+export type Chapter_Stddev_Pop_Order_By = {
+  id?: InputMaybe<Order_By>;
+  location_id?: InputMaybe<Order_By>;
+  narrative_chapter_index?: InputMaybe<Order_By>;
+  narrative_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Chapter_Stddev_Samp_Fields = {
+  __typename?: 'chapter_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  location_id?: Maybe<Scalars['Float']>;
+  narrative_chapter_index?: Maybe<Scalars['Float']>;
+  narrative_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "chapter" */
+export type Chapter_Stddev_Samp_Order_By = {
+  id?: InputMaybe<Order_By>;
+  location_id?: InputMaybe<Order_By>;
+  narrative_chapter_index?: InputMaybe<Order_By>;
+  narrative_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Chapter_Sum_Fields = {
+  __typename?: 'chapter_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+  location_id?: Maybe<Scalars['Int']>;
+  narrative_chapter_index?: Maybe<Scalars['Int']>;
+  narrative_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "chapter" */
+export type Chapter_Sum_Order_By = {
+  id?: InputMaybe<Order_By>;
+  location_id?: InputMaybe<Order_By>;
+  narrative_chapter_index?: InputMaybe<Order_By>;
+  narrative_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_pop on columns */
+export type Chapter_Var_Pop_Fields = {
+  __typename?: 'chapter_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  location_id?: Maybe<Scalars['Float']>;
+  narrative_chapter_index?: Maybe<Scalars['Float']>;
+  narrative_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "chapter" */
+export type Chapter_Var_Pop_Order_By = {
+  id?: InputMaybe<Order_By>;
+  location_id?: InputMaybe<Order_By>;
+  narrative_chapter_index?: InputMaybe<Order_By>;
+  narrative_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Chapter_Var_Samp_Fields = {
+  __typename?: 'chapter_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  location_id?: Maybe<Scalars['Float']>;
+  narrative_chapter_index?: Maybe<Scalars['Float']>;
+  narrative_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "chapter" */
+export type Chapter_Var_Samp_Order_By = {
+  id?: InputMaybe<Order_By>;
+  location_id?: InputMaybe<Order_By>;
+  narrative_chapter_index?: InputMaybe<Order_By>;
+  narrative_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Chapter_Variance_Fields = {
+  __typename?: 'chapter_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+  location_id?: Maybe<Scalars['Float']>;
+  narrative_chapter_index?: Maybe<Scalars['Float']>;
+  narrative_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "chapter" */
+export type Chapter_Variance_Order_By = {
+  id?: InputMaybe<Order_By>;
+  location_id?: InputMaybe<Order_By>;
+  narrative_chapter_index?: InputMaybe<Order_By>;
+  narrative_id?: InputMaybe<Order_By>;
+};
+
+/** columns and relationships of "location" */
+export type Location = {
+  __typename?: 'location';
+  bearing: Scalars['Float'];
+  center?: Maybe<Scalars['_float4']>;
+  /** An object relationship */
+  chapter?: Maybe<Chapter>;
+  curve?: Maybe<Scalars['Float']>;
+  id: Scalars['Int'];
+  max_duration?: Maybe<Scalars['Int']>;
+  min_zoom?: Maybe<Scalars['Float']>;
+  pitch: Scalars['Float'];
+  screen_speed?: Maybe<Scalars['Float']>;
+  speed?: Maybe<Scalars['Float']>;
+  zoom: Scalars['Float'];
+};
+
+/** Boolean expression to filter rows from the table "location". All fields are combined with a logical 'AND'. */
+export type Location_Bool_Exp = {
+  _and?: InputMaybe<Array<Location_Bool_Exp>>;
+  _not?: InputMaybe<Location_Bool_Exp>;
+  _or?: InputMaybe<Array<Location_Bool_Exp>>;
+  bearing?: InputMaybe<Float_Comparison_Exp>;
+  center?: InputMaybe<_Float4_Comparison_Exp>;
+  chapter?: InputMaybe<Chapter_Bool_Exp>;
+  curve?: InputMaybe<Float_Comparison_Exp>;
+  id?: InputMaybe<Int_Comparison_Exp>;
+  max_duration?: InputMaybe<Int_Comparison_Exp>;
+  min_zoom?: InputMaybe<Float_Comparison_Exp>;
+  pitch?: InputMaybe<Float_Comparison_Exp>;
+  screen_speed?: InputMaybe<Float_Comparison_Exp>;
+  speed?: InputMaybe<Float_Comparison_Exp>;
+  zoom?: InputMaybe<Float_Comparison_Exp>;
+};
+
+/** Ordering options when selecting data from "location". */
+export type Location_Order_By = {
+  bearing?: InputMaybe<Order_By>;
+  center?: InputMaybe<Order_By>;
+  chapter?: InputMaybe<Chapter_Order_By>;
+  curve?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  max_duration?: InputMaybe<Order_By>;
+  min_zoom?: InputMaybe<Order_By>;
+  pitch?: InputMaybe<Order_By>;
+  screen_speed?: InputMaybe<Order_By>;
+  speed?: InputMaybe<Order_By>;
+  zoom?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "location" */
+export enum Location_Select_Column {
+  /** column name */
+  Bearing = 'bearing',
+  /** column name */
+  Center = 'center',
+  /** column name */
+  Curve = 'curve',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  MaxDuration = 'max_duration',
+  /** column name */
+  MinZoom = 'min_zoom',
+  /** column name */
+  Pitch = 'pitch',
+  /** column name */
+  ScreenSpeed = 'screen_speed',
+  /** column name */
+  Speed = 'speed',
+  /** column name */
+  Zoom = 'zoom'
+}
+
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
@@ -1187,6 +1754,10 @@ export type Mutation_Root = {
   update_Visibles?: Maybe<Visibles_Mutation_Response>;
   /** update single row of the table: "Visibles" */
   update_Visibles_by_pk?: Maybe<Visibles>;
+  /** update data of the table: "chapter" */
+  update_chapter?: Maybe<Chapter_Mutation_Response>;
+  /** update single row of the table: "chapter" */
+  update_chapter_by_pk?: Maybe<Chapter>;
 };
 
 
@@ -1284,6 +1855,22 @@ export type Mutation_RootUpdate_Visibles_By_PkArgs = {
   _inc?: InputMaybe<Visibles_Inc_Input>;
   _set?: InputMaybe<Visibles_Set_Input>;
   pk_columns: Visibles_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_ChapterArgs = {
+  _inc?: InputMaybe<Chapter_Inc_Input>;
+  _set?: InputMaybe<Chapter_Set_Input>;
+  where: Chapter_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Chapter_By_PkArgs = {
+  _inc?: InputMaybe<Chapter_Inc_Input>;
+  _set?: InputMaybe<Chapter_Set_Input>;
+  pk_columns: Chapter_Pk_Columns_Input;
 };
 
 /** columns and relationships of "narrative_boundary_view" */
@@ -1564,10 +2151,38 @@ export type Query_Root = {
   boundary_narrative_view: Array<Boundary_Narrative_View>;
   /** fetch aggregated fields from the table: "boundary_narrative_view" */
   boundary_narrative_view_aggregate: Boundary_Narrative_View_Aggregate;
+  /** fetch data from the table: "chapter" */
+  chapter: Array<Chapter>;
+  /** fetch aggregated fields from the table: "chapter" */
+  chapter_aggregate: Chapter_Aggregate;
+  /** fetch data from the table: "chapter" using primary key columns */
+  chapter_by_pk?: Maybe<Chapter>;
+  /** fetch data from the table: "location" */
+  location: Array<Location>;
+  /** fetch data from the table: "location" using primary key columns */
+  location_by_pk?: Maybe<Location>;
   /** fetch data from the table: "narrative_boundary_view" */
   narrative_boundary_view: Array<Narrative_Boundary_View>;
   /** fetch aggregated fields from the table: "narrative_boundary_view" */
   narrative_boundary_view_aggregate: Narrative_Boundary_View_Aggregate;
+  /** fetch data from the table: "storytelling.chapter" */
+  storytelling_chapter: Array<Storytelling_Chapter>;
+  /** fetch aggregated fields from the table: "storytelling.chapter" */
+  storytelling_chapter_aggregate: Storytelling_Chapter_Aggregate;
+  /** fetch data from the table: "storytelling.chapter" using primary key columns */
+  storytelling_chapter_by_pk?: Maybe<Storytelling_Chapter>;
+  /** fetch data from the table: "storytelling.location" */
+  storytelling_location: Array<Storytelling_Location>;
+  /** fetch aggregated fields from the table: "storytelling.location" */
+  storytelling_location_aggregate: Storytelling_Location_Aggregate;
+  /** fetch data from the table: "storytelling.transition" */
+  storytelling_transition: Array<Storytelling_Transition>;
+  /** fetch aggregated fields from the table: "storytelling.transition" */
+  storytelling_transition_aggregate: Storytelling_Transition_Aggregate;
+  /** fetch data from the table: "transition" */
+  transition: Array<Transition>;
+  /** fetch data from the table: "transition" using primary key columns */
+  transition_by_pk?: Maybe<Transition>;
 };
 
 
@@ -1682,6 +2297,43 @@ export type Query_RootBoundary_Narrative_View_AggregateArgs = {
 };
 
 
+export type Query_RootChapterArgs = {
+  distinct_on?: InputMaybe<Array<Chapter_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Chapter_Order_By>>;
+  where?: InputMaybe<Chapter_Bool_Exp>;
+};
+
+
+export type Query_RootChapter_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Chapter_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Chapter_Order_By>>;
+  where?: InputMaybe<Chapter_Bool_Exp>;
+};
+
+
+export type Query_RootChapter_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_RootLocationArgs = {
+  distinct_on?: InputMaybe<Array<Location_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Location_Order_By>>;
+  where?: InputMaybe<Location_Bool_Exp>;
+};
+
+
+export type Query_RootLocation_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type Query_RootNarrative_Boundary_ViewArgs = {
   distinct_on?: InputMaybe<Array<Narrative_Boundary_View_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -1697,6 +2349,748 @@ export type Query_RootNarrative_Boundary_View_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<Narrative_Boundary_View_Order_By>>;
   where?: InputMaybe<Narrative_Boundary_View_Bool_Exp>;
+};
+
+
+export type Query_RootStorytelling_ChapterArgs = {
+  distinct_on?: InputMaybe<Array<Storytelling_Chapter_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Storytelling_Chapter_Order_By>>;
+  where?: InputMaybe<Storytelling_Chapter_Bool_Exp>;
+};
+
+
+export type Query_RootStorytelling_Chapter_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Storytelling_Chapter_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Storytelling_Chapter_Order_By>>;
+  where?: InputMaybe<Storytelling_Chapter_Bool_Exp>;
+};
+
+
+export type Query_RootStorytelling_Chapter_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_RootStorytelling_LocationArgs = {
+  distinct_on?: InputMaybe<Array<Storytelling_Location_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Storytelling_Location_Order_By>>;
+  where?: InputMaybe<Storytelling_Location_Bool_Exp>;
+};
+
+
+export type Query_RootStorytelling_Location_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Storytelling_Location_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Storytelling_Location_Order_By>>;
+  where?: InputMaybe<Storytelling_Location_Bool_Exp>;
+};
+
+
+export type Query_RootStorytelling_TransitionArgs = {
+  distinct_on?: InputMaybe<Array<Storytelling_Transition_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Storytelling_Transition_Order_By>>;
+  where?: InputMaybe<Storytelling_Transition_Bool_Exp>;
+};
+
+
+export type Query_RootStorytelling_Transition_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Storytelling_Transition_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Storytelling_Transition_Order_By>>;
+  where?: InputMaybe<Storytelling_Transition_Bool_Exp>;
+};
+
+
+export type Query_RootTransitionArgs = {
+  distinct_on?: InputMaybe<Array<Transition_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Transition_Order_By>>;
+  where?: InputMaybe<Transition_Bool_Exp>;
+};
+
+
+export type Query_RootTransition_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+/** columns and relationships of "storytelling.chapter" */
+export type Storytelling_Chapter = {
+  __typename?: 'storytelling_chapter';
+  alignment: Scalars['alignment'];
+  callback?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  id: Scalars['Int'];
+  image?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  location: Storytelling_Location;
+  mapAnimation?: Maybe<Scalars['animation']>;
+  name: Scalars['String'];
+  /** An array relationship */
+  onChapterEnter: Array<Storytelling_Transition>;
+  /** An aggregate relationship */
+  onChapterEnter_aggregate: Storytelling_Transition_Aggregate;
+  /** An array relationship */
+  onChapterExit: Array<Storytelling_Transition>;
+  /** An aggregate relationship */
+  onChapterExit_aggregate: Storytelling_Transition_Aggregate;
+  rotateAnimation: Scalars['Boolean'];
+  title?: Maybe<Scalars['String']>;
+};
+
+
+/** columns and relationships of "storytelling.chapter" */
+export type Storytelling_ChapterOnChapterEnterArgs = {
+  distinct_on?: InputMaybe<Array<Storytelling_Transition_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Storytelling_Transition_Order_By>>;
+  where?: InputMaybe<Storytelling_Transition_Bool_Exp>;
+};
+
+
+/** columns and relationships of "storytelling.chapter" */
+export type Storytelling_ChapterOnChapterEnter_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Storytelling_Transition_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Storytelling_Transition_Order_By>>;
+  where?: InputMaybe<Storytelling_Transition_Bool_Exp>;
+};
+
+
+/** columns and relationships of "storytelling.chapter" */
+export type Storytelling_ChapterOnChapterExitArgs = {
+  distinct_on?: InputMaybe<Array<Storytelling_Transition_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Storytelling_Transition_Order_By>>;
+  where?: InputMaybe<Storytelling_Transition_Bool_Exp>;
+};
+
+
+/** columns and relationships of "storytelling.chapter" */
+export type Storytelling_ChapterOnChapterExit_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Storytelling_Transition_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Storytelling_Transition_Order_By>>;
+  where?: InputMaybe<Storytelling_Transition_Bool_Exp>;
+};
+
+/** aggregated selection of "storytelling.chapter" */
+export type Storytelling_Chapter_Aggregate = {
+  __typename?: 'storytelling_chapter_aggregate';
+  aggregate?: Maybe<Storytelling_Chapter_Aggregate_Fields>;
+  nodes: Array<Storytelling_Chapter>;
+};
+
+/** aggregate fields of "storytelling.chapter" */
+export type Storytelling_Chapter_Aggregate_Fields = {
+  __typename?: 'storytelling_chapter_aggregate_fields';
+  avg?: Maybe<Storytelling_Chapter_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Storytelling_Chapter_Max_Fields>;
+  min?: Maybe<Storytelling_Chapter_Min_Fields>;
+  stddev?: Maybe<Storytelling_Chapter_Stddev_Fields>;
+  stddev_pop?: Maybe<Storytelling_Chapter_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Storytelling_Chapter_Stddev_Samp_Fields>;
+  sum?: Maybe<Storytelling_Chapter_Sum_Fields>;
+  var_pop?: Maybe<Storytelling_Chapter_Var_Pop_Fields>;
+  var_samp?: Maybe<Storytelling_Chapter_Var_Samp_Fields>;
+  variance?: Maybe<Storytelling_Chapter_Variance_Fields>;
+};
+
+
+/** aggregate fields of "storytelling.chapter" */
+export type Storytelling_Chapter_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Storytelling_Chapter_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type Storytelling_Chapter_Avg_Fields = {
+  __typename?: 'storytelling_chapter_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "storytelling.chapter". All fields are combined with a logical 'AND'. */
+export type Storytelling_Chapter_Bool_Exp = {
+  _and?: InputMaybe<Array<Storytelling_Chapter_Bool_Exp>>;
+  _not?: InputMaybe<Storytelling_Chapter_Bool_Exp>;
+  _or?: InputMaybe<Array<Storytelling_Chapter_Bool_Exp>>;
+  alignment?: InputMaybe<Alignment_Comparison_Exp>;
+  callback?: InputMaybe<String_Comparison_Exp>;
+  description?: InputMaybe<String_Comparison_Exp>;
+  hidden?: InputMaybe<Boolean_Comparison_Exp>;
+  id?: InputMaybe<Int_Comparison_Exp>;
+  image?: InputMaybe<String_Comparison_Exp>;
+  location?: InputMaybe<Storytelling_Location_Bool_Exp>;
+  mapAnimation?: InputMaybe<Animation_Comparison_Exp>;
+  name?: InputMaybe<String_Comparison_Exp>;
+  onChapterEnter?: InputMaybe<Storytelling_Transition_Bool_Exp>;
+  onChapterExit?: InputMaybe<Storytelling_Transition_Bool_Exp>;
+  rotateAnimation?: InputMaybe<Boolean_Comparison_Exp>;
+  title?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Storytelling_Chapter_Max_Fields = {
+  __typename?: 'storytelling_chapter_max_fields';
+  alignment?: Maybe<Scalars['alignment']>;
+  callback?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  image?: Maybe<Scalars['String']>;
+  mapAnimation?: Maybe<Scalars['animation']>;
+  name?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type Storytelling_Chapter_Min_Fields = {
+  __typename?: 'storytelling_chapter_min_fields';
+  alignment?: Maybe<Scalars['alignment']>;
+  callback?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  image?: Maybe<Scalars['String']>;
+  mapAnimation?: Maybe<Scalars['animation']>;
+  name?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** Ordering options when selecting data from "storytelling.chapter". */
+export type Storytelling_Chapter_Order_By = {
+  alignment?: InputMaybe<Order_By>;
+  callback?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  hidden?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  image?: InputMaybe<Order_By>;
+  location?: InputMaybe<Storytelling_Location_Order_By>;
+  mapAnimation?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  onChapterEnter_aggregate?: InputMaybe<Storytelling_Transition_Aggregate_Order_By>;
+  onChapterExit_aggregate?: InputMaybe<Storytelling_Transition_Aggregate_Order_By>;
+  rotateAnimation?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "storytelling.chapter" */
+export enum Storytelling_Chapter_Select_Column {
+  /** column name */
+  Alignment = 'alignment',
+  /** column name */
+  Callback = 'callback',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Hidden = 'hidden',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Image = 'image',
+  /** column name */
+  MapAnimation = 'mapAnimation',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  RotateAnimation = 'rotateAnimation',
+  /** column name */
+  Title = 'title'
+}
+
+/** aggregate stddev on columns */
+export type Storytelling_Chapter_Stddev_Fields = {
+  __typename?: 'storytelling_chapter_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Storytelling_Chapter_Stddev_Pop_Fields = {
+  __typename?: 'storytelling_chapter_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Storytelling_Chapter_Stddev_Samp_Fields = {
+  __typename?: 'storytelling_chapter_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type Storytelling_Chapter_Sum_Fields = {
+  __typename?: 'storytelling_chapter_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** aggregate var_pop on columns */
+export type Storytelling_Chapter_Var_Pop_Fields = {
+  __typename?: 'storytelling_chapter_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Storytelling_Chapter_Var_Samp_Fields = {
+  __typename?: 'storytelling_chapter_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Storytelling_Chapter_Variance_Fields = {
+  __typename?: 'storytelling_chapter_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** columns and relationships of "storytelling.location" */
+export type Storytelling_Location = {
+  __typename?: 'storytelling_location';
+  bearing: Scalars['Float'];
+  center?: Maybe<Scalars['_float4']>;
+  curve?: Maybe<Scalars['Float']>;
+  max_duration?: Maybe<Scalars['Int']>;
+  min_zoom?: Maybe<Scalars['Float']>;
+  pitch: Scalars['Float'];
+  screen_speed?: Maybe<Scalars['Float']>;
+  speed?: Maybe<Scalars['Float']>;
+  zoom: Scalars['Float'];
+};
+
+/** aggregated selection of "storytelling.location" */
+export type Storytelling_Location_Aggregate = {
+  __typename?: 'storytelling_location_aggregate';
+  aggregate?: Maybe<Storytelling_Location_Aggregate_Fields>;
+  nodes: Array<Storytelling_Location>;
+};
+
+/** aggregate fields of "storytelling.location" */
+export type Storytelling_Location_Aggregate_Fields = {
+  __typename?: 'storytelling_location_aggregate_fields';
+  avg?: Maybe<Storytelling_Location_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Storytelling_Location_Max_Fields>;
+  min?: Maybe<Storytelling_Location_Min_Fields>;
+  stddev?: Maybe<Storytelling_Location_Stddev_Fields>;
+  stddev_pop?: Maybe<Storytelling_Location_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Storytelling_Location_Stddev_Samp_Fields>;
+  sum?: Maybe<Storytelling_Location_Sum_Fields>;
+  var_pop?: Maybe<Storytelling_Location_Var_Pop_Fields>;
+  var_samp?: Maybe<Storytelling_Location_Var_Samp_Fields>;
+  variance?: Maybe<Storytelling_Location_Variance_Fields>;
+};
+
+
+/** aggregate fields of "storytelling.location" */
+export type Storytelling_Location_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Storytelling_Location_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type Storytelling_Location_Avg_Fields = {
+  __typename?: 'storytelling_location_avg_fields';
+  bearing?: Maybe<Scalars['Float']>;
+  curve?: Maybe<Scalars['Float']>;
+  max_duration?: Maybe<Scalars['Float']>;
+  min_zoom?: Maybe<Scalars['Float']>;
+  pitch?: Maybe<Scalars['Float']>;
+  screen_speed?: Maybe<Scalars['Float']>;
+  speed?: Maybe<Scalars['Float']>;
+  zoom?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "storytelling.location". All fields are combined with a logical 'AND'. */
+export type Storytelling_Location_Bool_Exp = {
+  _and?: InputMaybe<Array<Storytelling_Location_Bool_Exp>>;
+  _not?: InputMaybe<Storytelling_Location_Bool_Exp>;
+  _or?: InputMaybe<Array<Storytelling_Location_Bool_Exp>>;
+  bearing?: InputMaybe<Float_Comparison_Exp>;
+  center?: InputMaybe<_Float4_Comparison_Exp>;
+  curve?: InputMaybe<Float_Comparison_Exp>;
+  max_duration?: InputMaybe<Int_Comparison_Exp>;
+  min_zoom?: InputMaybe<Float_Comparison_Exp>;
+  pitch?: InputMaybe<Float_Comparison_Exp>;
+  screen_speed?: InputMaybe<Float_Comparison_Exp>;
+  speed?: InputMaybe<Float_Comparison_Exp>;
+  zoom?: InputMaybe<Float_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Storytelling_Location_Max_Fields = {
+  __typename?: 'storytelling_location_max_fields';
+  bearing?: Maybe<Scalars['Float']>;
+  curve?: Maybe<Scalars['Float']>;
+  max_duration?: Maybe<Scalars['Int']>;
+  min_zoom?: Maybe<Scalars['Float']>;
+  pitch?: Maybe<Scalars['Float']>;
+  screen_speed?: Maybe<Scalars['Float']>;
+  speed?: Maybe<Scalars['Float']>;
+  zoom?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate min on columns */
+export type Storytelling_Location_Min_Fields = {
+  __typename?: 'storytelling_location_min_fields';
+  bearing?: Maybe<Scalars['Float']>;
+  curve?: Maybe<Scalars['Float']>;
+  max_duration?: Maybe<Scalars['Int']>;
+  min_zoom?: Maybe<Scalars['Float']>;
+  pitch?: Maybe<Scalars['Float']>;
+  screen_speed?: Maybe<Scalars['Float']>;
+  speed?: Maybe<Scalars['Float']>;
+  zoom?: Maybe<Scalars['Float']>;
+};
+
+/** Ordering options when selecting data from "storytelling.location". */
+export type Storytelling_Location_Order_By = {
+  bearing?: InputMaybe<Order_By>;
+  center?: InputMaybe<Order_By>;
+  curve?: InputMaybe<Order_By>;
+  max_duration?: InputMaybe<Order_By>;
+  min_zoom?: InputMaybe<Order_By>;
+  pitch?: InputMaybe<Order_By>;
+  screen_speed?: InputMaybe<Order_By>;
+  speed?: InputMaybe<Order_By>;
+  zoom?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "storytelling.location" */
+export enum Storytelling_Location_Select_Column {
+  /** column name */
+  Bearing = 'bearing',
+  /** column name */
+  Center = 'center',
+  /** column name */
+  Curve = 'curve',
+  /** column name */
+  MaxDuration = 'max_duration',
+  /** column name */
+  MinZoom = 'min_zoom',
+  /** column name */
+  Pitch = 'pitch',
+  /** column name */
+  ScreenSpeed = 'screen_speed',
+  /** column name */
+  Speed = 'speed',
+  /** column name */
+  Zoom = 'zoom'
+}
+
+/** aggregate stddev on columns */
+export type Storytelling_Location_Stddev_Fields = {
+  __typename?: 'storytelling_location_stddev_fields';
+  bearing?: Maybe<Scalars['Float']>;
+  curve?: Maybe<Scalars['Float']>;
+  max_duration?: Maybe<Scalars['Float']>;
+  min_zoom?: Maybe<Scalars['Float']>;
+  pitch?: Maybe<Scalars['Float']>;
+  screen_speed?: Maybe<Scalars['Float']>;
+  speed?: Maybe<Scalars['Float']>;
+  zoom?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Storytelling_Location_Stddev_Pop_Fields = {
+  __typename?: 'storytelling_location_stddev_pop_fields';
+  bearing?: Maybe<Scalars['Float']>;
+  curve?: Maybe<Scalars['Float']>;
+  max_duration?: Maybe<Scalars['Float']>;
+  min_zoom?: Maybe<Scalars['Float']>;
+  pitch?: Maybe<Scalars['Float']>;
+  screen_speed?: Maybe<Scalars['Float']>;
+  speed?: Maybe<Scalars['Float']>;
+  zoom?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Storytelling_Location_Stddev_Samp_Fields = {
+  __typename?: 'storytelling_location_stddev_samp_fields';
+  bearing?: Maybe<Scalars['Float']>;
+  curve?: Maybe<Scalars['Float']>;
+  max_duration?: Maybe<Scalars['Float']>;
+  min_zoom?: Maybe<Scalars['Float']>;
+  pitch?: Maybe<Scalars['Float']>;
+  screen_speed?: Maybe<Scalars['Float']>;
+  speed?: Maybe<Scalars['Float']>;
+  zoom?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type Storytelling_Location_Sum_Fields = {
+  __typename?: 'storytelling_location_sum_fields';
+  bearing?: Maybe<Scalars['Float']>;
+  curve?: Maybe<Scalars['Float']>;
+  max_duration?: Maybe<Scalars['Int']>;
+  min_zoom?: Maybe<Scalars['Float']>;
+  pitch?: Maybe<Scalars['Float']>;
+  screen_speed?: Maybe<Scalars['Float']>;
+  speed?: Maybe<Scalars['Float']>;
+  zoom?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_pop on columns */
+export type Storytelling_Location_Var_Pop_Fields = {
+  __typename?: 'storytelling_location_var_pop_fields';
+  bearing?: Maybe<Scalars['Float']>;
+  curve?: Maybe<Scalars['Float']>;
+  max_duration?: Maybe<Scalars['Float']>;
+  min_zoom?: Maybe<Scalars['Float']>;
+  pitch?: Maybe<Scalars['Float']>;
+  screen_speed?: Maybe<Scalars['Float']>;
+  speed?: Maybe<Scalars['Float']>;
+  zoom?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Storytelling_Location_Var_Samp_Fields = {
+  __typename?: 'storytelling_location_var_samp_fields';
+  bearing?: Maybe<Scalars['Float']>;
+  curve?: Maybe<Scalars['Float']>;
+  max_duration?: Maybe<Scalars['Float']>;
+  min_zoom?: Maybe<Scalars['Float']>;
+  pitch?: Maybe<Scalars['Float']>;
+  screen_speed?: Maybe<Scalars['Float']>;
+  speed?: Maybe<Scalars['Float']>;
+  zoom?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Storytelling_Location_Variance_Fields = {
+  __typename?: 'storytelling_location_variance_fields';
+  bearing?: Maybe<Scalars['Float']>;
+  curve?: Maybe<Scalars['Float']>;
+  max_duration?: Maybe<Scalars['Float']>;
+  min_zoom?: Maybe<Scalars['Float']>;
+  pitch?: Maybe<Scalars['Float']>;
+  screen_speed?: Maybe<Scalars['Float']>;
+  speed?: Maybe<Scalars['Float']>;
+  zoom?: Maybe<Scalars['Float']>;
+};
+
+/** columns and relationships of "storytelling.transition" */
+export type Storytelling_Transition = {
+  __typename?: 'storytelling_transition';
+  duration?: Maybe<Scalars['Int']>;
+  layer: Scalars['String'];
+  opacity: Scalars['Float'];
+};
+
+/** aggregated selection of "storytelling.transition" */
+export type Storytelling_Transition_Aggregate = {
+  __typename?: 'storytelling_transition_aggregate';
+  aggregate?: Maybe<Storytelling_Transition_Aggregate_Fields>;
+  nodes: Array<Storytelling_Transition>;
+};
+
+/** aggregate fields of "storytelling.transition" */
+export type Storytelling_Transition_Aggregate_Fields = {
+  __typename?: 'storytelling_transition_aggregate_fields';
+  avg?: Maybe<Storytelling_Transition_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Storytelling_Transition_Max_Fields>;
+  min?: Maybe<Storytelling_Transition_Min_Fields>;
+  stddev?: Maybe<Storytelling_Transition_Stddev_Fields>;
+  stddev_pop?: Maybe<Storytelling_Transition_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Storytelling_Transition_Stddev_Samp_Fields>;
+  sum?: Maybe<Storytelling_Transition_Sum_Fields>;
+  var_pop?: Maybe<Storytelling_Transition_Var_Pop_Fields>;
+  var_samp?: Maybe<Storytelling_Transition_Var_Samp_Fields>;
+  variance?: Maybe<Storytelling_Transition_Variance_Fields>;
+};
+
+
+/** aggregate fields of "storytelling.transition" */
+export type Storytelling_Transition_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Storytelling_Transition_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "storytelling.transition" */
+export type Storytelling_Transition_Aggregate_Order_By = {
+  avg?: InputMaybe<Storytelling_Transition_Avg_Order_By>;
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Storytelling_Transition_Max_Order_By>;
+  min?: InputMaybe<Storytelling_Transition_Min_Order_By>;
+  stddev?: InputMaybe<Storytelling_Transition_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Storytelling_Transition_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Storytelling_Transition_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Storytelling_Transition_Sum_Order_By>;
+  var_pop?: InputMaybe<Storytelling_Transition_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Storytelling_Transition_Var_Samp_Order_By>;
+  variance?: InputMaybe<Storytelling_Transition_Variance_Order_By>;
+};
+
+/** aggregate avg on columns */
+export type Storytelling_Transition_Avg_Fields = {
+  __typename?: 'storytelling_transition_avg_fields';
+  duration?: Maybe<Scalars['Float']>;
+  opacity?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "storytelling.transition" */
+export type Storytelling_Transition_Avg_Order_By = {
+  duration?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "storytelling.transition". All fields are combined with a logical 'AND'. */
+export type Storytelling_Transition_Bool_Exp = {
+  _and?: InputMaybe<Array<Storytelling_Transition_Bool_Exp>>;
+  _not?: InputMaybe<Storytelling_Transition_Bool_Exp>;
+  _or?: InputMaybe<Array<Storytelling_Transition_Bool_Exp>>;
+  duration?: InputMaybe<Int_Comparison_Exp>;
+  layer?: InputMaybe<String_Comparison_Exp>;
+  opacity?: InputMaybe<Float_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Storytelling_Transition_Max_Fields = {
+  __typename?: 'storytelling_transition_max_fields';
+  duration?: Maybe<Scalars['Int']>;
+  layer?: Maybe<Scalars['String']>;
+  opacity?: Maybe<Scalars['Float']>;
+};
+
+/** order by max() on columns of table "storytelling.transition" */
+export type Storytelling_Transition_Max_Order_By = {
+  duration?: InputMaybe<Order_By>;
+  layer?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Storytelling_Transition_Min_Fields = {
+  __typename?: 'storytelling_transition_min_fields';
+  duration?: Maybe<Scalars['Int']>;
+  layer?: Maybe<Scalars['String']>;
+  opacity?: Maybe<Scalars['Float']>;
+};
+
+/** order by min() on columns of table "storytelling.transition" */
+export type Storytelling_Transition_Min_Order_By = {
+  duration?: InputMaybe<Order_By>;
+  layer?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** Ordering options when selecting data from "storytelling.transition". */
+export type Storytelling_Transition_Order_By = {
+  duration?: InputMaybe<Order_By>;
+  layer?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "storytelling.transition" */
+export enum Storytelling_Transition_Select_Column {
+  /** column name */
+  Duration = 'duration',
+  /** column name */
+  Layer = 'layer',
+  /** column name */
+  Opacity = 'opacity'
+}
+
+/** aggregate stddev on columns */
+export type Storytelling_Transition_Stddev_Fields = {
+  __typename?: 'storytelling_transition_stddev_fields';
+  duration?: Maybe<Scalars['Float']>;
+  opacity?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "storytelling.transition" */
+export type Storytelling_Transition_Stddev_Order_By = {
+  duration?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Storytelling_Transition_Stddev_Pop_Fields = {
+  __typename?: 'storytelling_transition_stddev_pop_fields';
+  duration?: Maybe<Scalars['Float']>;
+  opacity?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "storytelling.transition" */
+export type Storytelling_Transition_Stddev_Pop_Order_By = {
+  duration?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Storytelling_Transition_Stddev_Samp_Fields = {
+  __typename?: 'storytelling_transition_stddev_samp_fields';
+  duration?: Maybe<Scalars['Float']>;
+  opacity?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "storytelling.transition" */
+export type Storytelling_Transition_Stddev_Samp_Order_By = {
+  duration?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Storytelling_Transition_Sum_Fields = {
+  __typename?: 'storytelling_transition_sum_fields';
+  duration?: Maybe<Scalars['Int']>;
+  opacity?: Maybe<Scalars['Float']>;
+};
+
+/** order by sum() on columns of table "storytelling.transition" */
+export type Storytelling_Transition_Sum_Order_By = {
+  duration?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_pop on columns */
+export type Storytelling_Transition_Var_Pop_Fields = {
+  __typename?: 'storytelling_transition_var_pop_fields';
+  duration?: Maybe<Scalars['Float']>;
+  opacity?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "storytelling.transition" */
+export type Storytelling_Transition_Var_Pop_Order_By = {
+  duration?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Storytelling_Transition_Var_Samp_Fields = {
+  __typename?: 'storytelling_transition_var_samp_fields';
+  duration?: Maybe<Scalars['Float']>;
+  opacity?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "storytelling.transition" */
+export type Storytelling_Transition_Var_Samp_Order_By = {
+  duration?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Storytelling_Transition_Variance_Fields = {
+  __typename?: 'storytelling_transition_variance_fields';
+  duration?: Maybe<Scalars['Float']>;
+  opacity?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "storytelling.transition" */
+export type Storytelling_Transition_Variance_Order_By = {
+  duration?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
 };
 
 export type Subscription_Root = {
@@ -1729,10 +3123,38 @@ export type Subscription_Root = {
   boundary_narrative_view: Array<Boundary_Narrative_View>;
   /** fetch aggregated fields from the table: "boundary_narrative_view" */
   boundary_narrative_view_aggregate: Boundary_Narrative_View_Aggregate;
+  /** fetch data from the table: "chapter" */
+  chapter: Array<Chapter>;
+  /** fetch aggregated fields from the table: "chapter" */
+  chapter_aggregate: Chapter_Aggregate;
+  /** fetch data from the table: "chapter" using primary key columns */
+  chapter_by_pk?: Maybe<Chapter>;
+  /** fetch data from the table: "location" */
+  location: Array<Location>;
+  /** fetch data from the table: "location" using primary key columns */
+  location_by_pk?: Maybe<Location>;
   /** fetch data from the table: "narrative_boundary_view" */
   narrative_boundary_view: Array<Narrative_Boundary_View>;
   /** fetch aggregated fields from the table: "narrative_boundary_view" */
   narrative_boundary_view_aggregate: Narrative_Boundary_View_Aggregate;
+  /** fetch data from the table: "storytelling.chapter" */
+  storytelling_chapter: Array<Storytelling_Chapter>;
+  /** fetch aggregated fields from the table: "storytelling.chapter" */
+  storytelling_chapter_aggregate: Storytelling_Chapter_Aggregate;
+  /** fetch data from the table: "storytelling.chapter" using primary key columns */
+  storytelling_chapter_by_pk?: Maybe<Storytelling_Chapter>;
+  /** fetch data from the table: "storytelling.location" */
+  storytelling_location: Array<Storytelling_Location>;
+  /** fetch aggregated fields from the table: "storytelling.location" */
+  storytelling_location_aggregate: Storytelling_Location_Aggregate;
+  /** fetch data from the table: "storytelling.transition" */
+  storytelling_transition: Array<Storytelling_Transition>;
+  /** fetch aggregated fields from the table: "storytelling.transition" */
+  storytelling_transition_aggregate: Storytelling_Transition_Aggregate;
+  /** fetch data from the table: "transition" */
+  transition: Array<Transition>;
+  /** fetch data from the table: "transition" using primary key columns */
+  transition_by_pk?: Maybe<Transition>;
 };
 
 
@@ -1847,6 +3269,43 @@ export type Subscription_RootBoundary_Narrative_View_AggregateArgs = {
 };
 
 
+export type Subscription_RootChapterArgs = {
+  distinct_on?: InputMaybe<Array<Chapter_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Chapter_Order_By>>;
+  where?: InputMaybe<Chapter_Bool_Exp>;
+};
+
+
+export type Subscription_RootChapter_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Chapter_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Chapter_Order_By>>;
+  where?: InputMaybe<Chapter_Bool_Exp>;
+};
+
+
+export type Subscription_RootChapter_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_RootLocationArgs = {
+  distinct_on?: InputMaybe<Array<Location_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Location_Order_By>>;
+  where?: InputMaybe<Location_Bool_Exp>;
+};
+
+
+export type Subscription_RootLocation_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type Subscription_RootNarrative_Boundary_ViewArgs = {
   distinct_on?: InputMaybe<Array<Narrative_Boundary_View_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -1862,6 +3321,236 @@ export type Subscription_RootNarrative_Boundary_View_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<Narrative_Boundary_View_Order_By>>;
   where?: InputMaybe<Narrative_Boundary_View_Bool_Exp>;
+};
+
+
+export type Subscription_RootStorytelling_ChapterArgs = {
+  distinct_on?: InputMaybe<Array<Storytelling_Chapter_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Storytelling_Chapter_Order_By>>;
+  where?: InputMaybe<Storytelling_Chapter_Bool_Exp>;
+};
+
+
+export type Subscription_RootStorytelling_Chapter_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Storytelling_Chapter_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Storytelling_Chapter_Order_By>>;
+  where?: InputMaybe<Storytelling_Chapter_Bool_Exp>;
+};
+
+
+export type Subscription_RootStorytelling_Chapter_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_RootStorytelling_LocationArgs = {
+  distinct_on?: InputMaybe<Array<Storytelling_Location_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Storytelling_Location_Order_By>>;
+  where?: InputMaybe<Storytelling_Location_Bool_Exp>;
+};
+
+
+export type Subscription_RootStorytelling_Location_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Storytelling_Location_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Storytelling_Location_Order_By>>;
+  where?: InputMaybe<Storytelling_Location_Bool_Exp>;
+};
+
+
+export type Subscription_RootStorytelling_TransitionArgs = {
+  distinct_on?: InputMaybe<Array<Storytelling_Transition_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Storytelling_Transition_Order_By>>;
+  where?: InputMaybe<Storytelling_Transition_Bool_Exp>;
+};
+
+
+export type Subscription_RootStorytelling_Transition_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Storytelling_Transition_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Storytelling_Transition_Order_By>>;
+  where?: InputMaybe<Storytelling_Transition_Bool_Exp>;
+};
+
+
+export type Subscription_RootTransitionArgs = {
+  distinct_on?: InputMaybe<Array<Transition_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Transition_Order_By>>;
+  where?: InputMaybe<Transition_Bool_Exp>;
+};
+
+
+export type Subscription_RootTransition_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+/** columns and relationships of "transition" */
+export type Transition = {
+  __typename?: 'transition';
+  chapter_enter_id?: Maybe<Scalars['Int']>;
+  chapter_exit_id?: Maybe<Scalars['Int']>;
+  duration?: Maybe<Scalars['Int']>;
+  id: Scalars['Int'];
+  layer: Scalars['String'];
+  opacity: Scalars['Float'];
+};
+
+/** order by aggregate values of table "transition" */
+export type Transition_Aggregate_Order_By = {
+  avg?: InputMaybe<Transition_Avg_Order_By>;
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Transition_Max_Order_By>;
+  min?: InputMaybe<Transition_Min_Order_By>;
+  stddev?: InputMaybe<Transition_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Transition_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Transition_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Transition_Sum_Order_By>;
+  var_pop?: InputMaybe<Transition_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Transition_Var_Samp_Order_By>;
+  variance?: InputMaybe<Transition_Variance_Order_By>;
+};
+
+/** order by avg() on columns of table "transition" */
+export type Transition_Avg_Order_By = {
+  chapter_enter_id?: InputMaybe<Order_By>;
+  chapter_exit_id?: InputMaybe<Order_By>;
+  duration?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "transition". All fields are combined with a logical 'AND'. */
+export type Transition_Bool_Exp = {
+  _and?: InputMaybe<Array<Transition_Bool_Exp>>;
+  _not?: InputMaybe<Transition_Bool_Exp>;
+  _or?: InputMaybe<Array<Transition_Bool_Exp>>;
+  chapter_enter_id?: InputMaybe<Int_Comparison_Exp>;
+  chapter_exit_id?: InputMaybe<Int_Comparison_Exp>;
+  duration?: InputMaybe<Int_Comparison_Exp>;
+  id?: InputMaybe<Int_Comparison_Exp>;
+  layer?: InputMaybe<String_Comparison_Exp>;
+  opacity?: InputMaybe<Float_Comparison_Exp>;
+};
+
+/** order by max() on columns of table "transition" */
+export type Transition_Max_Order_By = {
+  chapter_enter_id?: InputMaybe<Order_By>;
+  chapter_exit_id?: InputMaybe<Order_By>;
+  duration?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  layer?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** order by min() on columns of table "transition" */
+export type Transition_Min_Order_By = {
+  chapter_enter_id?: InputMaybe<Order_By>;
+  chapter_exit_id?: InputMaybe<Order_By>;
+  duration?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  layer?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** Ordering options when selecting data from "transition". */
+export type Transition_Order_By = {
+  chapter_enter_id?: InputMaybe<Order_By>;
+  chapter_exit_id?: InputMaybe<Order_By>;
+  duration?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  layer?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "transition" */
+export enum Transition_Select_Column {
+  /** column name */
+  ChapterEnterId = 'chapter_enter_id',
+  /** column name */
+  ChapterExitId = 'chapter_exit_id',
+  /** column name */
+  Duration = 'duration',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Layer = 'layer',
+  /** column name */
+  Opacity = 'opacity'
+}
+
+/** order by stddev() on columns of table "transition" */
+export type Transition_Stddev_Order_By = {
+  chapter_enter_id?: InputMaybe<Order_By>;
+  chapter_exit_id?: InputMaybe<Order_By>;
+  duration?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** order by stddev_pop() on columns of table "transition" */
+export type Transition_Stddev_Pop_Order_By = {
+  chapter_enter_id?: InputMaybe<Order_By>;
+  chapter_exit_id?: InputMaybe<Order_By>;
+  duration?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** order by stddev_samp() on columns of table "transition" */
+export type Transition_Stddev_Samp_Order_By = {
+  chapter_enter_id?: InputMaybe<Order_By>;
+  chapter_exit_id?: InputMaybe<Order_By>;
+  duration?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** order by sum() on columns of table "transition" */
+export type Transition_Sum_Order_By = {
+  chapter_enter_id?: InputMaybe<Order_By>;
+  chapter_exit_id?: InputMaybe<Order_By>;
+  duration?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** order by var_pop() on columns of table "transition" */
+export type Transition_Var_Pop_Order_By = {
+  chapter_enter_id?: InputMaybe<Order_By>;
+  chapter_exit_id?: InputMaybe<Order_By>;
+  duration?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** order by var_samp() on columns of table "transition" */
+export type Transition_Var_Samp_Order_By = {
+  chapter_enter_id?: InputMaybe<Order_By>;
+  chapter_exit_id?: InputMaybe<Order_By>;
+  duration?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
+};
+
+/** order by variance() on columns of table "transition" */
+export type Transition_Variance_Order_By = {
+  chapter_enter_id?: InputMaybe<Order_By>;
+  chapter_exit_id?: InputMaybe<Order_By>;
+  duration?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  opacity?: InputMaybe<Order_By>;
 };
 
 export type CommunityVideosQueryVariables = Exact<{ [key: string]: never; }>;
