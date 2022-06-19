@@ -1,8 +1,9 @@
 import React from 'react';
 import { Scrollama, Step } from 'react-scrollama';
 import { MapContext } from 'react-map-gl';
-import { Chapter, Header, Footer } from '@/atoms/MapStoryAtoms';
-
+import { Chapter, Footer} from '@/atoms/MapStoryAtoms';
+import { NarrativeMenu } from '@/organisms/NarrativeMenu';
+import styled from '@emotion/styled';
 
 const layerTypes = {
   'fill': ['fill-opacity'],
@@ -26,7 +27,14 @@ export function Story({ onMarkerCoordsChange, chapterData, headerTitle, headerSu
 
   const { map } = React.useContext(MapContext);
   const [mapRef, setMapRef]: [any, React.Dispatch<React.SetStateAction<any>>] = React.useState(map.current);
-  
+
+  const StyledHeader = styled.header`
+  margin: auto;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+  `
+
   React.useEffect(() => {
     setMapRef(map?.current?.getMap());
   }, [map])
@@ -120,7 +128,12 @@ export function Story({ onMarkerCoordsChange, chapterData, headerTitle, headerSu
 
   return (
     <div id="story">
-      <Header title={headerTitle} subtitle={headerSubtitle} byline={headerByline} />
+      {/* <Header title={headerTitle} subtitle={headerSubtitle} byline={headerByline} /> */}
+      <div id="menu">
+        <StyledHeader>
+          <NarrativeMenu style={{width: "100%", height: "50%"}}></NarrativeMenu>
+        </StyledHeader>
+      </div>
       <div id='features' style={{ paddingTop: '10vh', paddingBottom: '10vh' }}>
       <Scrollama
         onStepEnter={onStepEnter}
