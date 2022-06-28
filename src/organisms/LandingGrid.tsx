@@ -49,11 +49,14 @@ const CardTitle = styled.span`
   color: white;
   transform: translateY(-50%);
   top: 50%;
-  left: 8px;
-  font-size: 48px;
+  text-align: center;
+  width: 81%;
+  left: 10%;
+  font-size: 32px;
   font-family: ${ props => props.theme.fonts.fontFamily.header };
   z-index: 4;
   text-shadow: 0 0 2px black;
+  align-self: center;
 
   @media (min-width: ${props => props.theme.mediaQuery.tablet}) {
     font-size: 48px;
@@ -81,8 +84,8 @@ const CardTitle = styled.span`
 const LandingCard = ( { children, color, src, title } : { children: string; color: string; src: string; title: string }) => {
   return (
     <CardContainer color={ color }>
-      <CardTitle>{ title }</CardTitle> 
       <CardImage className='card-image' src={ src } />
+      <CardTitle>{ title }</CardTitle> 
       {/* <CardInfo className='card-info'><InfoText>{ children }</InfoText></CardInfo> */}
     </CardContainer>
   )
