@@ -1,5 +1,5 @@
 interface ExplorePageSidePanelType extends TogglePanel {
-  narrative: string;
+  narrativeStr: string;
   setNarrative: React.Dispatch<React.SetStateAction<any>>;
 }
 
@@ -11,7 +11,7 @@ interface NarrativeType {
   visible: string[];
 }
 
-interface ExplorePageSidePanelType extends TogglePanel {
+interface NarrativeTopPanelType extends TogglePanel{
   narrative: string;
   setNarrative: React.Dispatch<React.SetStateAction<any>>;
 }

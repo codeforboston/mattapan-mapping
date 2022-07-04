@@ -131,7 +131,7 @@ export function Story({ onMarkerCoordsChange, chapterData, headerTitle, headerSu
       {/* <Header title={headerTitle} subtitle={headerSubtitle} byline={headerByline} /> */}
       <div id="menu">
         <StyledHeader>
-          <NarrativeMenu style={{width: "100%", height: "50%"}}></NarrativeMenu>
+          <NarrativeMenu></NarrativeMenu>
         </StyledHeader>
       </div>
       <div id='features' style={{ paddingTop: '10vh', paddingBottom: '10vh' }}>
