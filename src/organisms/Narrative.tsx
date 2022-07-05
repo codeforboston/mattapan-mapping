@@ -56,14 +56,14 @@ const SelectedNarrativeTitle = styled(Title)`
 
 const Narratives = ({ onNarrativeChange }: { onNarrativeChange: (color: string, name: string) => void }) => {
   let { narrativeStr } = useParams();
-  useEffect(() =>{
-    const found: NarrativeType|undefined = NARRATIVES.find(({name, color, visible},i,ar) =>{
-      return name === narrativeStr;
-    })
-    onNarrativeChange(found?.color??'', found?.name??'');
-    console.log('narrativeStr', narrativeStr)
-    console.log('NARRATIVES', NARRATIVES)
-  },[narrativeStr] );
+  // useEffect(() =>{
+  //   const found: NarrativeType|undefined = NARRATIVES.find(({name, color, visible},i,ar) =>{
+  //     return name === narrativeStr;
+  //   })
+  //   onNarrativeChange(found?.color??'', found?.name??'');
+  //   console.log('narrativeStr', narrativeStr)
+  //   console.log('NARRATIVES', NARRATIVES)
+  // },[narrativeStr] );
   return (
     <>
       <NarrativeSubHeadline>Choose a narrative</NarrativeSubHeadline>
@@ -94,7 +94,7 @@ const NarrativePanel = ({ narrativeStr, data, toggleState, toggleHandler, onNarr
   );
 }
 
-const NarrativeTopPanelBody = ({ narrativeStr, data, toggleState, toggleHandler, onNarrativeChange }: NarrativePanelType) => {
+const NarrativeTopMenuPanel = ({ narrativeStr, data, toggleState, toggleHandler, onNarrativeChange }: NarrativePanelType) => {
   if (narrativeStr) {
     return (
       <>
@@ -113,7 +113,7 @@ export const ExplorePageNarratives = ({ narrativeStr, data, toggleState, toggleH
   const [narrativeColor, setNarrativeColor] = React.useState(Theme.colors.peach);
   
   const onNarrativeChange = (selectedNarrativeColor: string, selectedNarrative: string) => {
-    setNarrativeColor(selectedNarrativeColor);
+    setNarrativeColor(selectedNarrativeColor);debugger
     setNarrative(selectedNarrative)
   };
   
@@ -136,7 +136,7 @@ export const NarrativeTopPanel = ({ narrativeStr, data, toggleState, toggleHandl
   return (
     <NarrativeContainer color={ narrativeColor } width={ '100%' }>
       <NarrativeHeadline color={ Theme.colors.white }>EXPLORE</NarrativeHeadline>
-      <NarrativeTopPanelBody narrativeStr={ narrativeStr } data={ data } toggleState={ toggleState } toggleHandler={ toggleHandler } onNarrativeChange={ onNarrativeChange }/>
+      <NarrativeTopMenuPanel narrativeStr={ narrativeStr } data={ data } toggleState={ toggleState } toggleHandler={ toggleHandler } onNarrativeChange={ onNarrativeChange }/>
     </NarrativeContainer>
   )
 };

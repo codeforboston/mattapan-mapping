@@ -21,7 +21,7 @@ const MattapanMappingRoutes = () => (
     <Route path='/' element={<LandingPage />} />
     <Route path='/about' element={<AboutPage />} />
     <Route path='/explore' element={<MapPage />} />
-    <Route path='/story*' element={<StorytellingMap />}>
+    <Route path='/story/*' element={<StorytellingMap />}>
       <Route path=":narrativeStr" element={<StorytellingMap/>}/>
     </Route>
     <Route path='/meet' element={<MeetPage />} />
