@@ -7,7 +7,8 @@ import { Map } from '@/atoms/MapAtoms';
 import { MapLayers } from '@/molecules/MapLayers';
 import { Layout, StyledHeader, StyledFooter } from '@/templates/StandardLayout'
 import { useMapPageQuery } from '@/graphql/generated';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+// import { useSearchParams } from 'react-router-dom';
 
 
 const MapContainer = styled.div`
@@ -33,8 +34,8 @@ export default function MapPage() {
   const [narrativeData, setNarrativeData] = React.useState<Array<MapGeoJsonData>>([]);
   const [featureToggle, setFeatureToggle]= React.useState<FeatureToggleState>({});
   const [narrative, setNarrative] = React.useState('');
-  let [searchParams, setSearchParams] = useSearchParams();
-  let navigate = useNavigate();
+  // let [searchParams, setSearchParams] = useSearchParams();
+  // let navigate = useNavigate();
 
   const { Narratives: gqlNarrative, Boundaries: gqlBoundaries } = mapData || {};
 

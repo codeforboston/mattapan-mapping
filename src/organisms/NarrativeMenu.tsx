@@ -2,7 +2,8 @@ import { ExplorePageToggleStates } from "@/data/ExplorePageData";
 import { useMapPageQuery } from "@/graphql/generated";
 import React from "react";
 import { NarrativeTopPanel } from "./Narrative";
-import { useSearchParams, useNavigate, useParams  } from 'react-router-dom';
+import { useNavigate, useParams  } from 'react-router-dom';
+//import { useSearchParams } from 'react-router-dom';
 
 export const NarrativeMenu = (props: any) => {
     const { data: mapData } = useMapPageQuery();
@@ -14,7 +15,7 @@ export const NarrativeMenu = (props: any) => {
     const onToggleChange = (id: string) => {
         setFeatureToggle({ ...featureToggle, [id]: !featureToggle[id] });
       };
-    let [searchParams, setSearchParams] = useSearchParams();
+    // let [searchParams, setSearchParams] = useSearchParams();
     let navigate = useNavigate();
     let { narrativeStr } = useParams();
 

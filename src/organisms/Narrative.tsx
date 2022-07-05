@@ -58,7 +58,7 @@ const Narratives = ({ onNarrativeChange }: { onNarrativeChange: (color: string, 
   let { narrativeStr } = useParams();
   useEffect(() =>{
     const found: NarrativeType|undefined = NARRATIVES.find(({name, color, visible},i,ar) =>{
-      return name == narrativeStr;
+      return name === narrativeStr;
     })
     onNarrativeChange(found?.color??'', found?.name??'');
     console.log('narrativeStr', narrativeStr)
@@ -94,11 +94,26 @@ const NarrativePanel = ({ narrativeStr, data, toggleState, toggleHandler, onNarr
   );
 }
 
+const NarrativeTopPanelBody = ({ narrativeStr, data, toggleState, toggleHandler, onNarrativeChange }: NarrativePanelType) => {
+  if (narrativeStr) {
+    return (
+      <>
+        <SelectedNarrativeTitle>{ narrativeStr }</SelectedNarrativeTitle>
+        <NarrativeButton onClick={ () => onNarrativeChange(Theme.colors.peach, '') }>Choose another Narrative</NarrativeButton>
+      </>
+    );
+  }
+
+  return (
+    <Narratives onNarrativeChange={ onNarrativeChange }/>
+  );
+}
+
 export const ExplorePageNarratives = ({ narrativeStr, data, toggleState, toggleHandler, setNarrative }: ExplorePageSidePanelType) => {
   const [narrativeColor, setNarrativeColor] = React.useState(Theme.colors.peach);
   
   const onNarrativeChange = (selectedNarrativeColor: string, selectedNarrative: string) => {
-    setNarrativeColor(selectedNarrativeColor);debugger
+    setNarrativeColor(selectedNarrativeColor);
     setNarrative(selectedNarrative)
   };
   
@@ -121,7 +136,7 @@ export const NarrativeTopPanel = ({ narrativeStr, data, toggleState, toggleHandl
   return (
     <NarrativeContainer color={ narrativeColor } width={ '100%' }>
       <NarrativeHeadline color={ Theme.colors.white }>EXPLORE</NarrativeHeadline>
-      <NarrativePanel narrativeStr={ narrativeStr } data={ data } toggleState={ toggleState } toggleHandler={ toggleHandler } onNarrativeChange={ onNarrativeChange }/>
+      <NarrativeTopPanelBody narrativeStr={ narrativeStr } data={ data } toggleState={ toggleState } toggleHandler={ toggleHandler } onNarrativeChange={ onNarrativeChange }/>
     </NarrativeContainer>
   )
 };
