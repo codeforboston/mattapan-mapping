@@ -56,14 +56,14 @@ const SelectedNarrativeTitle = styled(Title)`
 
 const Narratives = ({ onNarrativeChange }: { onNarrativeChange: (color: string, name: string) => void }) => {
   let { narrativeStr } = useParams();
-  // useEffect(() =>{
-  //   const found: NarrativeType|undefined = NARRATIVES.find(({name, color, visible},i,ar) =>{
-  //     return name === narrativeStr;
-  //   })
-  //   onNarrativeChange(found?.color??'', found?.name??'');
-  //   console.log('narrativeStr', narrativeStr)
-  //   console.log('NARRATIVES', NARRATIVES)
-  // },[narrativeStr] );
+  useEffect(() =>{
+    const found = NARRATIVES.find(({name, color, visible},i,ar) =>{
+      return {color, name};
+    })
+
+    // onNarrativeChange(found?.color??'', found?.name??'');
+    console.log('found color', found?.color??'')
+  },[narrativeStr] );
   return (
     <>
       <NarrativeSubHeadline>Choose a narrative</NarrativeSubHeadline>
