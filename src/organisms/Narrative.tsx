@@ -4,6 +4,8 @@ import { Headline, BodySmall, SubHeadline, Title } from '@/atoms/Tokens';
 import { Theme } from '@/theme/Theme';
 import { NARRATIVES } from '@/data/ExplorePageData';
 import { TogglePanel } from '@/molecules/TogglePanel';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 const NarrativeButton = styled.button`
   background: ${ props => props.theme.colors.white };
@@ -24,10 +26,10 @@ const NarrativeSelection = styled.div`
   flex-direction: column;
 `;
 
-const NarrativeContainer = styled.div<{ color: string }>`
+const NarrativeContainer = styled.div<{ color: string, width: string }>`
   background: ${ props => props.color };
   height: 100vh;
-  width: 550px;
+  width: ${props => props.width};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -53,6 +55,15 @@ const SelectedNarrativeTitle = styled(Title)`
 `
 
 const Narratives = ({ onNarrativeChange }: { onNarrativeChange: (color: string, name: string) => void }) => {
+  let { narrativeStr } = useParams();
+  useEffect(() =>{
+    const found = NARRATIVES.find(({name, color, visible},i,ar) =>{
+      return {color, name};
+    })
+
+    // onNarrativeChange(found?.color??'', found?.name??'');
+    console.log('found color', found?.color??'')
+  },[narrativeStr] );
   return (
     <>
       <NarrativeSubHeadline>Choose a narrative</NarrativeSubHeadline>
@@ -67,11 +78,11 @@ const Narratives = ({ onNarrativeChange }: { onNarrativeChange: (color: string, 
   );
 }
 
-const NarrativePanel = ({ narrative, data, toggleState, toggleHandler, onNarrativeChange }: NarrativePanelType) => {
-  if (narrative) {
+const NarrativePanel = ({ narrativeStr, data, toggleState, toggleHandler, onNarrativeChange }: NarrativePanelType) => {
+  if (narrativeStr) {
     return (
       <>
-        <SelectedNarrativeTitle>{ narrative }</SelectedNarrativeTitle>
+        <SelectedNarrativeTitle>{ narrativeStr }</SelectedNarrativeTitle>
         <NarrativeButton onClick={ () => onNarrativeChange(Theme.colors.peach, '') }>Choose another Narrative</NarrativeButton>
         <TogglePanel data={ data } toggleState={ toggleState } toggleHandler={ toggleHandler } />
       </>
@@ -83,18 +94,49 @@ const NarrativePanel = ({ narrative, data, toggleState, toggleHandler, onNarrati
   );
 }
 
-export const ExplorePageNarratives = ({ narrative, data, toggleState, toggleHandler, setNarrative }: ExplorePageSidePanelType) => {
-  const [narrativeColor, setNarrativeColor] = React.useState(Theme.colors.peach);
+const NarrativeTopMenuPanel = ({ narrativeStr, data, toggleState, toggleHandler, onNarrativeChange }: NarrativePanelType) => {
+  if (narrativeStr) {
+    return (
+      <>
+        <SelectedNarrativeTitle>{ narrativeStr }</SelectedNarrativeTitle>
+        <NarrativeButton onClick={ () => onNarrativeChange(Theme.colors.peach, '') }>Choose another Narrative</NarrativeButton>
+      </>
+    );
+  }
 
+  return (
+    <Narratives onNarrativeChange={ onNarrativeChange }/>
+  );
+}
+
+export const ExplorePageNarratives = ({ narrativeStr, data, toggleState, toggleHandler, setNarrative }: ExplorePageSidePanelType) => {
+  const [narrativeColor, setNarrativeColor] = React.useState(Theme.colors.peach);
+  
+  const onNarrativeChange = (selectedNarrativeColor: string, selectedNarrative: string) => {
+    setNarrativeColor(selectedNarrativeColor);debugger
+    setNarrative(selectedNarrative)
+  };
+  
+  return (
+    <NarrativeContainer color={ narrativeColor } width={ '550px' }>
+      <NarrativeHeadline color={ Theme.colors.white }>EXPLORE</NarrativeHeadline>
+      <NarrativePanel narrativeStr={ narrativeStr } data={ data } toggleState={ toggleState } toggleHandler={ toggleHandler } onNarrativeChange={ onNarrativeChange }/>
+    </NarrativeContainer>
+  )
+};
+
+export const NarrativeTopPanel = ({ narrativeStr, data, toggleState, toggleHandler, setNarrative }: ExplorePageSidePanelType) => {
+  const [narrativeColor, setNarrativeColor] = React.useState(Theme.colors.peach);
+  
   const onNarrativeChange = (selectedNarrativeColor: string, selectedNarrative: string) => {
     setNarrativeColor(selectedNarrativeColor);
     setNarrative(selectedNarrative)
   };
 
   return (
-    <NarrativeContainer color={ narrativeColor }>
+    <NarrativeContainer color={ narrativeColor } width={ '100%' }>
       <NarrativeHeadline color={ Theme.colors.white }>EXPLORE</NarrativeHeadline>
-      <NarrativePanel narrative={ narrative } data={ data } toggleState={ toggleState } toggleHandler={ toggleHandler } onNarrativeChange={ onNarrativeChange }/>
+      <NarrativeTopMenuPanel narrativeStr={ narrativeStr } data={ data } toggleState={ toggleState } toggleHandler={ toggleHandler } onNarrativeChange={ onNarrativeChange }/>
     </NarrativeContainer>
   )
 };
