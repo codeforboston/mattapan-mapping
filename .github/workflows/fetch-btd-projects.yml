@@ -5,7 +5,7 @@ name: Fetch BTD Projects
 
 on:
   schedule:
-    - cron: '30 8 * * 6'
+ #   - cron: '30 8 * * 6'
   workflow_dispatch:
 
 
