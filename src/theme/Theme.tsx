@@ -17,7 +17,7 @@ export const Theme: Theme = {
 
   fonts: {
     fontFamily: {
-      header: "'Baron Neue', sans-serif",
+      header: "'Fira Sans', sans-serif",
       body: "'Lato', sans-serif",
     },
     fontWeight: {
