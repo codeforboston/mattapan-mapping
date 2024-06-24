@@ -7,6 +7,9 @@ import { Map } from '@/atoms/MapAtoms';
 import { MapLayers } from '@/molecules/MapLayers';
 import { Layout, StyledHeader, StyledFooter } from '@/templates/StandardLayout'
 import { useMapPageQuery } from '@/graphql/generated';
+// import { useNavigate } from 'react-router-dom';
+// import { useSearchParams } from 'react-router-dom';
+
 
 const MapContainer = styled.div`
   display: flex;
@@ -31,6 +34,8 @@ export default function MapPage() {
   const [narrativeData, setNarrativeData] = React.useState<Array<MapGeoJsonData>>([]);
   const [featureToggle, setFeatureToggle]= React.useState<FeatureToggleState>({});
   const [narrative, setNarrative] = React.useState('');
+  // let [searchParams, setSearchParams] = useSearchParams();
+  // let navigate = useNavigate();
 
   const { Narratives: gqlNarrative, Boundaries: gqlBoundaries } = mapData || {};
 
@@ -40,6 +45,15 @@ export default function MapPage() {
     setFeatureToggle({ ...featureToggle, [id]: !featureToggle[id] });
   };
 
+  // function handleSubmit(event: { preventDefault: () => void; target: any; }) {
+  //   event.preventDefault();
+  //   // The serialize function here would be responsible for
+  //   // creating an object of { key: value } pairs from the
+  //   // fields in the form that make up the query.
+  //   let params = serializeFormQuery(event.target);
+  //   setSearchParams(params);
+  // }
+  
   React.useEffect(() => {
     const fetchAll = async () => {
       try {
@@ -98,7 +112,7 @@ export default function MapPage() {
       <StyledHeader />
       <ExplorePageContainer>
         <ExplorePageNarratives
-          narrative={ narrative }
+          narrativeStr={ narrative }
           data={ narrativeData }
           toggleState={ featureToggle }
           toggleHandler={ onToggleChange }
@@ -117,3 +131,5 @@ export default function MapPage() {
     </Layout>
   )
 }
+
+
