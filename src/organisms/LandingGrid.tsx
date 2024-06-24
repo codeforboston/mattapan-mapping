@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Theme } from '@/theme/Theme';
+import { StyledLink } from '@/atoms/HeaderAtoms';
 
 const LandingGridContainer = styled.div`
   display: grid;
@@ -88,15 +89,21 @@ const LandingCard = ( { children, color, src, title } : { children: string; colo
   )
 }
 
+const LandingCardLink = ({ href, color, src, title, children }: { href: string; color: string; src: string; title: string; children: string; }) => {
+  return (
+    <StyledLink to={href}><LandingCard title={title} color={color} src={src} children={children} ></LandingCard></StyledLink>
+  )
+}
+
 export const LandingGrid = () => {
   return (
     <LandingGridContainer>
-      <LandingCard title='About' color={ Theme.colors.blue } src='https://upload.wikimedia.org/wikipedia/commons/3/3b/Mattapan_M_Line_Trolley_3254.jpg'>More info on About</LandingCard>
-      <LandingCard title='Explore' color={ Theme.colors.peach } src='https://cdn10.bostonmagazine.com/wp-content/uploads/sites/2/2018/12/mattapan1.jpg'>More info on Explore</LandingCard>
-      <LandingCard title='Meet' color={ Theme.colors.teal } src='https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,f_jpg,g_xy_center,h_748,q_65,w_640,x_836,y_394/v1/clients/boston/Mattapan_KyleKlein_KKP11885_6575163c-84da-4e45-a1a0-e7b1f4724191.jpg'>Meet</LandingCard>
-      <LandingCard title='Share' color={ Theme.colors.orange } src='https://i.pinimg.com/originals/b7/20/98/b720983ab02bbdf91e643427d17470cb.jpg'>More info on Share</LandingCard>
-      <LandingCard title='Get Involved' color={ Theme.colors.red } src='https://images1.apartments.com/i2/C-nvX3YH0OZYtCUKBXUSgYr9XOvRY4U8cKwa-F2isvg/111/78-mattapan-st-unit-1-boston-ma-exterior.jpg'>More info on Get Involved</LandingCard>
-      <LandingCard title='Contact Us?' color={ Theme.colors.brown } src='https://scontent-bos3-1.xx.fbcdn.net/v/t1.6435-9/p960x960/120760232_3847173248643441_4683888836416691032_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=36a2c1&_nc_ohc=CFsgtqppGvcAX_ZnzNE&_nc_ht=scontent-bos3-1.xx&oh=dc1f7a638e4cc2fcf5150610c79d1c42&oe=618D5C99'>More info on Contact Us?</LandingCard>
+      <LandingCardLink href="/about" title='About' color={Theme.colors.blue} src={process.env.PUBLIC_URL + 'assets/about.jpg'}>More info on About</LandingCardLink>
+      <LandingCardLink href="/explore" title='Explore' color={Theme.colors.peach} src={process.env.PUBLIC_URL + 'assets/explore.jpg'}>More info on Explore</LandingCardLink>
+      <LandingCardLink href="/meet" title='Meet' color={Theme.colors.teal} src={process.env.PUBLIC_URL + 'assets/meet.jpg'}>Meet</LandingCardLink>
+      <LandingCardLink href="/share" title='Share' color={Theme.colors.orange} src={process.env.PUBLIC_URL + 'assets/share.jpg'}>More info on Share</LandingCardLink>
+      <LandingCardLink href="/getInvolved" title='Get Involved' color={Theme.colors.red} src={process.env.PUBLIC_URL + 'assets/Harvest_River_Bridge.jpg'}>More info on Get Involved</LandingCardLink>
+      <LandingCardLink href="/contact" title='Contact Us?' color={Theme.colors.brown} src={process.env.PUBLIC_URL + 'assets/unibank.jpg'}>More info on Contact Us?</LandingCardLink>
     </LandingGridContainer>
   )
 }

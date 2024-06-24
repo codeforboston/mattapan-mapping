@@ -1,6 +1,8 @@
 import styled from '@emotion/styled'
+import { Link } from 'react-router-dom';
 
-export const Link = styled.a`
+
+export const StyledLink = styled(Link)`
     display: inline-block;
     text-decoration: none;
 `;
@@ -27,12 +29,12 @@ export const HeaderTitle = styled.span`
 
 export const HeaderLink = ({ href, children, color }: { href: string, children: string, color: string; }) => {
     return (
-        <Link href={href}> <LinkText color={ color }>{children}</LinkText></Link>
+      <StyledLink to={href}> <LinkText color={color}>{children}</LinkText></StyledLink>
     )
 }
 
 export const ExternalLink = ({ href, children }: { href: string, children: any }) => {
     return (
-        <Link target="_blank" href={href}>{children}</Link>
+      <StyledLink target="_blank" to={href}>{children}</StyledLink>
     )
 }
